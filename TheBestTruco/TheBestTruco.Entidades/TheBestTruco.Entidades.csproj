@@ -44,7 +44,6 @@
     <Compile Include="Jugador.cs" />
     <Compile Include="Mazo.cs" />
     <Compile Include="Partida.cs" />
-    <Compile Include="Puntuacion.cs" />
     <Compile Include="Truco.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

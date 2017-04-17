@@ -4,9 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace TheBestTruco.Entidades
 {
-    public class Truco
+    public enum Palo
     {
+        Espada, Basto, Copa, Oro
+    }
+
+    class Truco
+    {
+
     }
 }

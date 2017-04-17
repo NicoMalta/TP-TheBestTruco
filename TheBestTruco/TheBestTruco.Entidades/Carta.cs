@@ -8,14 +8,14 @@ namespace TheBestTruco.Entidades
 {
     public class Carta
     {
-        public string Palo { get; set; }
+        public Palo Palos { get; set; }
         public int Numero { get; set; }
         public int Valor { get; set; }
 
-        public Carta(string palo , int numero)
+        public Carta(Palo palo , int numero)
         {
             Numero = numero;
-            Palo = palo;
+            Palos = palo;
         }
     }
 }
