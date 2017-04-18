@@ -14,7 +14,7 @@ namespace TheBestTruco.Entidades
 
             for (int i = 1; i < 13; i++)
             {
-                if (i != 8 || i != 9)
+                if ((i != 8) && (i != 9))
                 {
                     Carta carta = new Carta(Palo.Espada, i);
                     mazo.AgregarCartaAlMazo(carta, mazo);
@@ -23,7 +23,7 @@ namespace TheBestTruco.Entidades
 
             for (int i = 1; i < 13; i++)
             {
-                if (i != 8 || i != 9)
+                if ((i != 8) && (i != 9))
                 {
                     Carta carta = new Carta(Palo.Oro, i);
                     mazo.AgregarCartaAlMazo(carta, mazo);
@@ -32,7 +32,7 @@ namespace TheBestTruco.Entidades
 
             for (int i = 1; i < 13; i++)
             {
-                if (i != 8 || i != 9)
+                if ((i != 8) && (i != 9))
                 {
                     Carta carta = new Carta(Palo.Copa, i);
                     mazo.AgregarCartaAlMazo(carta, mazo);
@@ -41,7 +41,7 @@ namespace TheBestTruco.Entidades
 
             for (int i = 1; i < 13; i++)
             {
-                if (i != 8 || i != 9)
+                if ((i != 8) && (i != 9))
                 {
                     Carta carta = new Carta(Palo.Basto, i);
                     mazo.AgregarCartaAlMazo(carta, mazo);
