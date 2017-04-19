@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TheBestTruco.Entidades
 {
-    class Jugador
+    public class Jugador
     {
         public List<Carta> Mano { get; set; }
 

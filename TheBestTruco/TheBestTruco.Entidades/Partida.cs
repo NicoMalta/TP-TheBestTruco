@@ -52,6 +52,42 @@ namespace TheBestTruco.Entidades
             return mazo;
         }
 
+        public void RepartirCartas(Jugador Jugador1 ,Jugador Jugador2, Mazo mazo)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                int numero = 0;
+                Random random = new Random();
+                numero = random.Next(0, mazo.ListaCartas.Count());
 
+                Jugador1.Mano.Add(mazo.ListaCartas[numero]); //Hacer esto en un solo paso
+                mazo.ListaCartas.RemoveAt(numero);
+
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                int numero = 0;
+                Random random = new Random();
+                numero = random.Next(0, mazo.ListaCartas.Count());
+
+                Jugador2.Mano.Add(mazo.ListaCartas[numero]); //Hacer esto en un solo paso
+                mazo.ListaCartas.RemoveAt(numero);
+
+            }
+        }
+
+        public void VolverCartasMazo(Jugador Jugador1, Jugador Jugador2, Mazo mazo)
+        {
+            foreach (var item in Jugador1.Mano)
+            {
+                mazo.AgregarCartaAlMazo(item,mazo);
+            }
+
+            foreach (var item in Jugador2.Mano)
+            {
+                mazo.AgregarCartaAlMazo(item, mazo);
+            }
+        }
     }
 }
