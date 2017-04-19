@@ -8,6 +8,7 @@ namespace TheBestTruco.Entidades
 {
     public class Partida
     {
+
         public Mazo GenerarMazo() //Genera las cartas sin 8 y 9 y las agrega al mazo y lo retorna
         {
             Mazo mazo = new Mazo(); //Lo hacemos vacio
@@ -50,5 +51,7 @@ namespace TheBestTruco.Entidades
 
             return mazo;
         }
+
+
     }
 }

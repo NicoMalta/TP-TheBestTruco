@@ -8,5 +8,7 @@ namespace TheBestTruco.Entidades
 {
     class Jugador
     {
+        public List<Carta> Mano { get; set; }
+
     }
 }
