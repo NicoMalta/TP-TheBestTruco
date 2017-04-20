@@ -17,5 +17,16 @@ namespace TestTruco
             Console.WriteLine(total);
             //Assert.AreEqual(total);
         }
+
+        [TestMethod]
+        public void Probarcartas()
+        {
+            Partida partida = new Partida();
+
+            partida.RepartirCartas(new Jugador { Nombre = "Nico" }, new Jugador { Nombre = "Martin" }, partida.GenerarMazo());
+            //Console.WriteLine(total);
+
+            //Assert.AreEqual(3, total);
+        }
     }
 }

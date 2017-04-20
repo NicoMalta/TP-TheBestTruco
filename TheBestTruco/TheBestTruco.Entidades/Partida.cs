@@ -48,18 +48,27 @@ namespace TheBestTruco.Entidades
                     mazo.AgregarCartaAlMazo(carta, mazo);
                 }
             }
-
+            //MEZCLAR CARTAS//
+            List<Carta> Aux = new List<Carta>();
+            Random randNum = new Random();
+            while (mazo.ListaCartas.Count > 0)
+            {
+                int val = randNum.Next(0, mazo.ListaCartas.Count - 1);
+                Aux.Add(mazo.ListaCartas[val]);
+                mazo.ListaCartas.RemoveAt(val);
+            }
+            mazo.ListaCartas = Aux;
             return mazo;
         }
 
-        public void RepartirCartas(Jugador Jugador1 ,Jugador Jugador2, Mazo mazo)
+        public void RepartirCartas(Jugador Jugador1, Jugador Jugador2 , Mazo mazo)
         {
             for (int i = 0; i < 3; i++)
             {
                 int numero = 0;
                 Random random = new Random();
-                numero = random.Next(0, mazo.ListaCartas.Count());
-
+                numero = random.Next(0, mazo.ListaCartas.Count-1);
+                
                 Jugador1.Mano.Add(mazo.ListaCartas[numero]); //Hacer esto en un solo paso
                 mazo.ListaCartas.RemoveAt(numero);
 
