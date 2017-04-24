@@ -8,95 +8,43 @@ namespace TheBestTruco.Entidades
 {
     public class Partida
     {
+        public List<Jugador> Jugadores { get; set; }
 
-        public Mazo GenerarMazo() //Genera las cartas sin 8 y 9 y las agrega al mazo y lo retorna
+        public Partida()
         {
-            Mazo mazo = new Mazo(); //Lo hacemos vacio
-
-            for (int i = 1; i < 13; i++)
-            {
-                if ((i != 8) && (i != 9))
-                {
-                    Carta carta = new Carta(Palo.Espada, i);
-                    mazo.AgregarCartaAlMazo(carta, mazo);
-                }
-            }
-
-            for (int i = 1; i < 13; i++)
-            {
-                if ((i != 8) && (i != 9))
-                {
-                    Carta carta = new Carta(Palo.Oro, i);
-                    mazo.AgregarCartaAlMazo(carta, mazo);
-                }
-            }
-
-            for (int i = 1; i < 13; i++)
-            {
-                if ((i != 8) && (i != 9))
-                {
-                    Carta carta = new Carta(Palo.Copa, i);
-                    mazo.AgregarCartaAlMazo(carta, mazo);
-                }
-            }
-
-            for (int i = 1; i < 13; i++)
-            {
-                if ((i != 8) && (i != 9))
-                {
-                    Carta carta = new Carta(Palo.Basto, i);
-                    mazo.AgregarCartaAlMazo(carta, mazo);
-                }
-            }
-            //MEZCLAR CARTAS//
-            List<Carta> Aux = new List<Carta>();
-            Random randNum = new Random();
-            while (mazo.ListaCartas.Count > 0)
-            {
-                int val = randNum.Next(0, mazo.ListaCartas.Count - 1);
-                Aux.Add(mazo.ListaCartas[val]);
-                mazo.ListaCartas.RemoveAt(val);
-            }
-            mazo.ListaCartas = Aux;
-            return mazo;
+            Jugadores = new List<Jugador>();
         }
-
-        public void RepartirCartas(Jugador Jugador1, Jugador Jugador2 , Mazo mazo)
+        public void RepartirCartas(List<Jugador> jugadores, Mazo mazo)//MODIFICAR
         {
-            for (int i = 0; i < 3; i++)
+            int CartasRepartidas = 0, indice = 0;
+            int ultima = 39;
+
+            while (CartasRepartidas != (jugadores.Count * 3))
             {
-                int numero = 0;
-                Random random = new Random();
-                numero = random.Next(0, mazo.ListaCartas.Count-1);
-                
-                Jugador1.Mano.Add(mazo.ListaCartas[numero]); //Hacer esto en un solo paso
-                mazo.ListaCartas.RemoveAt(numero);
+                if (indice == jugadores.Count)
+                {
+                    indice = 0;
+                }
 
-            }
-
-            for (int i = 0; i < 3; i++)
-            {
-                int numero = 0;
-                Random random = new Random();
-                numero = random.Next(0, mazo.ListaCartas.Count());
-
-                Jugador2.Mano.Add(mazo.ListaCartas[numero]); //Hacer esto en un solo paso
-                mazo.ListaCartas.RemoveAt(numero);
+                jugadores[indice].Mano.Add(mazo.ListaCartas[ultima]);
+                indice++;
+                ultima--;
+                CartasRepartidas++;
 
             }
         }
 
-        public void VolverCartasMazo(Jugador Jugador1, Jugador Jugador2, Mazo mazo)
-        {
-            foreach (var item in Jugador1.Mano)
-            {
-                mazo.AgregarCartaAlMazo(item,mazo);
-            }
+        //public void VolverCartasMazo(List<Jugador> jugadores, Mazo mazo)
+        //{
+        //    foreach (var item in Jugador1.Mano)
+        //    {
+        //        mazo.AgregarCartaAlMazo(item, mazo);
+        //    }
 
-            foreach (var item in Jugador2.Mano)
-            {
-                mazo.AgregarCartaAlMazo(item, mazo);
-            }
-        }
+        //    foreach (var item in Jugador2.Mano)
+        //    {
+        //        mazo.AgregarCartaAlMazo(item, mazo);
+        //    }
+        //}
     }
 }

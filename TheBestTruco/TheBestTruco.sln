@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheBestTruco.Entidades", "TheBestTruco.Entidades\TheBestTruco.Entidades.csproj", "{BCF1B1C0-E1E4-43C1-950E-48AA433B96D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTruco", "TestTruco\TestTruco.csproj", "{0243477D-CC72-44FB-AE0A-5F4D99108B61}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheBestTruco.Test", "TestTruco\TheBestTruco.Test.csproj", "{0243477D-CC72-44FB-AE0A-5F4D99108B61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -8,14 +8,28 @@ namespace TheBestTruco.Entidades
 {
     public class Carta
     {
-        public Palo Palos { get; set; }
-        public int Numero { get; set; }
-        public int Valor { get; set; }
+        public Palo Palos { get;  }
+        public int Numero { get; }
+        public int Valor { get; }
 
         public Carta(Palo palo , int numero)
         {
             Numero = numero;
             Palos = palo;
+            Valor = ValorCarta(this.Palos, this.Numero);
         }
+
+        private int ValorCarta(Palo palo , int numero)
+        {
+
+            switch (palo )
+            {
+                default:
+                    break;
+            }
+
+            return Valor;
+
+        } 
     }
 }
