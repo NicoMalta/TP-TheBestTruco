@@ -34,17 +34,17 @@ namespace TheBestTruco.Entidades
             }
         }
 
-        //public void VolverCartasMazo(List<Jugador> jugadores, Mazo mazo)
-        //{
-        //    foreach (var item in Jugador1.Mano)
-        //    {
-        //        mazo.AgregarCartaAlMazo(item, mazo);
-        //    }
-
-        //    foreach (var item in Jugador2.Mano)
-        //    {
-        //        mazo.AgregarCartaAlMazo(item, mazo);
-        //    }
-        //}
+        public void VolverCartasMazo(List<Jugador> jugadores, Mazo mazo)
+        {
+            foreach (var item in jugadores)
+            {
+                foreach (var item2 in item.Mano)
+                {
+                    mazo.AgregarCartaAlMazo(item2,mazo.ListaCartas);
+                    item.Mano.Remove(item2);
+                }
+            }
+           
+        }
     }
 }
