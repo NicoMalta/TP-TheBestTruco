@@ -22,13 +22,55 @@ namespace TheBestTruco.Entidades
         private int ValorCarta(Palo palo , int numero)
         {
 
-            switch (palo )
+            bool normal = false;
+
+            if (numero == 1 && palo == Palo.Espada)
             {
-                default:
-                    break;
+                return 100;
+                normal = true;
             }
 
-            return Valor;
+            if (numero == 1 && palo == Palo.Basto)
+            {
+                return 90;
+                normal = true;
+            }
+
+            if (numero == 7 && palo == Palo.Espada)
+            {
+                return 80;
+                normal = true;
+            }
+
+            if (numero == 7 && palo == Palo.Oro)
+            {
+                return 70;
+                normal = true;
+            }
+
+            if (numero == 3)
+            {
+                return 60;
+                normal = true;
+            }
+
+            if (numero == 2)
+            {
+                return 50;
+                normal = true;
+            }
+
+            if ((numero == 1 && palo == Palo.Copa) || (numero == 1 && palo == Palo.Oro)) ;
+            {
+                return 40;
+                normal = true;
+            }
+
+            if (normal == false)
+            {
+                return numero;
+            }
+
 
         } 
     }
