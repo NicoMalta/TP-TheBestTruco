@@ -13,7 +13,9 @@ namespace TestTruco
         {
             Partida partida = new Partida();
 
-            //var total = partida.GenerarMazo();
+            Mazo mazo = new Mazo();
+           
+         
             //Console.WriteLine(total);
             //Assert.AreEqual(total);
         }

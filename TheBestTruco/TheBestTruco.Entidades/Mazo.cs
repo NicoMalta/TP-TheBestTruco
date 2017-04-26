@@ -11,7 +11,7 @@ namespace TheBestTruco.Entidades
     {
         public List<Carta> ListaCartas { get; set; }
 
-        public Mazo()
+        public  Mazo()
         {
             ListaCartas = new List<Carta>();
 
@@ -50,6 +50,7 @@ namespace TheBestTruco.Entidades
                     AgregarCartaAlMazo(carta, this.ListaCartas);
                 }
             }
+
         }
 
         public Mazo MezclarMazo() //Genera las cartas sin 8 y 9 y las agrega al mazo y lo retorna

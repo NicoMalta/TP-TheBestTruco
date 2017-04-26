@@ -23,52 +23,50 @@ namespace TheBestTruco.Entidades
         {
 
             bool normal = false;
-
+         
             if (numero == 1 && palo == Palo.Espada)
             {
-                return 100;
                 normal = true;
+                return 100;
             }
-
             if (numero == 1 && palo == Palo.Basto)
             {
-                return 90;
                 normal = true;
+                return 90;
             }
-
             if (numero == 7 && palo == Palo.Espada)
             {
-                return 80;
                 normal = true;
+                return 80;
             }
-
             if (numero == 7 && palo == Palo.Oro)
             {
-                return 70;
                 normal = true;
+                return 70;
             }
-
             if (numero == 3)
             {
-                return 60;
                 normal = true;
+                return 60;
             }
-
             if (numero == 2)
             {
+                normal = true;
                 return 50;
-                normal = true;
             }
-
-            if ((numero == 1 && palo == Palo.Copa) || (numero == 1 && palo == Palo.Oro)) ;
+            if ((numero == 1 && palo == Palo.Copa) || (numero == 1 && palo == Palo.Oro))
             {
-                return 40;
                 normal = true;
+                return 40;
             }
 
             if (normal == false)
             {
                 return numero;
+            }
+            else
+            {
+                return 0;
             }
 
         }
