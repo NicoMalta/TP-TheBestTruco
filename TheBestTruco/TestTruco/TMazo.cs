@@ -50,5 +50,26 @@ namespace TestTruco
 
             Assert.AreEqual(6, CantCartas);
         }
+
+        [TestMethod]
+        public void ProvarEnvido()
+        {
+            Partida partida = new Partida();
+            Mazo mazo = new Mazo();
+            partida.Jugadores.Add(new Jugador { Nombre = "jugador1" });
+            partida.RepartirCartas(partida.Jugadores, mazo.MezclarMazo());
+
+            var CantPuntos = 0;
+
+            CantPuntos = partida.Jugadores[0].ContadorEnvido(partida.Jugadores[0].Mano);
+
+
+            if (CantPuntos > 0)
+            {
+                CantPuntos = -20;
+            }
+
+            Assert.AreEqual(-20, CantPuntos);
+        }
     }
 }

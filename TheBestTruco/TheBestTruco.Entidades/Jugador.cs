@@ -112,34 +112,46 @@ namespace TheBestTruco.Entidades
                 valor1 = carta1.Numero;
             }
 
-            if (normal1 == false)
+
+            switch (carta2.Numero)
             {
-                valor2 = 20;
+                case 12:
+                    valor2 = 20;
+                    normal2 = false;
+                    break;
+                case 11:
+                    valor2 = 20;
+                    normal2 = false;
+                    break;
+                case 10:
+                    valor2 = 20;
+                    normal2 = false;
+                    break;
+            }
+
+
+            if (normal2 == true)
+            {
+                valor2 = carta2.Numero;
+            }
+
+            if (normal1 == false && normal2 == false)
+            {
+                return 20;
             }
             else
             {
-                switch (carta2.Numero)
-                {
-                    case 12:
-                        valor2 = 20;
-                        normal2 = false;
-                        break;
-                    case 11:
-                        valor2 = 20;
-                        normal2 = false;
-                        break;
-                    case 10:
-                        valor2 = 20;
-                        normal2 = false;
-                        break;
-                }
-
-                if (normal2 == true)
-                {
-                    valor2 = carta1.Numero;
-                }
+                return valor1 + valor2 + 20;
             }
-            return valor1 + valor2;
+
+            if ((normal2 == false && normal1 == true) || (normal1 == true && normal2 == false))
+            {
+                return valor1 + valor2;
+            }
+
+
         } // A LOS 10 - 11 - 12 LOS CUENTA COMO 20 PUNTOS EN EL ENVIDO Y A LAS DEMAS CARTAS NORMAL POR SU NUMERO 
+
+
     }
 }
