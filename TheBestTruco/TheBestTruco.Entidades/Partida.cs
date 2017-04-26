@@ -14,7 +14,7 @@ namespace TheBestTruco.Entidades
         {
             Jugadores = new List<Jugador>();
         }
-        public void RepartirCartas(List<Jugador> jugadores, Mazo mazo)//MODIFICAR
+        public void RepartirCartas(List<Jugador> jugadores, Mazo mazo)
         {
             int CartasRepartidas = 0, indice = 0;
             int ultima = 39;

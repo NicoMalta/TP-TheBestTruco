@@ -63,7 +63,7 @@ namespace TheBestTruco.Entidades
                 Random randNum = new Random();
                 while (mazo.ListaCartas.Count > 0)
                 {
-                    int val = randNum.Next(0, mazo.ListaCartas.Count - 1);
+                    int val = randNum.Next(0, mazo.ListaCartas.Count);
                     Aux.Add(mazo.ListaCartas[val]);
                     mazo.ListaCartas.RemoveAt(val);
                 }

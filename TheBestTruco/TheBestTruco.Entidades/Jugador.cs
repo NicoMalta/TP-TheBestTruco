@@ -139,15 +139,20 @@ namespace TheBestTruco.Entidades
             {
                 return 20;
             }
-            else
+
+            if (normal1 == true && normal2 == true)
             {
                 return valor1 + valor2 + 20;
             }
+
 
             if ((normal2 == false && normal1 == true) || (normal1 == true && normal2 == false))
             {
                 return valor1 + valor2;
             }
+
+
+            return 0;
 
 
         } // A LOS 10 - 11 - 12 LOS CUENTA COMO 20 PUNTOS EN EL ENVIDO Y A LAS DEMAS CARTAS NORMAL POR SU NUMERO 
