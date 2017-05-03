@@ -50,6 +50,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="TestEnvido.cs" />
     <Compile Include="TMazo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

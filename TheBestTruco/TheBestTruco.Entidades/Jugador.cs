@@ -6,31 +6,69 @@ using System.Threading.Tasks;
 
 namespace TheBestTruco.Entidades
 {
+    public enum RespuestasEnvido
+    {
+        Envido, EnvidoEnvido, RealEnvido, FaltaEnvido, Quiero, NoQuiero
+    }
+
     public class Jugador
     {
+
         public string Nombre { get; set; }
         public List<Carta> Mano { get; set; }
         public int Equipo { get; set; }
 
         public Jugador() { Mano = new List<Carta>(); }
 
-        public void SolicitarEnvido(List<Jugador> Jugadores, Puntuacion puntaje)
+        public void SolicitarEnvido(int Equipo, List<Jugador> jugadores, Puntuacion puntaje, RespuestasEnvido valor)
         {
-            if (true)
+            while ((valor != RespuestasEnvido.Quiero) || (valor != RespuestasEnvido.NoQuiero))
             {
+                foreach (Jugador item in jugadores)
+                {
+                    if (Equipo != item.Equipo)
+                    {
+                        PosiblesRespuestas(valor);
+                    }
+                }
+            }
 
+            if (valor == RespuestasEnvido.Quiero)
+            {
+                foreach (var item in jugadores)
+                {
+                    item.ContadorEnvido(item.Mano);
+                } // HACER UN CICLO DEL MAYOR Y AVERIGUAR QUIEN ES EL GANADOR DEL ENVIDO Y MOFICAR LOS PUNTOS DE LA PUNTUACION
             }
             else
             {
-                if (this.Equipo == 1)
+                //VER A QUIEN HAY Q SUMARLE LOS PUNTOS
+
+                
+            }
+            
+        
+            
+        }
+
+        public RespuestasEnvido PosiblesRespuestas(RespuestasEnvido valor)
+        {
+            int mostrar = (int)valor;
+
+            for (int i = 0; i < 6; i++)
+            {
+                if (mostrar < i)
                 {
-                    puntaje.Equipo1++;
-                }
-                else
-                {
-                    puntaje.Equipo2++;
+                    Console.WriteLine(Convert.ToString((RespuestasEnvido)i));
+
+                    //Console.WriteLine(Convert.ToString((RespuestasEnvido)i));
+                    //numero = readkey;
+                    //valor = (RespuestasEnvido)numero);
+
                 }
             }
+
+            return valor;
         }
 
         public void SolicitarTruco()

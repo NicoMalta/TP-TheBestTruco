@@ -9,11 +9,13 @@ namespace TheBestTruco.Entidades
     public class Partida
     {
         public List<Jugador> Jugadores { get; set; }
+        public RespuestasEnvido EstadoEnvido { get; set; }
 
         public Partida()
         {
             Jugadores = new List<Jugador>();
         }
+
         public void RepartirCartas(List<Jugador> jugadores, Mazo mazo)
         {
             int CartasRepartidas = 0, indice = 0;
