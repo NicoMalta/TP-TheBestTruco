@@ -17,6 +17,7 @@ namespace TheBestTruco.Entidades
         public string Nombre { get; set; }
         public List<Carta> Mano { get; set; }
         public int Equipo { get; set; }
+        public int Numero { get; set; }
 
         public Jugador() { Mano = new List<Carta>(); }
 
@@ -75,7 +76,11 @@ namespace TheBestTruco.Entidades
         {
 
         }
-
+        
+        public int Truco(List<Jugador> jugadores, int turno)
+        {
+            
+        }
         public int ContadorEnvido(List<Carta> mano) //SE LE PASA UNA MANO Y DEVUELVE LA CANTIDAD DE PUNTOS DE ENVIDO QUE TIENE      
         {
             int envido1 = 0;

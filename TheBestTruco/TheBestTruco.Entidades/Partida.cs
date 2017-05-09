@@ -10,10 +10,13 @@ namespace TheBestTruco.Entidades
     {
         public List<Jugador> Jugadores { get; set; }
         public RespuestasEnvido EstadoEnvido { get; set; }
+        public int[,] CartasMesa { get; set; }
+        public int Turno { get; set; }
 
         public Partida()
         {
             Jugadores = new List<Jugador>();
+            CartasMesa = new int[3, 4];
         }
 
         public void RepartirCartas(List<Jugador> jugadores, Mazo mazo)
@@ -44,6 +47,20 @@ namespace TheBestTruco.Entidades
                 {
                     mazo.AgregarCartaAlMazo(item2,mazo.ListaCartas);
                     item.Mano.Remove(item2);
+                }
+            }
+           
+        }
+
+        public void JugarCarta(int jugador, Carta cartaSeleccionada)
+        {
+            foreach (var item in Jugadores)
+            {
+                if (item.Numero == jugador)
+                {
+                    CartasMesa[jugador, Turno] = cartaSeleccionada.Valor;
+                    item.Mano.Remove(cartaSeleccionada);
+
                 }
             }
            
