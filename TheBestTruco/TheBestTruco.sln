@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheBestTruco.Entidades", "TheBestTruco.Entidades\TheBestTruco.Entidades.csproj", "{BCF1B1C0-E1E4-43C1-950E-48AA433B96D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheBestTruco.Test", "TestTruco\TheBestTruco.Test.csproj", "{0243477D-CC72-44FB-AE0A-5F4D99108B61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheBestTruco.Web", "TheBestTruco.Web\TheBestTruco.Web.csproj", "{09F39389-E5AC-459D-A69F-F7E47755E3CB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BCF1B1C0-E1E4-43C1-950E-48AA433B96D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCF1B1C0-E1E4-43C1-950E-48AA433B96D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCF1B1C0-E1E4-43C1-950E-48AA433B96D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCF1B1C0-E1E4-43C1-950E-48AA433B96D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0243477D-CC72-44FB-AE0A-5F4D99108B61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0243477D-CC72-44FB-AE0A-5F4D99108B61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0243477D-CC72-44FB-AE0A-5F4D99108B61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0243477D-CC72-44FB-AE0A-5F4D99108B61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09F39389-E5AC-459D-A69F-F7E47755E3CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09F39389-E5AC-459D-A69F-F7E47755E3CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09F39389-E5AC-459D-A69F-F7E47755E3CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09F39389-E5AC-459D-A69F-F7E47755E3CB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
