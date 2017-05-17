@@ -45,11 +45,11 @@ namespace TheBestTruco.Entidades
             {
                 //VER A QUIEN HAY Q SUMARLE LOS PUNTOS
 
-                
+
             }
-            
-        
-            
+
+
+
         }
 
         public RespuestasEnvido PosiblesRespuestas(RespuestasEnvido valor)
@@ -76,11 +76,12 @@ namespace TheBestTruco.Entidades
         {
 
         }
-        
+
         public int Truco(List<Jugador> jugadores, int turno)
         {
-            
+            throw new NotImplementedException();
         }
+
         public int ContadorEnvido(List<Carta> mano) //SE LE PASA UNA MANO Y DEVUELVE LA CANTIDAD DE PUNTOS DE ENVIDO QUE TIENE      
         {
             int envido1 = 0;
