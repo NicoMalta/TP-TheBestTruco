@@ -50,8 +50,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="jugador.cs" />
     <Compile Include="TMazo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestEnvi.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TheBestTruco.Entidades\TheBestTruco.Entidades.csproj">

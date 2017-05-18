@@ -8,7 +8,7 @@ namespace TheBestTruco.Entidades
 {
     public enum RespuestasEnvido
     {
-        Envido, EnvidoEnvido, RealEnvido, FaltaEnvido, Quiero, NoQuiero
+        Envido = 1, EnvidoEnvido = 2, RealEnvido = 3, FaltaEnvido = 4, Quiero = 5, NoQuiero = 6
     }
 
     public class Jugador
@@ -25,11 +25,13 @@ namespace TheBestTruco.Entidades
         {
             while ((valor != RespuestasEnvido.Quiero) || (valor != RespuestasEnvido.NoQuiero))
             {
+                List<RespuestasEnvido> Respuestas = PosiblesRespuestas(ElegirValor(PosiblesRespuestas(valor)));
+
                 foreach (Jugador item in jugadores)
                 {
                     if (Equipo != item.Equipo)
                     {
-                        PosiblesRespuestas(valor);
+                        valor = ElegirValor(Respuestas);
                     }
                 }
             }
@@ -45,31 +47,47 @@ namespace TheBestTruco.Entidades
             {
                 //VER A QUIEN HAY Q SUMARLE LOS PUNTOS
 
-
             }
-
-
 
         }
 
-        public RespuestasEnvido PosiblesRespuestas(RespuestasEnvido valor)
+        public RespuestasEnvido ElegirValor(List<RespuestasEnvido> PosiblesRespuestas)
         {
-            int mostrar = (int)valor;
-
-            for (int i = 0; i < 6; i++)
+            int aleatorio = 3;
+            
+            switch (aleatorio)
             {
-                if (mostrar < i)
+                case 1:
+                    return RespuestasEnvido.Envido;
+                case 2:
+                    return RespuestasEnvido.EnvidoEnvido;
+                case 3:
+                    return RespuestasEnvido.RealEnvido;
+                case 4:
+                    return RespuestasEnvido.FaltaEnvido;
+                case 5:
+                    return RespuestasEnvido.NoQuiero;
+                case 6:
+                    return RespuestasEnvido.Quiero;
+            }
+            return RespuestasEnvido.NoQuiero;
+        }
+
+        public List<RespuestasEnvido> PosiblesRespuestas(RespuestasEnvido valor)
+        {
+            int c = 0;
+            List<RespuestasEnvido> respuesta = new List<RespuestasEnvido>();
+
+            foreach (RespuestasEnvido item in Enum.GetValues(typeof(RespuestasEnvido)))
+            {
+                c++;
+                if ((int)valor < c)
                 {
-                    Console.WriteLine(Convert.ToString((RespuestasEnvido)i));
-
-                    //Console.WriteLine(Convert.ToString((RespuestasEnvido)i));
-                    //numero = readkey;
-                    //valor = (RespuestasEnvido)numero);
-
+                    respuesta.Add(item);
                 }
             }
 
-            return valor;
+            return respuesta;
         }
 
         public void SolicitarTruco()
@@ -77,10 +95,6 @@ namespace TheBestTruco.Entidades
 
         }
 
-        public int Truco(List<Jugador> jugadores, int turno)
-        {
-            throw new NotImplementedException();
-        }
 
         public int ContadorEnvido(List<Carta> mano) //SE LE PASA UNA MANO Y DEVUELVE LA CANTIDAD DE PUNTOS DE ENVIDO QUE TIENE      
         {
