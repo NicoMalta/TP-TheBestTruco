@@ -8,7 +8,7 @@ namespace TheBestTruco.Entidades
 {
     public enum RespuestasEnvido
     {
-        Envido = 1, EnvidoEnvido = 2, RealEnvido = 3, FaltaEnvido = 4, Quiero = 5, NoQuiero = 6
+        Envido = 1, RealEnvido = 2, FaltaEnvido = 3, Quiero = 4, NoQuiero = 5
     }
 
     public class Jugador
@@ -23,55 +23,114 @@ namespace TheBestTruco.Entidades
 
         public void SolicitarEnvido(int Equipo, List<Jugador> jugadores, Puntuacion puntaje, RespuestasEnvido valor)
         {
-            while ((valor != RespuestasEnvido.Quiero) || (valor != RespuestasEnvido.NoQuiero))
+            RespuestasEnvido anterior = RespuestasEnvido.Envido;
+            int identificador = 0;
+
+            while ((valor != RespuestasEnvido.Quiero) && (valor != RespuestasEnvido.NoQuiero))
             {
                 List<RespuestasEnvido> Respuestas = PosiblesRespuestas(ElegirValor(PosiblesRespuestas(valor)));
+
+                identificador++;
 
                 foreach (Jugador item in jugadores)
                 {
                     if (Equipo != item.Equipo)
                     {
+                        anterior = valor;
                         valor = ElegirValor(Respuestas);
                     }
                 }
+
+                Equipo++;
+                if (Equipo == 3)
+                {
+                    Equipo = 1;
+                }
             }
+
+            int PuntosGanador = 0;
 
             if (valor == RespuestasEnvido.Quiero)
             {
                 foreach (var item in jugadores)
                 {
-                    item.ContadorEnvido(item.Mano);
-                } // HACER UN CICLO DEL MAYOR Y AVERIGUAR QUIEN ES EL GANADOR DEL ENVIDO Y MOFICAR LOS PUNTOS DE LA PUNTUACION
+                    if (jugadores.IndexOf(item) == 0)
+                    {
+                        PuntosGanador = item.ContadorEnvido(item.Mano);
+                        Equipo = item.Equipo;
+                    }
+                    else if(PuntosGanador < item.ContadorEnvido(item.Mano))
+                    {
+                        PuntosGanador = item.ContadorEnvido(item.Mano);
+                        Equipo = item.Equipo;
+                    }
+                }
+
+                if (Equipo == 1)
+                {
+                    puntaje.Equipo1 = 1000;
+                }
+                else
+                {
+                    puntaje.Equipo2 = 1000;
+                }
             }
             else
             {
-                //VER A QUIEN HAY Q SUMARLE LOS PUNTOS
+                switch (anterior)
+                {
+                    case RespuestasEnvido.Envido:
+                        break;
+                    case RespuestasEnvido.RealEnvido:
+                        break;
+                    case RespuestasEnvido.FaltaEnvido:
+                        break;
+                }
 
             }
 
-        }
+        } 
+
+        bool bandera = false;
 
         public RespuestasEnvido ElegirValor(List<RespuestasEnvido> PosiblesRespuestas)
         {
-            int aleatorio = 3;
-            
-            switch (aleatorio)
+            int cantidad = 5 - (PosiblesRespuestas.Count);
+
+            int aleatorio = 0;
+
+            do
             {
-                case 1:
-                    return RespuestasEnvido.Envido;
-                case 2:
-                    return RespuestasEnvido.EnvidoEnvido;
-                case 3:
-                    return RespuestasEnvido.RealEnvido;
-                case 4:
-                    return RespuestasEnvido.FaltaEnvido;
-                case 5:
-                    return RespuestasEnvido.NoQuiero;
-                case 6:
-                    return RespuestasEnvido.Quiero;
-            }
-            return RespuestasEnvido.NoQuiero;
+                if (bandera == true)
+                {
+                    aleatorio++;
+                }
+
+                if (PosiblesRespuestas[0] == RespuestasEnvido.Envido)
+                {
+                    bandera = true;
+                }
+
+                switch (aleatorio)
+                {
+                    case 1:
+                        return RespuestasEnvido.Envido;
+                    case 2:
+                        return RespuestasEnvido.RealEnvido;
+                    case 3:
+                        return RespuestasEnvido.FaltaEnvido;
+                    case 4:
+                        return RespuestasEnvido.NoQuiero;
+                    case 5:
+                        return RespuestasEnvido.Quiero;
+                }
+                return RespuestasEnvido.NoQuiero;
+
+            } while ((aleatorio >= cantidad) && (aleatorio < 6));
+
         }
+
+        bool bander = false;
 
         public List<RespuestasEnvido> PosiblesRespuestas(RespuestasEnvido valor)
         {
@@ -81,6 +140,12 @@ namespace TheBestTruco.Entidades
             foreach (RespuestasEnvido item in Enum.GetValues(typeof(RespuestasEnvido)))
             {
                 c++;
+                if (valor == RespuestasEnvido.Envido && bander == false)
+                {
+                    respuesta.Add(RespuestasEnvido.Envido);
+                    bander = true;
+                }
+
                 if ((int)valor < c)
                 {
                     respuesta.Add(item);
