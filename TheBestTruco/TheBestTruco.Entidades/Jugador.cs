@@ -15,6 +15,8 @@ namespace TheBestTruco.Entidades
     {
 
         public string Nombre { get; set; }
+        public string NombreInterno { get; set; }
+        public string IdConexion { get; set; }
         public List<Carta> Mano { get; set; }
         public int Equipo { get; set; }
         public int Numero { get; set; }

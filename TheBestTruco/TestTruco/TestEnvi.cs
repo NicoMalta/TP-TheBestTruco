@@ -21,6 +21,8 @@ namespace TestTruco
             partida.Jugadores.Add(jug);
             partida.Jugadores.Add(juge);
 
+            partida.RepartirCartas(partida.Jugadores, partida.Mazo);
+
             Puntuacion puntuacion = new Puntuacion();
             jug.SolicitarEnvido(1, partida.Jugadores, puntuacion, jug.ElegirValor(jug.PosiblesRespuestas(RespuestasEnvido.Envido)));
 

@@ -12,11 +12,23 @@ namespace TheBestTruco.Entidades
         public RespuestasEnvido EstadoEnvido { get; set; }
         public int[,] CartasMesa { get; set; }
         public int Turno { get; set; }
+        public Mazo  Mazo { get; set; }
+        public bool EstaCompleto { get; set; }
 
         public Partida()
         {
             Jugadores = new List<Jugador>();
             CartasMesa = new int[3, 4];
+            Mazo = new Mazo();
+        }
+
+        public void RevisarCantidadJugadores()
+        {
+            if (Jugadores.Count == 4)
+            {
+                this.EstaCompleto = true;
+            }
+            
         }
 
         public void RepartirCartas(List<Jugador> jugadores, Mazo mazo)

@@ -38,7 +38,7 @@ namespace TestTruco
             Mazo mazo = new Mazo();
             partida.Jugadores.Add(new Jugador { Nombre = "jugador1" });
             partida.Jugadores.Add(new Jugador { Nombre = "jugador2" });
-            partida.RepartirCartas(partida.Jugadores, mazo.MezclarMazo());
+            partida.RepartirCartas(partida.Jugadores, partida.Mazo);
 
             var CantCartas = 0;
 
@@ -57,7 +57,7 @@ namespace TestTruco
             Partida partida = new Partida();
             Mazo mazo = new Mazo();
             partida.Jugadores.Add(new Jugador { Nombre = "jugador1" });
-            partida.RepartirCartas(partida.Jugadores, mazo.MezclarMazo());
+            partida.RepartirCartas(partida.Jugadores, partida.Mazo);
 
             var CantPuntos = 0;
 

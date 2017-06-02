@@ -18,12 +18,27 @@ namespace TheBestTruco.Entidades
         public Palo Palos { get; }
         public int Numero { get; }
         public int Valor { get; }
+        public string Imagen
+        {
+            get
+            {
+                return "/Images/" + Palos.ToString().ToLower()[0] + Numero.ToString() + ".JPG";
+            }
+        }
+        public string Codigo
+        {
+            get
+            {
+                return Numero.ToString() + Palos.ToString();
+            }
+        }
+
 
         private int ValorCarta(Palo palo, int numero)
         {
 
             bool normal = false;
-         
+
             if (numero == 1 && palo == Palo.Espada)
             {
                 normal = true;

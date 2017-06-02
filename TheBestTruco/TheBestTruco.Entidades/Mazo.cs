@@ -51,11 +51,14 @@ namespace TheBestTruco.Entidades
                 }
             }
 
+            this.MezclarMazo(this);
+            this.MezclarMazo(this);
+
         }
 
-        public Mazo MezclarMazo() //Genera las cartas sin 8 y 9 y las agrega al mazo y lo retorna
+        public void MezclarMazo(Mazo mazo) //Genera las cartas sin 8 y 9 y las agrega al mazo y lo retorna
         {
-            Mazo mazo = new Mazo();
+            //Mazo mazo = new Mazo();
 
             for (int i = 0; i < 2; i++)
             {
@@ -70,12 +73,11 @@ namespace TheBestTruco.Entidades
                 mazo.ListaCartas = Aux;
             }
 
-            return mazo;
         }
 
         public void AgregarCartaAlMazo(Carta carta, List<Carta> mazo)
         {
-            var encontrado = false;
+            var encontrado = false;// Search
             foreach (var item in mazo )
             {
                 if (item.Numero == carta.Numero && item.Palos == carta.Palos )
