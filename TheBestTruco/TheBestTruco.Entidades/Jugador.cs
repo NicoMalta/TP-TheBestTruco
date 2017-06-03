@@ -157,7 +157,7 @@ namespace TheBestTruco.Entidades
             return respuesta;
         }
 
-        public void SolicitarTruco()
+        public void SolicitarTruco(int Equipo, List<Jugador> jugadores, Puntuacion puntaje, int turno)
         {
 
         }

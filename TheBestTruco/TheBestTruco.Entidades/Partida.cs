@@ -14,7 +14,8 @@ namespace TheBestTruco.Entidades
         public int Turno { get; set; }
         public Mazo  Mazo { get; set; }
         public bool EstaCompleto { get; set; }
-
+        public bool TrucoActivo { get; set; }
+        public bool PardaActivo { get; set; }
         public Partida()
         {
             Jugadores = new List<Jugador>();
@@ -62,6 +63,36 @@ namespace TheBestTruco.Entidades
                 }
             }
            
+        }
+
+        public bool RevisarPardas()
+        {
+            this.PardaActivo = false;
+            bool primeravez = false;
+            int valor = 0;
+            for (int i = 0; i < 4; i++)
+            {
+                if (primeravez == false)
+                {
+                    primeravez = true;
+                    valor = CartasMesa[i, Turno];
+                }
+                else if (valor < CartasMesa[i, Turno])
+                {
+                    valor = CartasMesa[i, Turno];
+                }
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                if (valor == CartasMesa[i, Turno])
+                {
+                    this.PardaActivo = true;
+                    break;
+                }
+            }
+
+           return this.PardaActivo;
         }
 
         public void JugarCarta(int jugador, Carta cartaSeleccionada)
