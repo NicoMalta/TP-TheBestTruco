@@ -157,11 +157,15 @@ namespace TheBestTruco.Entidades
             return respuesta;
         }
 
-        public void SolicitarTruco(int Equipo, List<Jugador> jugadores, Puntuacion puntaje, int turno)
+        public void SolicitarTruco(int Equipo, List<Jugador> jugadores, int turno)
         {
 
         }
 
+        public void Truco(int Turno)
+        {
+            
+        }
 
         public int ContadorEnvido(List<Carta> mano) //SE LE PASA UNA MANO Y DEVUELVE LA CANTIDAD DE PUNTOS DE ENVIDO QUE TIENE      
         {

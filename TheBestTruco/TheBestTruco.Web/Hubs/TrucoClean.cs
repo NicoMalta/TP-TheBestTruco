@@ -135,10 +135,10 @@ namespace Truco.Web.Hubs
         //    }
         //}
 
-        //public void JugarCarta(string codigoCarta, string accion)
-        //{                        
-        //    Clients.All.mostrarCarta(carta, selector);
-        //}       
+       // public void JugarCarta(string codigoCarta, string accion)
+       // {                        
+       //     Clients.All.mostrarCarta(carta, selector);
+       // }       
 
         public void Repartir()
         {
@@ -162,7 +162,7 @@ namespace Truco.Web.Hubs
              * Imagen                       
              */
 
-            //Clients.Client(jugador.IdConexion).habilitarMovimientos();
+           // Clients.Client(juego.Jugadores.IdConexion).habilitarMovimientos();
             //Clients.Client(...).hideEnvidoEnvidoBotton();
             //Clients.Client(...).hideVale4Botton();
             //Clients.Client(...).hideReTrucoBotton();

@@ -1,7 +1,7 @@
 ﻿body{
     font-family: 'Open Sans', sans-serif;
 }
-.header {
+ .header {
     background-color:rgb(27, 64, 96);
     height: 50px;
     margin-top: 20px;
@@ -9,7 +9,7 @@
     text-align:center;
     line-height: 50px;
     font-size: 20px !important;  
-}
+} 
 
 .central {
    margin-top: 20px;
