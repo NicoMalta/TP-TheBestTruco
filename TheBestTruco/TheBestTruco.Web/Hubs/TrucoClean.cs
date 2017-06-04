@@ -35,13 +35,14 @@ namespace Truco.Web.Hubs
             else
             {
                 Clients.Others.mostrarnuevousuario(nombre);
-                
+
                 // crear j
                 var jugador = new Jugador()
                 {
                     Nombre = nombre,
                     IdConexion = Context.ConnectionId,
-                    NombreInterno = $"user{juego.Jugadores.Count() + 1}"
+                    NombreInterno = $"user{juego.Jugadores.Count() + 1}",
+                    Numero = juego.Jugadores.Count()
                 };
 
                 juego.Jugadores.Add(jugador);

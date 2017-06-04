@@ -8,9 +8,18 @@ namespace TheBestTruco.Entidades
 {
     public enum RespuestasEnvido
     {
-        Envido = 1, RealEnvido = 2, FaltaEnvido = 3, Quiero = 4, NoQuiero = 5
+        Envido = 1, RealEnvido = 2, FaltaEnvido = 3
     }
 
+    public enum RespuestasTruco
+    {
+        Truco = 1,Retruco = 2, QuieroVale4 = 3
+    }
+
+    public enum QuiereoNo
+    {
+        Quiero, NoQuiero
+    }
     public class Jugador
     {
 
@@ -18,7 +27,7 @@ namespace TheBestTruco.Entidades
         public string NombreInterno { get; set; }
         public string IdConexion { get; set; }
         public List<Carta> Mano { get; set; }
-        public int Equipo { get; set; }
+        public Equipos Equipo { get; set; }
         public int Numero { get; set; }
 
         public Jugador() { Mano = new List<Carta>(); }
@@ -162,10 +171,7 @@ namespace TheBestTruco.Entidades
 
         }
 
-        public void Truco(int Turno)
-        {
-            
-        }
+
 
         public int ContadorEnvido(List<Carta> mano) //SE LE PASA UNA MANO Y DEVUELVE LA CANTIDAD DE PUNTOS DE ENVIDO QUE TIENE      
         {
