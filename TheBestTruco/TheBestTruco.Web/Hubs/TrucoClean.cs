@@ -136,10 +136,11 @@ namespace Truco.Web.Hubs
         //    }
         //}
 
-       // public void JugarCarta(string codigoCarta, string accion)
-       // {                        
-       //     Clients.All.mostrarCarta(carta, selector);
-       // }       
+        public void JugarCarta(Carta carta, string selector)
+        {
+
+            Clients.All.mostrarCarta(carta, Context.ConnectionId);
+        } 
 
         public void Repartir()
         {
@@ -150,10 +151,14 @@ namespace Truco.Web.Hubs
 
             foreach (var jugadores in juego.Jugadores)
             {
-                for (int i = 0; i < 3; i++)
-                {
-                    Clients.Client(jugadores.IdConexion).mostrarCartas(jugadores.Mano[i]);
-                }
+               // for (int i = 0; i < 3; i++)
+                //{
+                    Clients.Client(jugadores.IdConexion).mostrarCartas(jugadores.Mano);
+
+                    Clients.Client(jugadores.IdConexion).habilitarMovimientos();
+                    
+                    //Clients.Client(jugadores.IdConexion).JugarCarta();
+                //}
                 
             }
 
@@ -163,7 +168,7 @@ namespace Truco.Web.Hubs
              * Imagen                       
              */
 
-           // Clients.Client(juego.Jugadores.IdConexion).habilitarMovimientos();
+            //Clients.Client(juego.jugadores.IdConexion).habilitarMovimientos();
             //Clients.Client(...).hideEnvidoEnvidoBotton();
             //Clients.Client(...).hideVale4Botton();
             //Clients.Client(...).hideReTrucoBotton();

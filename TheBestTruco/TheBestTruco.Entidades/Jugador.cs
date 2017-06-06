@@ -32,139 +32,139 @@ namespace TheBestTruco.Entidades
 
         public Jugador() { Mano = new List<Carta>(); }
 
-        public void SolicitarEnvido(int Equipo, List<Jugador> jugadores, Puntuacion puntaje, RespuestasEnvido valor)
-        {
-            RespuestasEnvido anterior = RespuestasEnvido.Envido;
-            int identificador = 0;
+        //public void SolicitarEnvido(int Equipo, List<Jugador> jugadores, Puntuacion puntaje, RespuestasEnvido valor)
+        //{
+        //    RespuestasEnvido anterior = RespuestasEnvido.Envido;
+        //    int identificador = 0;
 
-            while ((valor != RespuestasEnvido.Quiero) && (valor != RespuestasEnvido.NoQuiero))
-            {
-                List<RespuestasEnvido> Respuestas = PosiblesRespuestas(ElegirValor(PosiblesRespuestas(valor)));
+        //    while ((valor != RespuestasEnvido.Quiero) && (valor != RespuestasEnvido.NoQuiero))
+        //    {
+        //        List<RespuestasEnvido> Respuestas = PosiblesRespuestas(ElegirValor(PosiblesRespuestas(valor)));
 
-                identificador++;
+        //        identificador++;
 
-                foreach (Jugador item in jugadores)
-                {
-                    if (Equipo != item.Equipo)
-                    {
-                        anterior = valor;
-                        valor = ElegirValor(Respuestas);
-                    }
-                }
+        //        foreach (Jugador item in jugadores)
+        //        {
+        //            if (Equipo != item.Equipo)
+        //            {
+        //                anterior = valor;
+        //                valor = ElegirValor(Respuestas);
+        //            }
+        //        }
 
-                Equipo++;
-                if (Equipo == 3)
-                {
-                    Equipo = 1;
-                }
-            }
+        //        Equipo++;
+        //        if (Equipo == 3)
+        //        {
+        //            Equipo = 1;
+        //        }
+        //    }
 
-            int PuntosGanador = 0;
+        //    int PuntosGanador = 0;
 
-            if (valor == RespuestasEnvido.Quiero)
-            {
-                foreach (var item in jugadores)
-                {
-                    if (jugadores.IndexOf(item) == 0)
-                    {
-                        PuntosGanador = item.ContadorEnvido(item.Mano);
-                        Equipo = item.Equipo;
-                    }
-                    else if(PuntosGanador < item.ContadorEnvido(item.Mano))
-                    {
-                        PuntosGanador = item.ContadorEnvido(item.Mano);
-                        Equipo = item.Equipo;
-                    }
-                }
+        //    if (valor == RespuestasEnvido.Quiero)
+        //    {
+        //        foreach (var item in jugadores)
+        //        {
+        //            if (jugadores.IndexOf(item) == 0)
+        //            {
+        //                PuntosGanador = item.ContadorEnvido(item.Mano);
+        //                Equipo = item.Equipo;
+        //            }
+        //            else if(PuntosGanador < item.ContadorEnvido(item.Mano))
+        //            {
+        //                PuntosGanador = item.ContadorEnvido(item.Mano);
+        //                Equipo = item.Equipo;
+        //            }
+        //        }
 
-                if (Equipo == 1)
-                {
-                    puntaje.Equipo1 = 1000;
-                }
-                else
-                {
-                    puntaje.Equipo2 = 1000;
-                }
-            }
-            else
-            {
-                switch (anterior)
-                {
-                    case RespuestasEnvido.Envido:
-                        break;
-                    case RespuestasEnvido.RealEnvido:
-                        break;
-                    case RespuestasEnvido.FaltaEnvido:
-                        break;
-                }
+        //        if (Equipo == 1)
+        //        {
+        //            puntaje.Equipo1 = 1000;
+        //        }
+        //        else
+        //        {
+        //            puntaje.Equipo2 = 1000;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        switch (anterior)
+        //        {
+        //            case RespuestasEnvido.Envido:
+        //                break;
+        //            case RespuestasEnvido.RealEnvido:
+        //                break;
+        //            case RespuestasEnvido.FaltaEnvido:
+        //                break;
+        //        }
 
-            }
+        //    }
 
-        } 
+        //} 
 
-        bool bandera = false;
+        //bool bandera = false;
 
-        public RespuestasEnvido ElegirValor(List<RespuestasEnvido> PosiblesRespuestas)
-        {
-            int cantidad = 5 - (PosiblesRespuestas.Count);
+        //public RespuestasEnvido ElegirValor(List<RespuestasEnvido> PosiblesRespuestas)
+        //{
+        //    int cantidad = 5 - (PosiblesRespuestas.Count);
 
-            int aleatorio = 0;
+        //    int aleatorio = 0;
 
-            do
-            {
-                if (bandera == true)
-                {
-                    aleatorio++;
-                }
+        //    do
+        //    {
+        //        if (bandera == true)
+        //        {
+        //            aleatorio++;
+        //        }
 
-                if (PosiblesRespuestas[0] == RespuestasEnvido.Envido)
-                {
-                    bandera = true;
-                }
+        //        if (PosiblesRespuestas[0] == RespuestasEnvido.Envido)
+        //        {
+        //            bandera = true;
+        //        }
 
-                switch (aleatorio)
-                {
-                    case 1:
-                        return RespuestasEnvido.Envido;
-                    case 2:
-                        return RespuestasEnvido.RealEnvido;
-                    case 3:
-                        return RespuestasEnvido.FaltaEnvido;
-                    case 4:
-                        return RespuestasEnvido.NoQuiero;
-                    case 5:
-                        return RespuestasEnvido.Quiero;
-                }
-                return RespuestasEnvido.NoQuiero;
+        //        switch (aleatorio)
+        //        {
+        //            case 1:
+        //                return RespuestasEnvido.Envido;
+        //            case 2:
+        //                return RespuestasEnvido.RealEnvido;
+        //            case 3:
+        //                return RespuestasEnvido.FaltaEnvido;
+        //            case 4:
+        //                return RespuestasEnvido.NoQuiero;
+        //            case 5:
+        //                return RespuestasEnvido.Quiero;
+        //        }
+        //        return RespuestasEnvido.NoQuiero;
 
-            } while ((aleatorio >= cantidad) && (aleatorio < 6));
+        //    } while ((aleatorio >= cantidad) && (aleatorio < 6));
 
-        }
+        //}
 
-        bool bander = false;
+        //bool bander = false;
 
-        public List<RespuestasEnvido> PosiblesRespuestas(RespuestasEnvido valor)
-        {
-            int c = 0;
-            List<RespuestasEnvido> respuesta = new List<RespuestasEnvido>();
+        //public List<RespuestasEnvido> PosiblesRespuestas(RespuestasEnvido valor)
+        //{
+        //    int c = 0;
+        //    List<RespuestasEnvido> respuesta = new List<RespuestasEnvido>();
 
-            foreach (RespuestasEnvido item in Enum.GetValues(typeof(RespuestasEnvido)))
-            {
-                c++;
-                if (valor == RespuestasEnvido.Envido && bander == false)
-                {
-                    respuesta.Add(RespuestasEnvido.Envido);
-                    bander = true;
-                }
+        //    foreach (RespuestasEnvido item in Enum.GetValues(typeof(RespuestasEnvido)))
+        //    {
+        //        c++;
+        //        if (valor == RespuestasEnvido.Envido && bander == false)
+        //        {
+        //            respuesta.Add(RespuestasEnvido.Envido);
+        //            bander = true;
+        //        }
 
-                if ((int)valor < c)
-                {
-                    respuesta.Add(item);
-                }
-            }
+        //        if ((int)valor < c)
+        //        {
+        //            respuesta.Add(item);
+        //        }
+        //    }
 
-            return respuesta;
-        }
+        //    return respuesta;
+        //}
 
         public void SolicitarTruco(int Equipo, List<Jugador> jugadores, int turno)
         {
