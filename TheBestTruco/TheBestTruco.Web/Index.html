@@ -1,9 +1,35 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
-	<meta charset="utf-8" />
+    <meta charset="utf-8" />
+    <script>
+        var c = 0;
+        function mostrar(lado)
+        {
+            var objeto = document.getElementsByTagNameNS("Images/Avatares/{0}.png",c)
+            if (lado == "derecha")
+            {
+                c++;
+                var imagen = new Avatar;
+                imagen.src = ("Images/Avatares/{0}.png", c)
+                imagen.style.display = "none";
+            }
+            if (lado == "izquierda") {
+                c--;
+                var imagen = new Avatar;
+                imagen.src = ("Images/Avatares/{0}.png", c)
+                imagen.style.display = "none";
+                
+            }
+        }
+    </script>
+    <style>
+        .oculto {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <div id="userRegion">
@@ -12,49 +38,56 @@
                 background-image: url("/Images/jGlzr.png");
                 background-attachment: fixed;
             }
+
             .BotonJugar {
-                 position: absolute;
-                 top:  460px;
-                 left: 600px;
+                position: absolute;
+                top: 460px;
+                left: 600px;
             }
+
             .AñadirJugador {
-                 position: absolute;
-                 top:  430px;
-                 left: 600px;
+                position: absolute;
+                top: 430px;
+                left: 600px;
             }
+
             .Titulo {
-                 position: absolute;
-                 top:  20px;
-                 left: 530px;
+                position: absolute;
+                top: 20px;
+                left: 530px;
             }
-            .FlechaIzq{
-                 position: absolute;
-                 top:  310px;
-                 left: 450px;
-                 width:120px
+
+            .FlechaIzq {
+                position: absolute;
+                top: 310px;
+                left: 480px;
+                width: 120px;
             }
-             .FlechaDer {
-                 position: absolute;
-                 top:  310px;
-                 left: 750px;
-                 width:120px
+
+            .FlechaDer {
+                position: absolute;
+                top: 310px;
+                left: 720px;
+                width: 120px;
             }
-             .Avatar{
-                 position: absolute;
-                 top: 110px;
-                 left: 550px;
-             }
-        </style> 
+
+            .Avatar {
+                position: absolute;
+                top: 280px;
+                left: 610px;
+                width: 100px;
+            }
+        </style>
         <img class="Titulo" src="Images/marca-truco.png" border="0" />
         <input class="AñadirJugador" type="text" placeholder="Usuario…" style="width:120px; margin-bottom:0px;" id="userName" />
-        <img class="FlechaIzq" src="Images/flecha_izquierda.png"/>
-        <img class="FlechaDer" src="Images/flecha_derecha.png"/>
-        <img class="Avatar" src="Images/1.png"/>
-            <a href="Truco.html" title="Consultar programas por autor"><img class="BotonJugar" src="Images\boton.png" border="0" width="120" height="70"></a>
-    
-      
-        
-       
+        <img class="FlechaIzq" type="button" onclick="mostrar('izquierda')" src="Images/flecha_izquierda.png" />
+        <img class="FlechaDer" type="button" onclick="mostrar('derecha')" src="Images/flecha_derecha.png" />
+        <img class="Avatar" src="Images/Avatares/20.png" />
+        <a href="Truco.html" title="Consultar programas por autor"><img class="BotonJugar" src="Images\boton.png" border="0" width="120" height="70"></a>
+
+
+
+
     </div>
 </body>
 </html>
