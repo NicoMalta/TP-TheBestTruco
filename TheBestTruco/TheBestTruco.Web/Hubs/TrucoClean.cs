@@ -136,10 +136,16 @@ namespace Truco.Web.Hubs
         //    }
         //}
 
-        public void JugarCarta(Carta carta, string selector)
+        public void JugarCarta(string codigoCarta)
         {
+            var j = juego.Jugadores.Single(x => x.IdConexion == Context.ConnectionId);
+            var c = j.Mano.Single(x => x.Codigo == codigoCarta);
+            
+            Clients.All.mostrarCarta(c, j.NombreInterno, juego.Turno);
+           // juego.CartasMesa[juego.Turno, j.Numero] = carta;
+           //j.Mano.Remove(carta);
 
-            Clients.All.mostrarCarta(carta, Context.ConnectionId);
+
         } 
 
         public void Repartir()

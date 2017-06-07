@@ -210,9 +210,9 @@ $(function () {
         $("#punt").html("");
     };
 
-    trucoHub.client.mostrarCarta = function (carta, selector) {
+    trucoHub.client.mostrarCarta = function (carta, nombreinterno, cartaelegida) {
         debugger;
-        $(carta.Selector).attr("src", "");
+        var selector = "#" + nombreinterno + "_card" + cartaelegida;
         $(selector).attr("src", carta.Imagen);
 
 
@@ -252,12 +252,13 @@ $(function () {
     trucoHub.client.habilitarMovimientos = function (data) {
 
         console.log("habilitarMovimientos");
-
+       
         $("[cc]").bind("click",
             function (evt) {
                 console.log("jugar carta");
+                debugger;
                 $(this).hide();
-                trucoHub.server.jugarCarta(this, "accion"); //
+                trucoHub.server.jugarCarta($(this).attr("cc")); //
             });
     };
 

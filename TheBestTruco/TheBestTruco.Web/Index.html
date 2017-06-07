@@ -5,21 +5,22 @@
     <title></title>
     <meta charset="utf-8" />
     <script>
-        var c = 0;
+        var c = 1;
         function mostrar(lado)
         {
-            var objeto = document.getElementsByTagNameNS("Images/Avatares/{0}.png",c)
+           // debugger;
+           //// var objeto = document.ge"Images/Avatares/" + c + ".png")
             if (lado == "derecha")
             {
                 c++;
-                var imagen = new Avatar;
-                imagen.src = ("Images/Avatares/{0}.png", c)
+                var imagen = $("#Avatar");
+                imagen.src = ("Images/Avatares/" + c + ".png")
                 imagen.style.display = "none";
             }
             if (lado == "izquierda") {
                 c--;
                 var imagen = new Avatar;
-                imagen.src = ("Images/Avatares/{0}.png", c)
+                imagen.src = ("Images/Avatares/" + c + ".png")
                 imagen.style.display = "none";
                 
             }
@@ -82,12 +83,12 @@
         <input class="AñadirJugador" type="text" placeholder="Usuario…" style="width:120px; margin-bottom:0px;" id="userName" />
         <img class="FlechaIzq" type="button" onclick="mostrar('izquierda')" src="Images/flecha_izquierda.png" />
         <img class="FlechaDer" type="button" onclick="mostrar('derecha')" src="Images/flecha_derecha.png" />
-        <img class="Avatar" src="Images/Avatares/20.png" />
+        <img class="Avatar" src="Images/Avatares/19.png" />
         <a href="Truco.html" title="Consultar programas por autor"><img class="BotonJugar" src="Images\boton.png" border="0" width="120" height="70"></a>
 
 
 
-
+        <script src="Scripts/jquery-1.7.1.js"></script>
     </div>
 </body>
 </html>

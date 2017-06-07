@@ -14,7 +14,7 @@ namespace TheBestTruco.Entidades
     {
         public List<Jugador> Jugadores { get; set; }
         public RespuestasEnvido EstadoEnvido { get; set; }
-        public int[,] CartasMesa { get; set; }
+        public Carta[,] CartasMesa { get; set; }
         public int Turno { get; set; }
         public Mazo  Mazo { get; set; }
         public bool EstaCompleto { get; set; }
@@ -26,10 +26,11 @@ namespace TheBestTruco.Entidades
         public Partida()
         {
             Jugadores = new List<Jugador>();
-            CartasMesa = new int[3, 4];
+            CartasMesa = new Carta[3, 4];
             Mazo = new Mazo();
             Puntaje1 = 0;
             Puntaje2 = 0;
+            Turno = 1;
         }
 
         public void RevisarCantidadJugadores()
@@ -71,12 +72,12 @@ namespace TheBestTruco.Entidades
                 if (primeravez == false)
                 {
                     primeravez = true;
-                    valor = CartasMesa[Turno, i];
+                    valor = CartasMesa[Turno, i].Valor;
                     Jugador = i;
                 }
-                else if (valor < CartasMesa[Turno, i])
+                else if (valor < CartasMesa[Turno, i].Valor)
                 {
-                    valor = CartasMesa[Turno, i];
+                    valor = CartasMesa[Turno, i].Valor;
                     Jugador = i;
                 }
             }
@@ -182,17 +183,17 @@ namespace TheBestTruco.Entidades
                 if (primeravez == false)
                 {
                     primeravez = true;
-                    valor = CartasMesa[Turno, i];
+                    valor = CartasMesa[Turno, i].Valor;
                 }
-                else if (valor < CartasMesa[Turno, i])
+                else if (valor < CartasMesa[Turno, i].Valor)
                 {
-                    valor = CartasMesa[Turno, i];
+                    valor = CartasMesa[Turno, i].Valor;
                 }
             }
 
             for (int i = 0; i < 4; i++)
             {
-                if (valor == CartasMesa[Turno, i])
+                if (valor == CartasMesa[Turno, i].Valor)
                 {
                     this.PardaActivo = true;
                     break;
@@ -208,7 +209,7 @@ namespace TheBestTruco.Entidades
             {
                 if (item.Numero == jugador)
                 {
-                    CartasMesa[jugador, Turno] = cartaSeleccionada.Valor;
+                    CartasMesa[jugador, Turno] = cartaSeleccionada;
                     item.Mano.Remove(cartaSeleccionada);
 
                 }
