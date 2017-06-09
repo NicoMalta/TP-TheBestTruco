@@ -4,26 +4,31 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <meta charset="utf-8" />
+    <script src="Scripts/jquery-1.7.1.js"></script>
     <script>
         var c = 1;
         function mostrar(lado)
         {
            // debugger;
-           //// var objeto = document.ge"Images/Avatares/" + c + ".png")
+            var objeto;
             if (lado == "derecha")
             {
                 c++;
-                var imagen = $("#Avatar");
-                imagen.src = ("Images/Avatares/" + c + ".png")
-                imagen.style.display = "none";
+                if (c == 21){
+                    c = 1;
+                }
+
+                objeto = "Images/Avatares/"+ c +".png"
             }
-            if (lado == "izquierda") {
+            if (lado == "izquierda")
+            {
                 c--;
-                var imagen = new Avatar;
-                imagen.src = ("Images/Avatares/" + c + ".png")
-                imagen.style.display = "none";
-                
+                if (c == 0) {
+                    c = 20;
+                }
+                objeto = "Images/Avatares/" + c + ".png"
             }
+            document.getElementById('imagen').src = objeto;
         }
     </script>
     <style>
@@ -83,12 +88,12 @@
         <input class="AñadirJugador" type="text" placeholder="Usuario…" style="width:120px; margin-bottom:0px;" id="userName" />
         <img class="FlechaIzq" type="button" onclick="mostrar('izquierda')" src="Images/flecha_izquierda.png" />
         <img class="FlechaDer" type="button" onclick="mostrar('derecha')" src="Images/flecha_derecha.png" />
-        <img class="Avatar" src="Images/Avatares/19.png" />
+        <img class="Avatar" src="Images/Avatares/1.png" id="imagen"/>
         <a href="Truco.html" title="Consultar programas por autor"><img class="BotonJugar" src="Images\boton.png" border="0" width="120" height="70"></a>
 
 
 
-        <script src="Scripts/jquery-1.7.1.js"></script>
+        
     </div>
 </body>
 </html>

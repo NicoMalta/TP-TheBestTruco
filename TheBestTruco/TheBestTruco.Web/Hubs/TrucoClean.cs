@@ -23,6 +23,8 @@ namespace Truco.Web.Hubs
             
         }
 
+        Ronda ronda = new Ronda();
+
         public void AgregarJugador(string nombre)
         {
             juego.RevisarCantidadJugadores();
@@ -42,8 +44,8 @@ namespace Truco.Web.Hubs
                     Nombre = nombre,
                     IdConexion = Context.ConnectionId,
                     NombreInterno = $"user{juego.Jugadores.Count() + 1}",
-                    Numero = juego.Jugadores.Count()
-                };
+                    Numero = juego.Jugadores.Count()+1
+               };
 
                 juego.Jugadores.Add(jugador);
 
@@ -56,7 +58,11 @@ namespace Truco.Web.Hubs
                 {
                     Clients.All.mostrarpuntos("Ellos", 0);
                     Clients.All.mostrarpuntos("Nosotros", 0);
+                   
+
                     Repartir();
+
+                    ronda.JugarRonda();
                 }
             }
         }
@@ -140,9 +146,9 @@ namespace Truco.Web.Hubs
         {
             var j = juego.Jugadores.Single(x => x.IdConexion == Context.ConnectionId);
             var c = j.Mano.Single(x => x.Codigo == codigoCarta);
-            
-            Clients.All.mostrarCarta(c, j.NombreInterno, juego.Turno);
-           // juego.CartasMesa[juego.Turno, j.Numero] = carta;
+
+            Clients.All.mostrarCarta(c, j.NombreInterno, ronda.Turno);
+            ronda.CartasMesa[ronda.Turno, j.Numero ]= c;
            //j.Mano.Remove(carta);
 
 

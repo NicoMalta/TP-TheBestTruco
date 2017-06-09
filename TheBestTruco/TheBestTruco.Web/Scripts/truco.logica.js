@@ -61,6 +61,7 @@ $(function () {
     $("#botonAgregarJugador").click(function () {
         var userName = $("#userName").val();
         $("#userRegion").hide()
+        
 
         // Habilitar para el trabajo práctico.
         trucoHub.server.agregarJugador(userName);
@@ -74,6 +75,9 @@ $(function () {
     trucoHub.client.mostrarNombre = function (data) {
         var selector = "#" + data.NombreInterno;
         $(selector).html(data.Nombre);
+        debugger
+        var barra = "#barra_carga" + data.Numero;
+        $("#barra").hide() //esta  bien formado
     };
 
     // Visualizar nombre en el chat.
