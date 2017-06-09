@@ -75,9 +75,8 @@ $(function () {
     trucoHub.client.mostrarNombre = function (data) {
         var selector = "#" + data.NombreInterno;
         $(selector).html(data.Nombre);
-        debugger
         var barra = "#barra_carga" + data.Numero;
-        $("#barra").hide() //esta  bien formado
+        $(barra).hide() //esta  bien formado
     };
 
     // Visualizar nombre en el chat.

@@ -29,6 +29,7 @@ namespace TheBestTruco.Entidades
         public List<Carta> Mano { get; set; }
         public Equipos Equipo { get; set; }
         public int Numero { get; set; }
+        public string DireccionAvatar { get; set; }
 
         public Jugador() { Mano = new List<Carta>(); }
 
