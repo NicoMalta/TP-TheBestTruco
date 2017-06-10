@@ -7,14 +7,14 @@
     <script src="Scripts/jquery-1.7.1.js"></script>
     <script>
 
+        var c = 1;
+
         function CambiarNombreHost() {
             window.location.hostname = "MyM"
         }
         function CargarPagina(pagina) {
             window.location.href = "http://localhost:1996/"+pagina
         }
-
-        var c = 1;
         
         function mostrar(lado)
         {
@@ -54,14 +54,8 @@
                 background-attachment: fixed;
             }
 
-            .BotonJugar {
-                position: absolute;
-                top: 460px;
-                left: 600px;
-            }
-
-            .AñadirJugador {
-                position: absolute;
+            #userName {
+                position:absolute;
                 top: 430px;
                 left: 600px;
             }
@@ -92,18 +86,32 @@
                 left: 610px;
                 width: 100px;
             }
+            
+            #botonAgregarJugador {
+                position: absolute;
+                font-size:18px;
+                font-family:Calibri;
+                font-weight:bold;
+                color:white;
+                background:#ff6a00;
+                border-bottom-left-radius:4px;
+                border-bottom-right-radius:4px;
+                border-top-left-radius: 4px;
+                border-top-right-radius: 4px;
+                top: 470px;
+                left: 630px;
+                
+            }
+
         </style>
         <img class="Titulo" src="Images/marca-truco.png" border="0" />
-        <input class="AñadirJugador" type="text" placeholder="Usuario…" style="width:120px; margin-bottom:0px;" id="userName" />
         <img class="FlechaIzq" type="button" onclick="mostrar('izquierda')" src="Images/flecha_izquierda.png" />
         <img class="FlechaDer" type="button" onclick="mostrar('derecha')" src="Images/flecha_derecha.png" />
         <img class="Avatar" src="Images/Avatares/1.png" id="imagen"/>
-       <!-- <a href="Truco.html" title="Consultar programas por autor"><img class="BotonJugar" src="Images\boton.png" border="0" width="120" height="70"></a>-->
         
         <!-- Ingresar jugador. -->
         <div id="userRegion">
-            <h4>JUGAR</h4>
-            <input type="text" placeholder="Usuario…" style="width:100px; margin-bottom:0px;" id="userName" />
+            <input type="text" placeholder="Usuario…" id="userName" />
             <button type="button" class="btn btn-primary" id="botonAgregarJugador" onclick="CargarPagina('Truco.html')">JUGAR</button>
         </div> 
     </div>
