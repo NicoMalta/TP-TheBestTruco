@@ -56,13 +56,14 @@ namespace Truco.Web.Hubs
 
                 if (juego.EstaCompleto == true)
                 {
-                    Clients.All.mostrarpuntos("Ellos", 0);
-                    Clients.All.mostrarpuntos("Nosotros", 0);
+                   
+                    //Clients.All.mostrarpuntos("Ellos", 0);
+                    //Clients.All.mostrarpuntos("Nosotros", 0);
                    
 
                     Repartir();
 
-                    ronda.JugarRonda();
+                    //ronda.JugarRonda();
                 }
             }
         }
@@ -168,10 +169,10 @@ namespace Truco.Web.Hubs
                     Clients.Client(jugadores.IdConexion).mostrarCartas(jugadores.Mano);
 
                     Clients.Client(jugadores.IdConexion).habilitarMovimientos();
-                    
-                    //Clients.Client(jugadores.IdConexion).JugarCarta();
+
+                //Clients.Client(jugadores.IdConexion).JugarCarta();
                 //}
-                
+                Clients.Client(jugadores.IdConexion).MostrarSeñas();
             }
 
             /*

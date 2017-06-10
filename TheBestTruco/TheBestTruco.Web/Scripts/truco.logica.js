@@ -1,5 +1,16 @@
 ﻿var trucoHub = {};
 
+
+// Muestra los emogins de las señas.
+function MostrarSeñas() {
+    $("#Señas").show();
+}
+
+// Oculta los emogins de las señas
+function OcultarSeñas() {
+    $("#Señas").hide();
+}
+
 // Oculta las acciones del envido.
 function ocultarSeccionesEnvido() {
     $("#envidoRegion").hide();
@@ -67,16 +78,18 @@ $(function () {
         trucoHub.server.agregarJugador(userName);
     });
 
-    $("#bottonMazo").click(function () {
-        trucoHub.server.cantar("me voy al mazo");
-    });
+    //$("#bottonMazo").click(function () {
+    //    trucoHub.server.cantar("me voy al mazo");
+    //});
 
     // Visualizar nombre en el tablero.
     trucoHub.client.mostrarNombre = function (data) {
         var selector = "#" + data.NombreInterno;
         $(selector).html(data.Nombre);
         var barra = "#barra_carga" + data.Numero;
-        $(barra).hide() //esta  bien formado
+        $(barra).hide() 
+        OcultarSeñas();
+
     };
 
     // Visualizar nombre en el chat.
