@@ -78,9 +78,9 @@ $(function () {
         trucoHub.server.agregarJugador(userName);
     });
 
-    //$("#bottonMazo").click(function () {
-    //    trucoHub.server.cantar("me voy al mazo");
-    //});
+    $("#bottonMazo").click(function () {
+        trucoHub.server.cantar("me voy al mazo");
+    });
 
     // Visualizar nombre en el tablero.
     trucoHub.client.mostrarNombre = function (data) {
@@ -88,8 +88,6 @@ $(function () {
         $(selector).html(data.Nombre);
         var barra = "#barra_carga" + data.Numero;
         $(barra).hide() 
-        OcultarSeñas();
-
     };
 
     // Visualizar nombre en el chat.
