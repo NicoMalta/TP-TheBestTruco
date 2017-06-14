@@ -1,6 +1,21 @@
 ﻿var trucoHub = {};
 
 
+// Muestra quien es mano.
+function MostrarMano() {
+    $(".Mano").show();
+}
+
+// Oculta la mano
+function OcultarMano() {
+    $(".Mano").hide();
+}
+
+function MostrarManoPorTurno(turno) {
+    OcultarMano();
+    $("#mano_" + turno).show();
+}
+
 // Muestra los emogins de las señas.
 function MostrarSeñas() {
     $("#Señas").show();
@@ -50,6 +65,7 @@ function Limpiar() {
     // Ocultamos las acciones.
     ocultarSeccionesEnvido();
     ocultarSeccionesTruco();
+    OcultarMano();
 
     // Limpiamos las cartas del jugador.
     $("#cards").html("");
@@ -96,6 +112,7 @@ $(function () {
         $(selector).html(data.Nombre);
         var barra = "#barra_carga" + data.Numero;
         $(barra).hide() 
+
     };
 
     // Visualizar nombre en el chat.
@@ -254,21 +271,21 @@ $(function () {
                 //$(img).appendTo($("#cards"));
 
 
-                var selector = "#user" + numero + "_card" + c;
-                $(selector).attr("src", data[c - 1].Imagen);
-                c = c + 1;
-                if (c == 4) {
-                    c = 1;
-                }
-                //var img = $("<img width='100' />").attr({
-                //    'id': value.Codigo,
-                //    'src': value.Imagen,
-                //    'alt': value.Codigo,
-                //    'cc': value.Codigo
-                //}).appendTo($("#cards"));
+                //var selector = "#user" + numero + "_card" + c;
+                //$(selector).attr("src", data[c - 1].Imagen);
+                //c = c + 1;
+                //if (c == 4) {
+                //    c = 1;
+                //}
+                var img = $("<img width='100' />").attr({
+                    'id': value.Codigo,
+                    'src': value.Imagen,
+                    'alt': value.Codigo,
+                    'cc': value.Codigo
+                }).appendTo($("#cards"));
             });
 
-        //$("#cards").show();
+        $("#cards").show();
         $("#movements").show();
     };
 

@@ -28,6 +28,7 @@ namespace Truco.Web.Hubs
         public void AgregarJugador(string nombre)
         {
             juego.RevisarCantidadJugadores();
+            
 
             if (juego.EstaCompleto)
             {
@@ -150,9 +151,17 @@ namespace Truco.Web.Hubs
 
             Clients.All.mostrarCarta(c, j.NombreInterno, ronda.Turno);
             ronda.CartasMesa[ronda.Turno, j.Numero ]= c;
-           //j.Mano.Remove(carta);
+            //j.Mano.Remove(carta);
+            Clients.Client(j.IdConexion).deshabilitarMovimientos();
+            ronda.Turno++;
 
+            if (ronda.Turno == 5)
+            {
+                ronda.Turno = 1;
+            }
 
+            var jugadorturno = juego.Jugadores.Single(x => x.Numero == ronda.Turno);
+            Clients.Client(jugadorturno.IdConexion).habilitarMovimientos();
         } 
 
         public string ConseguirNumeroJugador()
@@ -173,13 +182,16 @@ namespace Truco.Web.Hubs
                // for (int i = 0; i < 3; i++)
                 //{
                     Clients.Client(jugadores.IdConexion).mostrarCartas(jugadores.Mano, jugadores.Numero);
-
-                    Clients.Client(jugadores.IdConexion).habilitarMovimientos();
-
+                
                 //Clients.Client(jugadores.IdConexion).JugarCarta();
                 //}
+                Clients.Client(jugadores.IdConexion).MostrarManoPorTurno(1);
                 Clients.Client(jugadores.IdConexion).MostrarSeñas();
             }
+
+            var jugadorturno = juego.Jugadores.Single(x => x.Numero == ronda.Turno);
+
+            Clients.Client(jugadorturno.IdConexion).habilitarMovimientos();
 
             /*
              * Propiedades de la Carta:
