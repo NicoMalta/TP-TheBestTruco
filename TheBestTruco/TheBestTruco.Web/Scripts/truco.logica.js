@@ -11,6 +11,14 @@ function OcultarSeñas() {
     $("#Señas").hide();
 }
 
+function HacerSeña(IdEmogin) {
+    var objeto = document.getElementById(IdEmogin)
+    // var jugador = trucoHub.server.ConseguirNumeroJugador();
+   
+    $("#emogin_" + 1).src = objeto.src
+
+}
+
 // Oculta las acciones del envido.
 function ocultarSeccionesEnvido() {
     $("#envidoRegion").hide();
@@ -232,8 +240,10 @@ $(function () {
 
     };
 
-    trucoHub.client.mostrarCartas = function (data) {
+    trucoHub.client.mostrarCartas = function (data, numero) {
 
+
+        var c = 1;
         $.each(data,
             function (index, value) {
                 console.log("mostrarCarta:");
@@ -243,15 +253,22 @@ $(function () {
 
                 //$(img).appendTo($("#cards"));
 
-                var img = $("<img width='100' />").attr({
-                    'id': value.Codigo,
-                    'src': value.Imagen,
-                    'alt': value.Codigo,
-                    'cc': value.Codigo
-                }).appendTo($("#cards"));
+
+                var selector = "#user" + numero + "_card" + c;
+                $(selector).attr("src", data[c - 1].Imagen);
+                c = c + 1;
+                if (c == 4) {
+                    c = 1;
+                }
+                //var img = $("<img width='100' />").attr({
+                //    'id': value.Codigo,
+                //    'src': value.Imagen,
+                //    'alt': value.Codigo,
+                //    'cc': value.Codigo
+                //}).appendTo($("#cards"));
             });
 
-        $("#cards").show();
+        //$("#cards").show();
         $("#movements").show();
     };
 

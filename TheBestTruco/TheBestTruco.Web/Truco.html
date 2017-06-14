@@ -39,6 +39,8 @@
                         <img id="user1_card1" class="card" src="Images/BACK.JPG" />
                         <img id="user1_card2" class="card" src="Images/BACK.JPG" />
                         <img id="user1_card3" class="card" src="Images/BACK.JPG" />
+                        <img id="emogin_1" class="card" src="" />
+
                     </div>
                 </div>
                 <div class="row-fluid centralItem">
@@ -48,6 +50,7 @@
                         <img id="user4_card1" class="card" src="Images/BACK.JPG" />
                         <img id="user4_card2" class="card" src="Images/BACK.JPG" />
                         <img id="user4_card3" class="card" src="Images/BACK.JPG" />
+                        <img id="emogin_4" class="card" src="" />
                     </div>
                     <div class="span6">
                         <div id="user2">Esperando...</div>
@@ -55,6 +58,7 @@
                         <img id="user2_card1" class="card" src="Images/BACK.JPG" />
                         <img id="user2_card2" class="card" src="Images/BACK.JPG" />
                         <img id="user2_card3" class="card" src="Images/BACK.JPG" />
+                        <img id="emogin_2" class="card" src="" />
                     </div>
                 </div>
                 <div class="row-fluid centralItem">
@@ -64,6 +68,7 @@
                         <img id="user3_card1" class="card" src="Images/BACK.JPG" />
                         <img id="user3_card2" class="card" src="Images/BACK.JPG" />
                         <img id="user3_card3" class="card" src="Images/BACK.JPG" />
+                        <img id="emogin_3" class="card" src="" />
                     </div>
                 </div>
             </div>
@@ -111,11 +116,11 @@
                     <button type="button" class="btn btn-danger" id="bottonNoQuieroVale4">NO QUIERO</button>
                 </div>
                 <!-- Ingresar jugador. -->
-                <!--<div id="userRegion">
+                <div id="userRegion">
                     <h4>JUGAR</h4>
                     <input type="text" placeholder="Usuario…" style="width:100px; margin-bottom:0px;" id="userName" />
                     <button type="button" class="btn btn-primary" id="botonAgregarJugador">JUGAR</button>
-                </div>-->
+                </div>
                 <!-- Mensajes del juego -->
                 <div id="messages"></div>
             </div>
@@ -141,15 +146,15 @@
 
         <!--BotonesSeñas-->
         <div id="Señas">
-            <img class="Seña" id="S_Ancho_Espada" src="Images/Señas/Uno_Espada.PNG" />
-            <img class="Seña" id="S_Ancho_Basto" src="Images/Señas/Uno_Basto.PNG" />
-            <img class="Seña" id="S_Siete_Espada" src="Images/Señas/Siete_Espada.PNG" />
-            <img class="Seña" id="S_Siete_oro" src="Images/Señas/Siete_Oro.PNG" />
-            <img class="Seña" id="S_Tres" src="Images/Señas/Tres.PNG" />
-            <img class="Seña" id="S_Dos" src="Images/Señas/Dos.PNG" />
-            <img class="Seña" id="S_Uno_Falsos" src="Images/Señas/Uno_falso.PNG" />
-            <img class="Seña" id="S_Envido" src="Images/Señas/Envido.PNG" />
-            <img class="Seña" id="S_No_Tengo_Nada" src="Images/Señas/No_Tengo_Nada.PNG" />
+            <img class="Seña" id="S_Ancho_Espada" src="Images/Señas/Uno_Espada.PNG" onclick="HacerSeña('S_Ancho_Espada')"/>
+            <img class="Seña" id="S_Ancho_Basto" src="Images/Señas/Uno_Basto.PNG" onclick="HacerSeña('S_Ancho_Basto')"/>
+            <img class="Seña" id="S_Siete_Espada" src="Images/Señas/Siete_Espada.PNG" onclick="HacerSeña('S_Siete_Espada')"/>
+            <img class="Seña" id="S_Siete_oro" src="Images/Señas/Siete_Oro.PNG" onclick="HacerSeña('S_Siete_oro')"/>
+            <img class="Seña" id="S_Tres" src="Images/Señas/Tres.PNG" onclick="HacerSeña('S_Tres')"/>
+            <img class="Seña" id="S_Dos" src="Images/Señas/Dos.PNG" onclick="HacerSeña('S_Dos')"/>
+            <img class="Seña" id="S_Uno_Falsos" src="Images/Señas/Uno_falso.PNG" onclick="HacerSeña('S_Uno_Falsos')"/>
+            <img class="Seña" id="S_Envido" src="Images/Señas/Envido.PNG" onclick="HacerSeña('S_Envido')"/>/>
+            <img class="Seña" id="S_No_Tengo_Nada" src="Images/Señas/No_Tengo_Nada.PNG" onclick="HacerSeña('S_No_Tengo_Nada')"/>
         </div>
     </div>
     <!-- Librerías de Javascript -->

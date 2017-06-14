@@ -155,6 +155,12 @@ namespace Truco.Web.Hubs
 
         } 
 
+        public string ConseguirNumeroJugador()
+        {
+            var j = juego.Jugadores.Single(x => x.IdConexion == Context.ConnectionId);
+            return j.Numero.ToString();
+        }
+
         public void Repartir()
         {
             Clients.All.limpiarTablero();
@@ -166,7 +172,7 @@ namespace Truco.Web.Hubs
             {
                // for (int i = 0; i < 3; i++)
                 //{
-                    Clients.Client(jugadores.IdConexion).mostrarCartas(jugadores.Mano);
+                    Clients.Client(jugadores.IdConexion).mostrarCartas(jugadores.Mano, jugadores.Numero);
 
                     Clients.Client(jugadores.IdConexion).habilitarMovimientos();
 
