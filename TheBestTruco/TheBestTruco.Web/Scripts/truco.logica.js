@@ -2,7 +2,8 @@
 
 
 function ReproducirSonido(audio) {
-    var objeto = document.getElementById(audio)
+    var objeto = document.getElementById('audio')
+    objeto.src = "Sonidos/" + audio + ".mp3"
     objeto.play();
 }
 
