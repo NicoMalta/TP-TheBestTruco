@@ -38,7 +38,6 @@ namespace Truco.Web.Hubs
             else
             {
                 Clients.Others.mostrarnuevousuario(nombre);
-
                 // crear j
                 var jugador = new Jugador()
                 {
@@ -143,6 +142,11 @@ namespace Truco.Web.Hubs
         //            break;
         //    }
         //}
+
+        public void HacerSeñas(string IdConextion)
+        {
+
+        }
 
         public void JugarCarta(string codigoCarta)
         {

@@ -1,6 +1,11 @@
 ﻿var trucoHub = {};
 
 
+function ReproducirSonido(audio) {
+    var objeto = document.getElementById(audio)
+    objeto.play();
+}
+
 // Muestra quien es mano.
 function MostrarMano() {
     $(".Mano").show();
@@ -29,8 +34,8 @@ function OcultarSeñas() {
 function HacerSeña(IdEmogin) {
     var objeto = document.getElementById(IdEmogin)
     // var jugador = trucoHub.server.ConseguirNumeroJugador();
-   
-    $("#emogin_" + 1).src = objeto.src
+    var id = trucoHub.valueOf.caller;
+    $(".emogin_" + 1).src = objeto.src
 
 }
 
