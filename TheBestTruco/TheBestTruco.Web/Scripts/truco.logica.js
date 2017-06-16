@@ -7,6 +7,15 @@ function ReproducirSonido(audio) {
     objeto.play();
 }
 
+
+function Seña() {
+    //var objeto = document.getElementById(IdEmogin)
+    // var jugador = trucoHub.server.ConseguirNumeroJugador();
+    //var id = trucoHub.valueOf.caller;
+    //$(".emogin_" + 1).src = objeto.src
+    trucoHub.server.hacerSeñas();
+
+};
 // Muestra quien es mano.
 function MostrarMano() {
     $(".Mano").show();
@@ -23,8 +32,8 @@ function MostrarManoPorTurno(turno) {
 }
 
 // Muestra los emogins de las señas.
-function MostrarSeñas() {
-    $("#Señas").show();
+function MostrarSeñas(carita,numero) {
+    $("emogin_2").src = $(".S_Ancho_Espada").src
 }
 
 // Oculta los emogins de las señas
@@ -32,13 +41,7 @@ function OcultarSeñas() {
     $("#Señas").hide();
 }
 
-function HacerSeña(IdEmogin) {
-    var objeto = document.getElementById(IdEmogin)
-    // var jugador = trucoHub.server.ConseguirNumeroJugador();
-    var id = trucoHub.valueOf.caller;
-    $(".emogin_" + 1).src = objeto.src
 
-}
 
 // Oculta las acciones del envido.
 function ocultarSeccionesEnvido() {
@@ -97,6 +100,8 @@ $(function () {
 
     // Creamos el hub.
     trucoHub = $.connection.truco;
+
+    
 
     // Evento click del boton "ingresar jugador".
     $("#botonAgregarJugador").click(function () {

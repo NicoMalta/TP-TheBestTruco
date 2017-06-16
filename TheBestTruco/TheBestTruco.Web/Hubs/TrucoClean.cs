@@ -143,9 +143,9 @@ namespace Truco.Web.Hubs
         //    }
         //}
 
-        public void HacerSeñas(string IdConextion)
+        public void HacerSeñas()
         {
-
+            Clients.Caller.MostrarSeñas("hola",1);
         }
 
         public void JugarCarta(string codigoCarta)
