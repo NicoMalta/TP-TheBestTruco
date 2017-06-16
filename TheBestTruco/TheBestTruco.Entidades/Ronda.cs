@@ -8,6 +8,7 @@ namespace TheBestTruco.Entidades
 {
     public class Ronda
     {
+        private static Ronda Rondas;
         public RespuestasEnvido EstadoEnvido { get; set; }
         public Carta[,] CartasMesa { get; set; }
         public int Turno { get; set; }
@@ -16,11 +17,45 @@ namespace TheBestTruco.Entidades
         public bool FinPartida { get; set; }
         public int Puntaje1 { get; set; }
         public int Puntaje2 { get; set; }
+        public int Manos { get; set; }
 
-        public Ronda()
+        private Ronda()
         {
             CartasMesa = new Carta[3, 4];
             Turno = 1;
+            Manos = 1;
+
+        }
+
+        public Jugador GanaMano(List<Jugador> jugadores)
+        {
+            int valor = 0;
+            bool primeravez = false;
+            int posicion = 0;
+            for (int i = 0; i < 4; i++)
+            {
+                if (primeravez == false)
+                {
+                    primeravez = true;
+                    valor = CartasMesa[Manos - 1, i].Valor;
+                    posicion = i + 1;
+                }
+                else if (valor < CartasMesa[Manos - 1, i].Valor)
+                {
+                    valor = CartasMesa[Manos - 1, i].Valor;
+                    posicion = i + 1;
+                }
+            }
+            var jugadorGanador = jugadores.Single(x => x.Numero == posicion);
+            return jugadorGanador;
+        }
+        public static Ronda Instancia()
+        {
+            if (Rondas == null)
+            {
+                Rondas = new Ronda();
+            }
+            return Rondas;
         }
         public bool RevisarPardas()
         {

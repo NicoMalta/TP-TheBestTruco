@@ -17,6 +17,7 @@ namespace TheBestTruco.Entidades
         public bool EstaCompleto { get; set; }
         public int Puntaje1 { get; set; }
         public int Puntaje2 { get; set; }
+        public int EsMano { get; set; }
 
         public Partida()
         {
@@ -24,6 +25,7 @@ namespace TheBestTruco.Entidades
             Mazo = new Mazo();
             Puntaje1 = 0;
             Puntaje2 = 0;
+            EsMano = 1;
         }
 
         public void RevisarCantidadJugadores()
@@ -54,6 +56,8 @@ namespace TheBestTruco.Entidades
 
             }
         }
+
+
 
         //public void JugarCarta(int jugador, Carta cartaSeleccionada)
         //{

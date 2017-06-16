@@ -14,6 +14,7 @@ namespace Truco.Web.Hubs
     {
         public static Partida juego = new Partida();
 
+        public Ronda ronda = Ronda.Instancia();
         public void Conectarse()
         {
             foreach (var j in juego.Jugadores)
@@ -23,7 +24,7 @@ namespace Truco.Web.Hubs
             
         }
 
-        Ronda ronda = new Ronda();
+        
 
         public void AgregarJugador(string nombre)
         {
@@ -153,19 +154,43 @@ namespace Truco.Web.Hubs
             var j = juego.Jugadores.Single(x => x.IdConexion == Context.ConnectionId);
             var c = j.Mano.Single(x => x.Codigo == codigoCarta);
 
-            Clients.All.mostrarCarta(c, j.NombreInterno, ronda.Turno);
-            ronda.CartasMesa[ronda.Turno, j.Numero ]= c;
-            //j.Mano.Remove(carta);
+            Clients.All.mostrarCarta(c, j.NombreInterno, ronda.Manos);
+            ronda.CartasMesa[ronda.Manos - 1, j.Numero - 1]= c;
+            j.Mano.Remove(c);
             Clients.Client(j.IdConexion).deshabilitarMovimientos();
             ronda.Turno++;
 
             if (ronda.Turno == 5)
             {
                 ronda.Turno = 1;
+                Clients.Client(ronda.GanaMano(juego.Jugadores).IdConexion).habilitarMovimientos();
+                ronda.Manos++;
+            }
+            else
+            {
+                if (j.Numero + 1 == 5)
+                {
+                    Clients.Client(juego.Jugadores[0].IdConexion).habilitarMovimientos();
+                }
+                else
+                {
+                    var jugadorturno = juego.Jugadores.Single(x => x.Numero == j.Numero + 1);
+                    Clients.Client(jugadorturno.IdConexion).habilitarMovimientos();
+                }
+
+            }
+            if (ronda.Manos == 4)
+            {
+                ronda.Manos = 1;
+                juego.EsMano++;
+                if (juego.EsMano == 5)
+                {
+                    juego.EsMano = 1;
+                }
+                Repartir();
+                
             }
 
-            var jugadorturno = juego.Jugadores.Single(x => x.Numero == ronda.Turno);
-            Clients.Client(jugadorturno.IdConexion).habilitarMovimientos();
         } 
 
         public string ConseguirNumeroJugador()
@@ -193,7 +218,7 @@ namespace Truco.Web.Hubs
                 Clients.Client(jugadores.IdConexion).MostrarSeñas();
             }
 
-            var jugadorturno = juego.Jugadores.Single(x => x.Numero == ronda.Turno);
+            var jugadorturno = juego.Jugadores.Single(x => x.Numero == juego.EsMano);
 
             Clients.Client(jugadorturno.IdConexion).habilitarMovimientos();
 
