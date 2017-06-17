@@ -56,12 +56,13 @@ namespace Truco.Web.Hubs
 
                 if (juego.EstaCompleto == true)
                 {
-                   
+
                     //Clients.All.mostrarpuntos("Ellos", 0);
                     //Clients.All.mostrarpuntos("Nosotros", 0);
-                   
 
-                    Repartir();
+                    TirarReyes(juego.Mazo,juego);
+
+                    //Repartir();
 
                     //ronda.JugarRonda();
                 }
@@ -149,6 +150,88 @@ namespace Truco.Web.Hubs
 
             Clients.All.MostrarSeñas(idSeña,j.Numero);
         }
+
+        public string TirarReyes(Mazo mazo, Partida partida)
+        {
+            
+            bool bandera = true;
+
+            Carta[,] CartasReyes = new Carta[4, 15];
+
+            int x = 0;
+
+            int b = 0;
+
+            int c = 0;
+
+            string palabra = "";
+
+            Random aleatorio = new Random();
+
+            int numero = 0;
+
+            while (bandera == true)
+            {
+                if (x == 4)
+                {
+                    x = 0;
+                    b++;
+                }
+
+                numero = aleatorio.Next(0, mazo.ListaCartas.Count()-1);
+
+                CartasReyes[x, b] = mazo.ListaCartas[numero];
+
+                Clients.All.mostrarCarta(CartasReyes[x,b] , juego.Jugadores[x].NombreInterno, 2);
+
+                mazo.ListaCartas.Remove(mazo.ListaCartas[numero]);
+
+                if (mazo.ListaCartas[numero].Numero == 12)
+                {
+                    c++;
+                }
+
+
+                for (int i = 0; i < b; i++)
+                {
+                    if (CartasReyes[x, i].Numero == 12)
+                    {
+                        palabra = palabra + "Equipo1:Jugador(" + x + ")";
+                        x++;
+                        break;
+                    }
+                }
+
+                if (x == 4)
+                {
+                    x = 0;
+                    b++;
+                }
+
+                if (c == 2)
+                {
+                    bandera = false;
+                }
+
+                x++;
+            }
+
+            int salir = 0;
+
+            while (salir == 4)
+            {
+                for (int i = 1; i < 16; i++)
+                {
+                    if (CartasReyes[salir, i] != null)
+                    {
+                        mazo.ListaCartas.Add(CartasReyes[salir, i]);
+                    }
+                }
+                salir++;
+            }
+            return palabra;
+        }
+
 
         public void JugarCarta(string codigoCarta)
         {
