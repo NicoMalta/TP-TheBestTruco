@@ -228,7 +228,7 @@ namespace Truco.Web.Hubs
             foreach (var jugadores in juego.Jugadores)
             {
                 Clients.Client(jugadores.IdConexion).mostrarCartas(jugadores.Mano, jugadores.Numero);
-                Clients.Client(jugadores.IdConexion).MostrarManoPorTurno(1);
+                Clients.All.MostrarManoPorTurno(ronda.Manos);
                 Clients.Client(jugadores.IdConexion).MostrarSeñas();
             }
 

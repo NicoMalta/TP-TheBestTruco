@@ -8,9 +8,10 @@ function ReproducirSonido(audio) {
 }
 
 
-function Seña() {
-    trucoHub.server.hacerSeñas();
+function Seña(señaid) {
+    trucoHub.server.hacerSeñas(señaid); // Le pasa el id de la seña
 };
+
 // Muestra quien es mano.
 function MostrarMano() {
     $(".Mano").show();
@@ -21,17 +22,10 @@ function OcultarMano() {
     $(".Mano").hide();
 }
 
-function MostrarManoPorTurno(turno) {
-    OcultarMano();
-    $("#mano_" + turno).show();
-}
-    
 // Oculta los emogins de las señas
 function OcultarSeña(numero) {
     $("#emogin_" + numero).hide();
 }
-
-
 
 // Oculta las acciones del envido.
 function ocultarSeccionesEnvido() {
@@ -118,13 +112,18 @@ $(function () {
 
     };
 
-    trucoHub.client.MostrarSeñas= function(carita, numero) {
+    trucoHub.client.MostrarSeñas = function (idSeña, numero) {
         var jugador_seña = document.getElementById("emogin_" + numero)
-        var emoticon = document.getElementById("S_Ancho_Espada")
+        var emoticon = document.getElementById(idSeña)
         jugador_seña.src = emoticon.src
-        var x 
-        clearTimeout(x);
-        x = setTimeout(OcultarSeña(numero), 1000);
+        var x
+        clearInterval(x);
+        //x = window.setInterval(OcultarSeña(numero), 60000);
+    }
+
+    trucoHub.client.MostrarManoPorTurno = function (turno) {
+        OcultarMano();
+        $("#mano_" + turno).show();
     }
 
     // Visualizar nombre en el chat.
