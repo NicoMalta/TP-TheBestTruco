@@ -30,7 +30,10 @@ namespace TheBestTruco.Entidades
         public Equipos Equipo { get; set; }
         public int Numero { get; set; }
         public string DireccionAvatar { get; set; }
+        public bool Activo { get; set; }
         public Jugador() { Mano = new List<Carta>(); }
+
+
 
         //public void SolicitarEnvido(int Equipo, List<Jugador> jugadores, Puntuacion puntaje, RespuestasEnvido valor)
         //{

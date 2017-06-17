@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace TheBestTruco.Entidades
 {
+    public class Mayor
+    {
+        public int Valor { get; set; }
+        public int Posicion { get; set; }
+    }
     public class Ronda
     {
         private static Ronda Rondas;
@@ -27,26 +32,40 @@ namespace TheBestTruco.Entidades
 
         }
 
-        public Jugador GanaMano(List<Jugador> jugadores)
+        private Mayor CicloMayor(int Fila)
         {
             int valor = 0;
             bool primeravez = false;
             int posicion = 0;
+            var Mayor = new Mayor();
             for (int i = 0; i < 4; i++)
             {
                 if (primeravez == false)
                 {
                     primeravez = true;
-                    valor = CartasMesa[Manos - 1, i].Valor;
-                    posicion = i + 1;
+                    if (CartasMesa[Manos - 1, i] != null)
+                    {
+                        valor = CartasMesa[Manos - 1, i].Valor;
+                        posicion = i + 1;
+                    }
+
                 }
                 else if (valor < CartasMesa[Manos - 1, i].Valor)
                 {
-                    valor = CartasMesa[Manos - 1, i].Valor;
-                    posicion = i + 1;
+                    if (CartasMesa[Manos - 1, i] != null)
+                    {
+                        valor = CartasMesa[Manos - 1, i].Valor;
+                        posicion = i + 1;
+                    }
                 }
             }
-            var jugadorGanador = jugadores.Single(x => x.Numero == posicion);
+            Mayor.Valor = valor;
+            Mayor.Posicion = posicion;
+            return Mayor;
+        }
+        public Jugador GanaMano(List<Jugador> jugadores)
+        {
+            var jugadorGanador = jugadores.Single(x => x.Numero == CicloMayor(Manos -1).Posicion);
             return jugadorGanador;
         }
         public static Ronda Instancia()
@@ -60,24 +79,10 @@ namespace TheBestTruco.Entidades
         public bool RevisarPardas()
         {
             this.PardaActivo = false;
-            bool primeravez = false;
-            int valor = 0;
-            for (int i = 0; i < 4; i++)
-            {
-                if (primeravez == false)
-                {
-                    primeravez = true;
-                    valor = CartasMesa[Turno, i].Valor;
-                }
-                else if (valor < CartasMesa[Turno, i].Valor)
-                {
-                    valor = CartasMesa[Turno, i].Valor;
-                }
-            }
 
             for (int i = 0; i < 4; i++)
             {
-                if (valor == CartasMesa[Turno, i].Valor)
+                if (CicloMayor(Manos - 1).Valor == CartasMesa[Manos - 1, i].Valor)
                 {
                     this.PardaActivo = true;
                     break;
@@ -100,105 +105,121 @@ namespace TheBestTruco.Entidades
 
         }
 
-        //public void Truco(int Turno, RespuestasTruco tipotruco, QuiereoNo respuesta, Equipos equipo)
-        //{
-        //    bool primeravez = false;
-        //    int valor = 0;
-        //    int Jugador = 0;
-        //    for (int i = 0; i < 4; i++)
-        //    {
-        //        if (primeravez == false)
-        //        {
-        //            primeravez = true;
-        //            valor = CartasMesa[Turno, i].Valor;
-        //            Jugador = i;
-        //        }
-        //        else if (valor < CartasMesa[Turno, i].Valor)
-        //        {
-        //            valor = CartasMesa[Turno, i].Valor;
-        //            Jugador = i;
-        //        }
-        //    }
-        //    Equipos equipoganador = Jugadores[Jugador].Equipo;
-        //    switch (tipotruco)
-        //    {
-        //        case RespuestasTruco.Truco:
-        //            if (respuesta == QuiereoNo.NoQuiero)
-        //            {
-        //                if (equipo == Equipos.Equipo1)
-        //                {
-        //                    Puntaje1 += 1;
-        //                }
-        //                else
-        //                {
-        //                    Puntaje2 += 1;
-        //                }
-        //            }
-        //            else
-        //            {
-        //                if (equipoganador == Equipos.Equipo1)
-        //                {
-        //                    Puntaje1 += 2;
-        //                }
-        //                else
-        //                {
-        //                    Puntaje2 += 2;
-        //                }
-        //            }
-        //            break;
-        //        case RespuestasTruco.Retruco:
-        //            if (respuesta == QuiereoNo.NoQuiero)
-        //            {
-        //                if (equipo == Equipos.Equipo1)
-        //                {
-        //                    Puntaje1 += 2;
-        //                }
-        //                else
-        //                {
-        //                    Puntaje2 += 2;
-        //                }
-        //            }
-        //            else
-        //            {
-        //                if (equipoganador == Equipos.Equipo1)
-        //                {
-        //                    Puntaje1 += 3;
-        //                }
-        //                else
-        //                {
-        //                    Puntaje2 += 3;
-        //                }
-        //            }
-        //            break;
-        //        case RespuestasTruco.QuieroVale4:
-        //            if (respuesta == QuiereoNo.NoQuiero)
-        //            {
-        //                if (equipo == Equipos.Equipo1)
-        //                {
-        //                    Puntaje1 += 3;
-        //                }
-        //                else
-        //                {
-        //                    Puntaje2 += 3;
-        //                }
-        //            }
-        //            else
-        //            {
-        //                if (equipoganador == Equipos.Equipo1)
-        //                {
-        //                    Puntaje1 += 4;
-        //                }
-        //                else
-        //                {
-        //                    Puntaje2 += 4;
-        //                }
-        //            }
-        //            break;
-        //    }
+        public void Truco(List<Jugador> Jugadores, int Turno, RespuestasTruco tipotruco, QuiereoNo respuesta, Equipos equipo)
+        {
+
+            Equipos equipoganador = Jugadores[CicloMayor(Manos - 1).Posicion].Equipo;
+            switch (tipotruco)
+            {
+                case RespuestasTruco.Truco:
+                    if (respuesta == QuiereoNo.NoQuiero)
+                    {
+                        if (equipo == Equipos.Equipo1)
+                        {
+                            Puntaje1 += 1;
+                        }
+                        else
+                        {
+                            Puntaje2 += 1;
+                        }
+                    }
+                    else
+                    {
+                        if (equipoganador == Equipos.Equipo1)
+                        {
+                            Puntaje1 += 2;
+                        }
+                        else
+                        {
+                            Puntaje2 += 2;
+                        }
+                    }
+                    break;
+                case RespuestasTruco.Retruco:
+                    if (respuesta == QuiereoNo.NoQuiero)
+                    {
+                        if (equipo == Equipos.Equipo1)
+                        {
+                            Puntaje1 += 2;
+                        }
+                        else
+                        {
+                            Puntaje2 += 2;
+                        }
+                    }
+                    else
+                    {
+                        if (equipoganador == Equipos.Equipo1)
+                        {
+                            Puntaje1 += 3;
+                        }
+                        else
+                        {
+                            Puntaje2 += 3;
+                        }
+                    }
+                    break;
+                case RespuestasTruco.QuieroVale4:
+                    if (respuesta == QuiereoNo.NoQuiero)
+                    {
+                        if (equipo == Equipos.Equipo1)
+                        {
+                            Puntaje1 += 3;
+                        }
+                        else
+                        {
+                            Puntaje2 += 3;
+                        }
+                    }
+                    else
+                    {
+                        if (equipoganador == Equipos.Equipo1)
+                        {
+                            Puntaje1 += 4;
+                        }
+                        else
+                        {
+                            Puntaje2 += 4;
+                        }
+                    }
+                    break;
+            }
 
 
-        //}
+        }
 
+        public Equipos GanoPrimera(List<Jugador> Jugadores)
+        {
+            Jugador jugadorGano = Jugadores.Single(x => x.Numero == CicloMayor(Manos - 1).Posicion);
+            return jugadorGano.Equipo;
+        }
+
+        public void sumarPuntosRonda(List<Jugador> jugadores)
+        {
+            List<Equipos> Ganadores = new List<Equipos>();
+            this.Manos = 1;
+            Ganadores.Add(GanoPrimera(jugadores));
+            this.Manos = 2;
+            Ganadores.Add(GanaMano(jugadores).Equipo);
+            this.Manos = 3;
+            Ganadores.Add(GanaMano(jugadores).Equipo);
+            this.Manos = 1;
+
+            if (this.PardaActivo != true)
+            {
+                int Equipo1 = Ganadores.Where(x => x == Equipos.Equipo1).Count();
+                int Equipo2 = Ganadores.Where(x => x == Equipos.Equipo2).Count();
+                if (Equipo2 > Equipo1)
+                {
+                    this.Puntaje2++;
+                }
+                else
+                {
+                    this.Puntaje1++;
+                }
+            }
+            //CUANDO ES PARDA FALTA!!
+        }
         public string JugarRonda()
         {
             while (this.FinPartida == false)

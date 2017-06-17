@@ -25,7 +25,7 @@ namespace TheBestTruco.Entidades
             Mazo = new Mazo();
             Puntaje1 = 0;
             Puntaje2 = 0;
-            EsMano = 1;
+            EsMano = 2;
         }
 
         public void RevisarCantidadJugadores()
@@ -39,6 +39,7 @@ namespace TheBestTruco.Entidades
 
         public void RepartirCartas(List<Jugador> jugadores, Mazo mazo)
         {
+            mazo.MezclarMazo(new Mazo());
             int CartasRepartidas = 0, indice = 0;
             int ultima = 39;
 
