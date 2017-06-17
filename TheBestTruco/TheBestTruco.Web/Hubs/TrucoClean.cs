@@ -20,6 +20,7 @@ namespace Truco.Web.Hubs
             foreach (var j in juego.Jugadores)
             {
                 Clients.Caller.mostrarnombre(j);
+               
             }
             
         }

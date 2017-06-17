@@ -101,7 +101,9 @@ $(function () {
 
         // Habilitar para el trabajo práctico.
         trucoHub.server.agregarJugador(userName);
+        document.title = (userName);
     });
+
 
     $("#bottonMazo").click(function () {
         trucoHub.server.cantar("me voy al mazo");
