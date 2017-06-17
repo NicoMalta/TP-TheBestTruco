@@ -25,8 +25,6 @@ namespace Truco.Web.Hubs
             
         }
 
-        
-
         public void AgregarJugador(string nombre)
         {
             juego.RevisarCantidadJugadores();
