@@ -419,7 +419,10 @@ $(function () {
     trucoHub.client.hideVale4Botton = function (data) {
         $("#bottonVale4").hide();
     };
-
+    trucoHub.client.hideFaltaEnvidoBotton = function (data) {
+        $("#bottonFaltaEnvido").hide();
+    };
+    
     trucoHub.client.showTrucoBotton = function (data) {
         $("#bottonTruco").show();
     };

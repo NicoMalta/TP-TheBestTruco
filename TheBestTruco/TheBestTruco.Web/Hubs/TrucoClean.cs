@@ -173,14 +173,30 @@ namespace Truco.Web.Hubs
             {
                 if (j.Numero + 1 == 5)
                 {
-                    Clients.Client(juego.Jugadores[0].IdConexion).habilitarMovimientos();
+                    //Clients.Client(juego.Jugadores[0].IdConexion).habilitarMovimientos();
+                    //Clients.Client(juego.Jugadores[0].IdConexion).showRealEnvidoBotton();
+                    //Clients.Client(juego.Jugadores[0].IdConexion).showFaltaEnvidoBotton();
+                    //Clients.Client(juego.Jugadores[0].IdConexion).showEnvidoBotton();
+                    //Clients.Client(juego.Jugadores[0].IdConexion).showTrucoBotton();
                 }
                 else
                 {
                     var jugadorturno = juego.Jugadores.Single(x => x.Numero == j.Numero + 1);
-                    Clients.Client(jugadorturno.IdConexion).habilitarMovimientos();
+                    //Clients.Client(jugadorturno.IdConexion).habilitarMovimientos();
+                    //Clients.Client(jugadorturno.IdConexion).habilitarMovimientos();
+                    //Clients.Client(jugadorturno.IdConexion).showRealEnvidoBotton();
+                    //Clients.Client(jugadorturno.IdConexion).showFaltaEnvidoBotton();
+                    //Clients.Client(jugadorturno.IdConexion).showEnvidoBotton();
+                    //Clients.Client(jugadorturno.IdConexion).showTrucoBotton();
                 }
 
+            }
+            if (ronda.Manos > 1)
+            {
+                Clients.All.hideRealEnvidoBotton();
+                Clients.All.hideFaltaEnvidoBotton();
+                Clients.All.hideEnvidoBotton();
+                Clients.All.hideEnvidoEnvidoBotton();
             }
             if (ronda.Manos == 4)
             {
@@ -211,12 +227,7 @@ namespace Truco.Web.Hubs
 
             foreach (var jugadores in juego.Jugadores)
             {
-               // for (int i = 0; i < 3; i++)
-                //{
-                    Clients.Client(jugadores.IdConexion).mostrarCartas(jugadores.Mano, jugadores.Numero);
-                
-                //Clients.Client(jugadores.IdConexion).JugarCarta();
-                //}
+                Clients.Client(jugadores.IdConexion).mostrarCartas(jugadores.Mano, jugadores.Numero);
                 Clients.Client(jugadores.IdConexion).MostrarManoPorTurno(1);
                 Clients.Client(jugadores.IdConexion).MostrarSeñas();
             }
@@ -231,20 +242,14 @@ namespace Truco.Web.Hubs
              * Imagen                       
              */
 
-            //Clients.Client(juego.jugadores.IdConexion).habilitarMovimientos();
-            //Clients.Client(...).hideEnvidoEnvidoBotton();
-            //Clients.Client(...).hideVale4Botton();
-            //Clients.Client(...).hideReTrucoBotton();
-            //Clients.Client(...).showEnvidoBotton();
-            //Clients.Client(...).showTrucoBotton();
-            //Clients.Client(...).showRealEnvidoBotton();
-            //Clients.Client(...).showFaltaEnvidoBotton();
-
-            //Clients.Client(...).desabilitarMovimientos();
-            //Clients.Client(...).hideEnvidoOptions();
-            //Clients.Client(...).hideTrucoBotton();
-            //Clients.Client(...).hideReTrucoBotton();
-            //Clients.Client(...).hideVale4Botton();              
+            Clients.All.hideEnvidoEnvidoBotton();
+            Clients.All.hideVale4Botton();
+            Clients.All.hideReTrucoBotton();
+            Clients.AllExcept(jugadorturno.IdConexion).hideEnvidoBotton();
+            Clients.AllExcept(jugadorturno.IdConexion).hideTrucoBotton();
+            Clients.AllExcept(jugadorturno.IdConexion).hideRealEnvidoBotton();
+            Clients.AllExcept(jugadorturno.IdConexion).hideFaltaEnvidoBotton();
+         
         }
     }
 }
