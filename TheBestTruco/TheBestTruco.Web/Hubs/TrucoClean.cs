@@ -145,11 +145,11 @@ namespace Truco.Web.Hubs
         //    }
         //}
 
-        public void HacerSeñas()
+        public void HacerSeñas(string idSeña)
         {
             var j = juego.Jugadores.Single(x => x.IdConexion == Context.ConnectionId);
 
-            Clients.All.MostrarSeñas("hola",j.Numero);
+            Clients.All.MostrarSeñas(idSeña,j.Numero);
         }
 
         public void JugarCarta(string codigoCarta)
