@@ -114,6 +114,7 @@ $(function () {
 
     trucoHub.client.MostrarSeñas = function (idSeña, numero) {
         var jugador_seña = document.getElementById("emogin_" + numero)
+        jugador_seña.src = null;
         var emoticon = document.getElementById(idSeña)
         jugador_seña.src = emoticon.src
         var x
@@ -261,7 +262,6 @@ $(function () {
     };
 
     trucoHub.client.mostrarCarta = function (carta, nombreinterno, cartaelegida) {
-        debugger;
         var selector = "#" + nombreinterno + "_card" + cartaelegida;
         $(selector).attr("src", carta.Imagen);
 
@@ -315,7 +315,6 @@ $(function () {
         $("[cc]").bind("click",
             function (evt) {
                 console.log("jugar carta");
-                debugger;
                 $(this).hide();
                 trucoHub.server.jugarCarta($(this).attr("cc")); //
             });

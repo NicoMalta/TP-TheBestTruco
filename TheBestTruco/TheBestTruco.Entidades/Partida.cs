@@ -18,9 +18,11 @@ namespace TheBestTruco.Entidades
         public int Puntaje1 { get; set; }
         public int Puntaje2 { get; set; }
         public int EsMano { get; set; }
+        public List<Ronda> Rondas { get; set; }
 
         public Partida()
         {
+            Rondas = new List<Ronda>();
             Jugadores = new List<Jugador>();
             Mazo = new Mazo();
             Puntaje1 = 0;
@@ -39,7 +41,7 @@ namespace TheBestTruco.Entidades
 
         public void RepartirCartas(List<Jugador> jugadores, Mazo mazo)
         {
-            mazo.MezclarMazo(new Mazo());
+            mazo.MezclarMazo(mazo);
             int CartasRepartidas = 0, indice = 0;
             int ultima = 39;
 
@@ -51,6 +53,7 @@ namespace TheBestTruco.Entidades
                 }
 
                 jugadores[indice].Mano.Add(mazo.ListaCartas[ultima]);
+                this.Mazo.ListaCartas.Remove(mazo.ListaCartas[ultima]);
                 indice++;
                 ultima--;
                 CartasRepartidas++;

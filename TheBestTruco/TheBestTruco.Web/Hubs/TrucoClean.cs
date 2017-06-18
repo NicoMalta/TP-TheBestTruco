@@ -15,7 +15,6 @@ namespace Truco.Web.Hubs
     {
         public static Partida juego = new Partida();
 
-        public Ronda ronda = Ronda.Instancia();
         public void Conectarse()
         {
             foreach (var j in juego.Jugadores)
@@ -71,9 +70,9 @@ namespace Truco.Web.Hubs
                     Clients.All.mostrarpuntos("EQUIPO 1 ", 0);
                     Clients.All.mostrarpuntos("EQUIPO 2 ", 0);
 
-                   // TirarReyes(juego.Mazo,juego);
+                    TirarReyes(juego.Mazo,juego);
 
-                    Repartir();
+                    //Repartir();
 
                     //ronda.JugarRonda();
                 }
@@ -162,96 +161,98 @@ namespace Truco.Web.Hubs
             Clients.All.MostrarSeñas(idSeña,j.Numero);
         }
 
-        //public string TirarReyes(Mazo mazo, Partida partida)
-        //{
-            
-        //    bool bandera = true;
+        public string TirarReyes(Mazo mazo, Partida partida)
+        {
 
-        //    Carta[,] CartasReyes = new Carta[4, 15];
+            bool bandera = true;
 
-        //    int x = 0;
+            Carta[,] CartasReyes = new Carta[4, 16];
 
-        //    int b = 0;
+            int x = 0;
 
-        //    int c = 0;
+            int b = 0;
 
-        //    string palabra = "";
+            int c = 0;
 
-        //    Random aleatorio = new Random();
+            string palabra = "";
 
-        //    int numero = 0;
+            Random aleatorio = new Random();
 
-        //    while (bandera == true)
-        //    {
-        //        if (x == 4)
-        //        {
-        //            x = 0;
-        //            b++;
-        //        }
+            int numero = 0;
 
-        //        numero = aleatorio.Next(0, mazo.ListaCartas.Count()-1);
+            while (bandera == true)
+            {
+                if (x == 4)
+                {
+                    x = 0;
+                    b++;
+                }
 
-        //        CartasReyes[x, b] = mazo.ListaCartas[numero];
+                numero = aleatorio.Next(0, mazo.ListaCartas.Count()-1);
 
-        //       Clients.All.mostrarCarta(CartasReyes[x, b], juego.Jugadores[x].NombreInterno, 2);
+                CartasReyes[x, b] = mazo.ListaCartas[numero];
 
-        //        mazo.ListaCartas.Remove(mazo.ListaCartas[numero]);
+               Clients.All.mostrarCarta(CartasReyes[x, b], juego.Jugadores[x].NombreInterno, 2);
 
-        //        if (mazo.ListaCartas[numero].Numero == 12)
-        //        {
-        //            c++;
-        //        }
+                mazo.ListaCartas.Remove(mazo.ListaCartas[numero]);
+
+                if (mazo.ListaCartas[numero].Numero == 12)
+                {
+                    c++;
+                }
 
 
-        //        for (int i = 0; i < b; i++)
-        //        {
-        //            if (CartasReyes[x, i].Numero == 12)
-        //            {
-        //                palabra = palabra + "Equipo1:Jugador(" + x + ")";
-        //                x++;
-        //                break;
-        //            }
-        //        }
+                for (int i = 0; i < b; i++)
+                {
+                    if (CartasReyes[x, i].Numero == 12)
+                    {
+                        palabra = palabra + "Equipo1:Jugador(" + x + ")";
+                        x++;
+                        break;
+                    }
+                }
 
-        //        if (x == 4)
-        //        {
-        //            x = 0;
-        //            b++;
-        //        }
+                if (x == 4)
+                {
+                    x = 0;
+                    b++;
+                }
 
-        //        if (c == 2)
-        //        {
-        //            bandera = false;
-        //        }
+                if (c == 2)
+                {
+                    bandera = false;
+                }
 
-        //        x++;
-        //    }
+                x++;
+            }
 
-        //    int salir = 0;
+            int salir = 0;
 
-        //    while (salir == 4)
-        //    {
-        //        for (int i = 1; i < 16; i++)
-        //        {
-        //            if (CartasReyes[salir, i] != null)
-        //            {
-        //                mazo.ListaCartas.Add(CartasReyes[salir, i]);
-        //            }
-        //        }
-        //        salir++;
-        //    }
-        //    return palabra;
-        //}
+            while (salir != 4)
+            {
+                for (int i = 1; i < 16; i++)
+                {
+                    if (CartasReyes[salir, i] != null)
+                    {
+                        mazo.ListaCartas.Add(CartasReyes[salir, i]);
+                    }
+                }
+                salir++;
+            }
+            return palabra;
+        }
 
 
         public void JugarCarta(string codigoCarta)
         {
             var j = juego.Jugadores.Single(x => x.IdConexion == Context.ConnectionId);
             var c = j.Mano.Single(x => x.Codigo == codigoCarta);
-
+            var ronda = juego.Rondas[juego.Rondas.Count - 1];
             Clients.All.mostrarCarta(c, j.NombreInterno, ronda.Manos);
             ronda.CartasMesa[ronda.Manos - 1, j.Numero - 1]= c;
+            juego.Mazo.ListaCartas.Add(c);
             j.Mano.Remove(c);
+           
             Clients.Client(j.IdConexion).deshabilitarMovimientos();
             ronda.Turno++;
 
@@ -283,6 +284,7 @@ namespace Truco.Web.Hubs
                         juego.EsMano++;
                         foreach (var item in juego.Jugadores)
                         {
+                            juego.Mazo.ListaCartas.Add(item.Mano[0]);
                             item.Mano.RemoveAt(0);
                         }
                         if (juego.EsMano == 5)
@@ -358,6 +360,9 @@ namespace Truco.Web.Hubs
 
         public void Repartir()
         {
+            Ronda ronda = new Ronda();
+            juego.Rondas.Add(ronda);
+
             Clients.All.limpiarTablero();
             
             // Por cada jugador y cada carta que maneja...
