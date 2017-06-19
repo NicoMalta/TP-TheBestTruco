@@ -56,7 +56,7 @@ namespace Truco.Web.Hubs
 
                 if (juego.EstaCompleto == true)
                 {
-                    Clients.All.OcultarElementos(false);
+                   // Clients.All.OcultarElementos(false);
                     Clients.All.mostrarpuntos("EQUIPO 1 ", 0);
                     Clients.All.mostrarpuntos("EQUIPO 2 ", 0);
 
@@ -65,10 +65,11 @@ namespace Truco.Web.Hubs
             }
         }
 
-        //public void cantar(string accion) 
-        //{
-        //    Clients.Others.mostrarmensaje("Jugador X canto ACCION");
-        //    Clients.Caller.mostrarmensaje("Yo cante ACCION");
+        public void cantar(string accion) 
+        {
+            var j = juego.Jugadores.Where(x => x.IdConexion == Context.ConnectionId).Single();
+            Clients.Others.mostrarmensaje("Jugador " + j.Nombre + " canto " + accion);
+            Clients.Caller.mostrarmensaje("Yo cante " + accion);
 
         //    Clients.Client(jugador.IdConexion).deshabilitarMovimientos();
 
@@ -83,10 +84,14 @@ namespace Truco.Web.Hubs
         //    // Y mostrar puntos y repartir.
 
 
-        //    switch (accion) 
-        //    {   
-        //        case "me voy al mazo":            
-        //            break;
+            switch (accion) 
+            {   
+                case "me voy al mazo":
+                    // TODO > llevar a la lògica del juego.
+
+
+                    Repartir();
+                    break;
         //        case "envido":
         //            Clients.All.hidemazo();
         //            break;
@@ -105,8 +110,8 @@ namespace Truco.Web.Hubs
         //            break;
         //        case "vale4":
         //            break;
-        //    }
-        //}
+            }
+        }
 
         //public void EjecutarAccion(string accion, bool confirmacion)
         //{
@@ -172,7 +177,6 @@ namespace Truco.Web.Hubs
 
             int x = 1;
 
-            int total = 0;
 
             int uno = 0, dos =  0, tres = 0, cuatro = 0;
 
@@ -415,16 +419,12 @@ namespace Truco.Web.Hubs
                         Clients.All.mostrarpuntos("EQUIPO 1", ronda.Puntaje1);
                         Clients.All.mostrarpuntos("EQUIPO 2", ronda.Puntaje2);
                         ronda.Manos = 1;
-                        juego.EsMano++;
                         foreach (var item in juego.Jugadores)
                         {
                             juego.Mazo.ListaCartas.Add(item.Mano[0]);
                             item.Mano.RemoveAt(0);
                         }
-                        if (juego.EsMano == 5)
-                        {
-                            juego.EsMano = 1;
-                        }
+                        //AGREGAR PARA VER QUIEN JUEGA
                         Repartir();
 
                     }
@@ -472,12 +472,7 @@ namespace Truco.Web.Hubs
                 Clients.All.limpiarpuntos();
                 Clients.All.mostrarpuntos("EQUIPO 1", ronda.Puntaje1);
                 Clients.All.mostrarpuntos("EQUIPO 2", ronda.Puntaje2);
-
-                juego.EsMano++;
-                if (juego.EsMano == 5)
-                {
-                    juego.EsMano = 1;
-                }
+                //AGREGAR PARA VER QUIEN JUEGA
                 Repartir();
 
             }
@@ -510,11 +505,11 @@ namespace Truco.Web.Hubs
             foreach (var jugadores in juego.Jugadores)
             {
                 Clients.Client(jugadores.IdConexion).mostrarCartas(jugadores.Mano, jugadores.Numero);
-                Clients.All.MostrarManoPorTurno(ronda.Manos);
                 Clients.Client(jugadores.IdConexion).MostrarSeñas();
             }
 
-            var jugadorturno = juego.Jugadores.Single(x => x.Numero == juego.EsMano);
+            var jugadorturno = juego.Jugadores.Single(x => x.Numero == juego.QuienEmpieza(juego.Rondas));//AGREGAR PARA VER QUIEN JUEGA
+            Clients.All.MostrarManoPorTurno(jugadorturno.Numero == 1 ? 3 : jugadorturno.Numero == 2 ? 4 : jugadorturno.Numero - 2);
 
             Clients.Client(jugadorturno.IdConexion).habilitarMovimientos();
 
@@ -531,7 +526,6 @@ namespace Truco.Web.Hubs
             Clients.AllExcept(jugadorturno.IdConexion).hideTrucoBotton();
             Clients.AllExcept(jugadorturno.IdConexion).hideRealEnvidoBotton();
             Clients.AllExcept(jugadorturno.IdConexion).hideFaltaEnvidoBotton();
-
         }
     }
 }

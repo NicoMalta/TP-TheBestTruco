@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TheBestTruco.Entidades;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace TestTruco
 {
@@ -14,8 +15,8 @@ namespace TestTruco
             Partida partida = new Partida();
 
             Mazo mazo = new Mazo();
-           
-         
+
+
             //Console.WriteLine(total);
             //Assert.AreEqual(total);
         }
@@ -25,7 +26,7 @@ namespace TestTruco
         {
             Partida partida = new Partida();
 
-          //  partida.RepartirCartas(new Jugador { Nombre = "Nico" }, new Jugador { Nombre = "Martin" }, partida.GenerarMazo());
+            //  partida.RepartirCartas(new Jugador { Nombre = "Nico" }, new Jugador { Nombre = "Martin" }, partida.GenerarMazo());
             //Console.WriteLine("ola");
 
             //Assert.AreEqual(3, total);
@@ -46,7 +47,7 @@ namespace TestTruco
             {
                 CantCartas = CantCartas + item.Mano.Count;
             }
-            
+
 
             Assert.AreEqual(6, CantCartas);
         }
@@ -70,6 +71,20 @@ namespace TestTruco
             }
 
             Assert.AreEqual(-20, CantPuntos);
+        }
+
+        [TestMethod]
+        public async Task Demo()
+        {
+            var aa = 0 % 4;
+            var a = 1 % 4;
+            var b = 2 % 4;
+
+            await Task.Delay(9000);
+
+            var c = 3 % 4;
+            var d = 4 % 4;
+            var e = 5 % 4;
         }
     }
 }

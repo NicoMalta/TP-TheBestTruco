@@ -10,21 +10,21 @@ namespace TestTruco
         [TestMethod]
         public void TestMethod1()
         {
-            Partida partida = new Partida();
+            //Partida partida = new Partida();
 
-            Jugador jug = new Jugador();
-            jug.Equipo = 1;
+            //Jugador jug = new Jugador();
+            //jug.Equipo = 1;
 
-            Jugador juge = new Jugador();
-            juge.Equipo = 2;
+            //Jugador juge = new Jugador();
+            //juge.Equipo = 2;
 
-            partida.Jugadores.Add(jug);
-            partida.Jugadores.Add(juge);
+            //partida.Jugadores.Add(jug);
+            //partida.Jugadores.Add(juge);
 
-            partida.RepartirCartas(partida.Jugadores, partida.Mazo);
+            //partida.RepartirCartas(partida.Jugadores, partida.Mazo);
 
-            Puntuacion puntuacion = new Puntuacion();
-            jug.SolicitarEnvido(1, partida.Jugadores, puntuacion, jug.ElegirValor(jug.PosiblesRespuestas(RespuestasEnvido.Envido)));
+            //Puntuacion puntuacion = new Puntuacion();
+            //jug.SolicitarEnvido(1, partida.Jugadores, puntuacion, jug.ElegirValor(jug.PosiblesRespuestas(RespuestasEnvido.Envido)));
 
         }
     }

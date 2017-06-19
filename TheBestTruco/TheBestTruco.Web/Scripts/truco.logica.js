@@ -1,5 +1,16 @@
-﻿var trucoHub = {};
+﻿$.urlParam = function (name) {
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results == null) {
+        return null;
+    }
+    else {
+        return decodeURI(results[1]) || 0;
+    }
+}
 
+
+var trucoHub = {};
+var idIntervalo = {};
 
 function TirarReyes() {
     trucoHub.server.empezarJuego();
@@ -38,6 +49,7 @@ function OcultarMano() {
 // Oculta los emogins de las señas
 function OcultarSeña(numero) {
     $("#emogin_" + numero).hide();
+    clearInterval(idIntervalo);
 }
 
 // Oculta las acciones del envido.
@@ -138,16 +150,15 @@ $(function () {
         var barra = "#barra_carga" + data.Numero;
         $(barra).hide() 
 
-    };
+    }
 
     trucoHub.client.MostrarSeñas = function (idSeña, numero) {
-        var jugador_seña = document.getElementById("emogin_" + numero)
-        jugador_seña.src = null;
+        $("#emogin_" + numero).attr("src", null);
+        //var jugador_seña = document.getElementById("emogin_" + numero);
+        //jugador_seña.src = null;
         var emoticon = document.getElementById(idSeña)
         jugador_seña.src = emoticon.src
-        var x
-        clearInterval(x);
-        //x = window.setInterval(OcultarSeña(numero), 60000);
+        idIntervalo = setInterval(OcultarSeña(numero), 60000);
     }
 
     trucoHub.client.MostrarManoPorTurno = function (turno) {
@@ -489,7 +500,20 @@ $(function () {
     trucoHub.client.hideVale4Options = function (data) {
         $("#vale4Region").hide();
     };
+
     $.connection.hub.start(function () {
         trucoHub.server.conectarse();
+
+        //preguntar si tenes parametro username y si lo tenes llamas a la funcion crear jugador.
+        var userName = $.urlParam('username');
+
+        if (userName != null)
+        {
+            $("#userRegion").hide()
+
+            // Habilitar para el trabajo práctico.
+            trucoHub.server.agregarJugador(userName);
+            document.title = (userName);
+        }
     });
 });

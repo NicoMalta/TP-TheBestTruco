@@ -17,7 +17,6 @@ namespace TheBestTruco.Entidades
         public bool EstaCompleto { get; set; }
         public int Puntaje1 { get; set; }
         public int Puntaje2 { get; set; }
-        public int EsMano { get; set; }
         public List<Ronda> Rondas { get; set; }
 
         public Partida()
@@ -27,7 +26,6 @@ namespace TheBestTruco.Entidades
             Mazo = new Mazo();
             Puntaje1 = 0;
             Puntaje2 = 0;
-            EsMano = 2;
         }
 
         public void RevisarCantidadJugadores()
@@ -41,6 +39,16 @@ namespace TheBestTruco.Entidades
 
         public void RepartirCartas(List<Jugador> jugadores, Mazo mazo)
         {
+            foreach(var x in jugadores)
+            {
+                foreach(var c in x.Mano)
+                {
+                    mazo.ListaCartas.Add(c);                    
+                }
+
+                x.Mano.Clear();
+            }
+
             mazo.MezclarMazo(mazo);
             int CartasRepartidas = 0, indice = 0;
             int ultima = 39;
@@ -62,7 +70,14 @@ namespace TheBestTruco.Entidades
         }
 
        
-
+        public int QuienEmpieza(List<Ronda> rondas)
+        {
+                        int x = rondas.Count ;
+            switch (x)
+            {
+            }
+            return rondas.Count + 1;
+        }
         //public void JugarCarta(int jugador, Carta cartaSeleccionada)
         //{
         //    foreach (var item in Jugadores)
