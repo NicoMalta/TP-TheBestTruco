@@ -60,13 +60,6 @@ namespace Truco.Web.Hubs
                     Clients.All.mostrarpuntos("EQUIPO 1 ", 0);
                     Clients.All.mostrarpuntos("EQUIPO 2 ", 0);
 
-                    if (puerta == true)
-                    {
-                        TirarReyes(juego.Mazo, juego);
-                        OrdenarJugadores(juego.Jugadores);
-                        Repartir();
-                    }
-
                     //ronda.JugarRonda();
                 }
             }
@@ -147,9 +140,14 @@ namespace Truco.Web.Hubs
         //    }
         //}
 
-        public void AbrirPuerta()
+        public void EmpezarJuego()
         {
-            puerta = true;
+            if (juego.EstaCompleto)
+            {
+                TirarReyes(juego.Mazo, juego);
+                OrdenarJugadores(juego.Jugadores);
+                Repartir();
+            }
         }
 
         public void HacerSeñas(string idSeña)

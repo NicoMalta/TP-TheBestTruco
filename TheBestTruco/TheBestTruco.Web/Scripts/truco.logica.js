@@ -2,7 +2,7 @@
 
 
 function TirarReyes() {
-    trucoHub.server.abrirPuerta();
+    trucoHub.server.empezarJuego();
 }
 
 function OcultarBotonReyes() {
