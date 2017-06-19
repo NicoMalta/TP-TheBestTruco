@@ -20,15 +20,15 @@ namespace Truco.Web.Hubs
             foreach (var j in juego.Jugadores)
             {
                 Clients.Caller.mostrarnombre(j);
-               
+
             }
-            
+
         }
 
         public void AgregarJugador(string nombre)
         {
             juego.RevisarCantidadJugadores();
-            
+
 
             if (juego.EstaCompleto)
             {
@@ -44,18 +44,9 @@ namespace Truco.Web.Hubs
                     Nombre = nombre,
                     IdConexion = Context.ConnectionId,
                     NombreInterno = $"user{juego.Jugadores.Count() + 1}",
-                    Numero = juego.Jugadores.Count()+1,
-                    
-               };
+                    Numero = juego.Jugadores.Count() + 1,
 
-                if (jugador.Numero == 2 || jugador.Numero == 4)
-                {
-                    jugador.Equipo = Equipos.Equipo2;
-                }
-                else
-                {
-                    jugador.Equipo = Equipos.Equipo1;
-                }
+                };
 
                 juego.Jugadores.Add(jugador);
 
@@ -70,9 +61,9 @@ namespace Truco.Web.Hubs
                     Clients.All.mostrarpuntos("EQUIPO 1 ", 0);
                     Clients.All.mostrarpuntos("EQUIPO 2 ", 0);
 
-                    TirarReyes(juego.Mazo,juego);
-
-                    //Repartir();
+                    TirarReyes(juego.Mazo, juego);
+                    OrdenarJugadores(juego.Jugadores);
+                    Repartir();
 
                     //ronda.JugarRonda();
                 }
@@ -158,23 +149,29 @@ namespace Truco.Web.Hubs
         {
             var j = juego.Jugadores.Single(x => x.IdConexion == Context.ConnectionId);
 
-            Clients.All.MostrarSeñas(idSeña,j.Numero);
+            Clients.All.MostrarSeñas(idSeña, j.Numero);
         }
 
-        public string TirarReyes(Mazo mazo, Partida partida)
+        public void TirarReyes(Mazo mazo, Partida partida)
         {
 
             bool bandera = true;
 
-            Carta[,] CartasReyes = new Carta[4, 16];
+            List<Carta> Lista1 = new List<Carta>();
 
-            int x = 0;
+            List<Carta> Lista2 = new List<Carta>();
 
-            int b = 0;
+            List<Carta> Lista3 = new List<Carta>();
 
-            int c = 0;
+            List<Carta> Lista4 = new List<Carta>();
 
-            string palabra = "";
+            int x = 1;
+
+            int total = 0;
+
+            int uno = 0, dos =  0, tres = 0, cuatro = 0;
+
+            bool a = false;
 
             Random aleatorio = new Random();
 
@@ -182,66 +179,198 @@ namespace Truco.Web.Hubs
 
             while (bandera == true)
             {
-                if (x == 4)
-                {
-                    x = 0;
-                    b++;
-                }
-
-                numero = aleatorio.Next(0, mazo.ListaCartas.Count()-1);
-
-                CartasReyes[x, b] = mazo.ListaCartas[numero];
-
-               Clients.All.mostrarCarta(CartasReyes[x, b], juego.Jugadores[x].NombreInterno, 2);
-
-                mazo.ListaCartas.Remove(mazo.ListaCartas[numero]);
-
-                if (mazo.ListaCartas[numero].Numero == 12)
-                {
-                    c++;
-                }
-
-
-                for (int i = 0; i < b; i++)
-                {
-                    if (CartasReyes[x, i].Numero == 12)
-                    {
-                        palabra = palabra + "Equipo1:Jugador(" + x + ")";
-                        x++;
-                        break;
-                    }
-                }
-
-                if (x == 4)
-                {
-                    x = 0;
-                    b++;
-                }
-
-                if (c == 2)
+                if (mazo.ListaCartas.Count() == 0)
                 {
                     bandera = false;
                 }
 
-                x++;
-            }
+                numero = aleatorio.Next(0, mazo.ListaCartas.Count());
 
-            int salir = 0;
+                bool seguir = false;
 
-            while (salir != 4)
-            {
-                for (int i = 1; i < 16; i++)
+                bool aux = false;
+
+                while (seguir == false)
                 {
-                    if (CartasReyes[salir, i] != null)
+                    if (x == 5)
                     {
-                        mazo.ListaCartas.Add(CartasReyes[salir, i]);
+                        x = 1;
+                    }
+                    switch (x)
+                    {
+                        case 1:
+                            aux = Lista1.Exists(p => p.Numero == 12);
+                            if (aux == false)
+                            {
+                                Lista1.Add(mazo.ListaCartas[numero]);
+                                Clients.All.mostrarCarta(Lista1[Lista1.Count - 1], juego.Jugadores[x - 1].NombreInterno, 2);
+                                seguir = true;
+                            }
+                            x++;
+                            break;
+                        case 2:
+                            aux = Lista2.Exists(p => p.Numero == 12);
+                            if (aux == false)
+                            {
+                                Lista2.Add(mazo.ListaCartas[numero]);
+                                Clients.All.mostrarCarta(Lista2[Lista2.Count - 1], juego.Jugadores[x - 1].NombreInterno, 2);
+                                seguir = true;
+                            }
+                            x++;
+                            break;
+                        case 3:
+                            aux = Lista3.Exists(p => p.Numero == 12);
+                            if (aux == false)
+                            {
+                                Lista3.Add(mazo.ListaCartas[numero]);
+                                Clients.All.mostrarCarta(Lista3[Lista3.Count - 1], juego.Jugadores[x - 1].NombreInterno, 2);
+                                seguir = true;
+                            }
+                            x++;
+                            break;
+                        case 4:
+                            aux = Lista4.Exists(p => p.Numero == 12);
+                            if (aux == false)
+                            {
+                                Lista4.Add(mazo.ListaCartas[numero]);
+                                Clients.All.mostrarCarta(Lista4[Lista4.Count - 1], juego.Jugadores[x - 1].NombreInterno, 2);
+                                seguir = true;
+                            }
+                            x++;
+                            break;
                     }
                 }
-                salir++;
+                mazo.ListaCartas.Remove(mazo.ListaCartas[numero]);
+
+                a = Lista1.Exists(p => p.Numero == 12);
+                if (a == true)
+                {
+                    uno = 1;
+                    a = false;
+                }
+
+                a = Lista2.Exists(p => p.Numero == 12);
+                if (a == true)
+                {
+                    dos = 1;
+                    a = false;
+                }
+
+                a = Lista3.Exists(p => p.Numero == 12);
+                if (a == true)
+                {
+                    tres = 1;
+                    a = false;
+                }
+
+                a = Lista4.Exists(p => p.Numero == 12);
+                if (a == true)
+                {
+                    cuatro = 1;
+                    a = false;
+                }
+                
+                if ((uno + dos + tres + cuatro) == 2)
+                {
+                    bandera = false;
+                }
+
             }
-            return palabra;
+            if (uno == 1)
+            {
+                partida.Jugadores[0].Equipo = Equipos.Equipo1;
+            }
+            else
+            {
+                partida.Jugadores[0].Equipo = Equipos.Equipo2;
+            }
+
+            if (dos == 1)
+            {
+                partida.Jugadores[1].Equipo = Equipos.Equipo1;
+            }
+            else
+            {
+                partida.Jugadores[1].Equipo = Equipos.Equipo2;
+            }
+
+            if (tres == 1)
+            {
+                partida.Jugadores[2].Equipo = Equipos.Equipo1;
+            }
+            else
+            {
+                partida.Jugadores[2].Equipo = Equipos.Equipo2;
+            }
+
+            if (cuatro == 1)
+            {
+                partida.Jugadores[3].Equipo = Equipos.Equipo1;
+            }
+            else
+            {
+                partida.Jugadores[3].Equipo = Equipos.Equipo2;
+            }
+
+            foreach (var item in Lista1)
+            {
+                mazo.AgregarCartaAlMazo(item, mazo.ListaCartas);
+            }
+
+            foreach (var item in Lista2)
+            {
+                mazo.AgregarCartaAlMazo(item, mazo.ListaCartas);
+            }
+
+            foreach (var item in Lista3)
+            {
+                mazo.AgregarCartaAlMazo(item, mazo.ListaCartas);
+            }
+
+            foreach (var item in Lista4)
+            {
+                mazo.AgregarCartaAlMazo(item, mazo.ListaCartas);
+            }
+
+
         }
 
+        public void OrdenarJugadores(List<Jugador> jugadores)
+        {
+            int ant = 0;
+            int sig = 0;
+
+            for (int i = 0; i < 4; i++)
+            {
+                sig = i + 1;
+
+                if (sig == 4 )
+                {
+                    sig = 0;
+                }
+
+                if (jugadores[i].Equipo == jugadores[sig].Equipo)
+                {
+                    ant = i - 1;
+                    if (ant == -1)
+                    {
+                        ant = 3;
+                    }
+
+                    Jugador ayudante = new Jugador();
+
+                    ayudante = jugadores[ant];
+
+                    jugadores[ant] = jugadores[i];
+                    jugadores[ant].Numero = ant + 1;
+                    jugadores[ant].NombreInterno = $"user{ant + 1}";
+
+                    jugadores[i] = ayudante;
+                    jugadores[i].Numero = i + 1;
+                    jugadores[i].NombreInterno = $"user{i + 1}";
+                }
+            }
+        }
 
         public void JugarCarta(string codigoCarta)
         {
@@ -249,17 +378,17 @@ namespace Truco.Web.Hubs
             var c = j.Mano.Single(x => x.Codigo == codigoCarta);
             var ronda = juego.Rondas[juego.Rondas.Count - 1];
             Clients.All.mostrarCarta(c, j.NombreInterno, ronda.Manos);
-            ronda.CartasMesa[ronda.Manos - 1, j.Numero - 1]= c;
+            ronda.CartasMesa[ronda.Manos - 1, j.Numero - 1] = c;
             juego.Mazo.ListaCartas.Add(c);
             j.Mano.Remove(c);
-           
+
             Clients.Client(j.IdConexion).deshabilitarMovimientos();
             ronda.Turno++;
 
             if (ronda.Turno == 5)
             {
 
-              //  ronda.RevisarPardas();
+                //  ronda.RevisarPardas();
                 ronda.Turno = 1;
                 Clients.Client(ronda.GanaMano(juego.Jugadores).IdConexion).habilitarMovimientos();
                 if (ronda.Manos == 2)
@@ -303,8 +432,6 @@ namespace Truco.Web.Hubs
                 {
                     ronda.Manos++;
                 }
-               
-
             }
             else
             {
@@ -347,10 +474,10 @@ namespace Truco.Web.Hubs
                     juego.EsMano = 1;
                 }
                 Repartir();
-                
+
             }
 
-        } 
+        }
 
         public string ConseguirNumeroJugador()
         {
@@ -364,9 +491,14 @@ namespace Truco.Web.Hubs
             juego.Rondas.Add(ronda);
 
             Clients.All.limpiarTablero();
-            
+
             // Por cada jugador y cada carta que maneja...
             juego.RepartirCartas(juego.Jugadores, juego.Mazo);
+
+            foreach (var jugadores in juego.Jugadores)
+            {
+                Clients.All.mostrarnombre(jugadores);
+            }
 
             foreach (var jugadores in juego.Jugadores)
             {
@@ -392,7 +524,7 @@ namespace Truco.Web.Hubs
             Clients.AllExcept(jugadorturno.IdConexion).hideTrucoBotton();
             Clients.AllExcept(jugadorturno.IdConexion).hideRealEnvidoBotton();
             Clients.AllExcept(jugadorturno.IdConexion).hideFaltaEnvidoBotton();
-         
+
         }
     }
 }

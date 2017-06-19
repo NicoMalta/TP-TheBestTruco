@@ -16,27 +16,26 @@
         }
 
         .leftPanel {
-             margin-left: 100px;
-             background-color: rgba(0,0,255,0.0);
-             
+            margin-left: 100px;
+            background-color: rgba(0,0,255,0.0);
         }
+
         #Señas {
-            top:400px;
-            left:150px;
+            top: 400px;
+            left: 150px;
         }
-        
     </style>
     <div class="container">
         <div class="row-fluid central">
-            <div class="span2 leftPanel" >
+            <div class="span2 leftPanel">
                 <div id="punt"></div>
                 <!--<img id="pizarron_puntos"  class="pizarron" src="Images/pizzaron.JPG"  />-->
             </div>
             <div class="span8 centralPanel">
                 <div class="row-fluid centralItem">
-                    <div class="span12"  >
+                    <div class="span12">
                         <div id="user1">Esperando... </div>
-                        <img id="barra_carga1" class="carga" src="http://images.wikia.com/clubpenguin/images/9/94/LAB.gif"  width="30" height="15"/>
+                        <img id="barra_carga1" class="carga" src="http://images.wikia.com/clubpenguin/images/9/94/LAB.gif" width="30" height="15" />
                         <img id="user1_card1" class="card" src="Images/BACK.JPG" />
                         <img id="user1_card2" class="card" src="Images/BACK.JPG" />
                         <img id="user1_card3" class="card" src="Images/BACK.JPG" />
@@ -77,6 +76,8 @@
                     </div>
                 </div>
             </div>
+            <div class="blockUI blockOverlay" style="z-index: 9999; border: none; margin: 0px; padding: 0px; width: 100%; height: 100%; top: 0px; left: 0px; background-color: rgb(0, 0, 0); opacity: 0.6; cursor: wait; position: fixed;"></div>
+            <div class="blockUI blockMsg blockPage" style="z-index: 10010; position: fixed; padding: 15px; margin: 0px; width: 30%; top: 40%; left: 35%; text-align: center; color: rgb(255, 255, 255); border: none; background-color: rgb(0, 0, 160); cursor: wait; border-radius: 10px; opacity: 0.5;"><h3>Esperando a que otro jugador se una a la partida...</h3></div>
             <div id="rightPanel" class="span2 rightPanel">
                 <!-- Envido -->
                 <div id="envidoRegion" class="envidoRegion">
@@ -145,8 +146,8 @@
                     <button type="button" onclick="ReproducirSonido('QUIERO_RETRUCO')" id="bottonReTruco">RETRUCO</button>
                     <button type="button" id="bottonVale4">VALE 4</button>
                     <button type="button" id="bottonMazo">IR AL MAZO</button>
-                    <audio width="300" height="32" src="Images/sound1.wav"id="audio" preload="auto"> </audio>
-              </div>
+                    <audio width="300" height="32" src="Images/sound1.wav" id="audio" preload="auto"> </audio>
+                </div>
             </div>
         </div>
 
