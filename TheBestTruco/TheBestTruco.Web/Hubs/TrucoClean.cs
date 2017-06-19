@@ -14,21 +14,20 @@ namespace Truco.Web.Hubs
     public class Truco : Hub
     {
         public static Partida juego = new Partida();
+        public static bool puerta = false;
 
         public void Conectarse()
         {
             foreach (var j in juego.Jugadores)
             {
                 Clients.Caller.mostrarnombre(j);
-
+                
             }
-
         }
 
         public void AgregarJugador(string nombre)
         {
             juego.RevisarCantidadJugadores();
-
 
             if (juego.EstaCompleto)
             {
@@ -51,19 +50,22 @@ namespace Truco.Web.Hubs
                 juego.Jugadores.Add(jugador);
 
                 Clients.All.mostrarnombre(jugador);
-
+                Clients.Client(jugador.IdConexion).OcultarElementos(true);
                 // Si es el ultimo jugador...
                 juego.RevisarCantidadJugadores();
 
                 if (juego.EstaCompleto == true)
                 {
-
+                    Clients.All.OcultarElementos(false);
                     Clients.All.mostrarpuntos("EQUIPO 1 ", 0);
                     Clients.All.mostrarpuntos("EQUIPO 2 ", 0);
 
-                    TirarReyes(juego.Mazo, juego);
-                    OrdenarJugadores(juego.Jugadores);
-                    Repartir();
+                    if (puerta == true)
+                    {
+                        TirarReyes(juego.Mazo, juego);
+                        OrdenarJugadores(juego.Jugadores);
+                        Repartir();
+                    }
 
                     //ronda.JugarRonda();
                 }
@@ -144,6 +146,11 @@ namespace Truco.Web.Hubs
         //            break;
         //    }
         //}
+
+        public void AbrirPuerta()
+        {
+            puerta = true;
+        }
 
         public void HacerSeñas(string idSeña)
         {
@@ -491,6 +498,8 @@ namespace Truco.Web.Hubs
             juego.Rondas.Add(ronda);
 
             Clients.All.limpiarTablero();
+            Clients.All.OcultarElementos(false);
+
 
             // Por cada jugador y cada carta que maneja...
             juego.RepartirCartas(juego.Jugadores, juego.Mazo);

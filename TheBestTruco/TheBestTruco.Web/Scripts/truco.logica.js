@@ -1,12 +1,25 @@
 ﻿var trucoHub = {};
 
 
-function ReproducirSonido(audio) {
-    var objeto = document.getElementById('audio')
-    objeto.src = "Sonidos/" + audio + ".mp3"
-    objeto.play();
+function TirarReyes() {
+    trucoHub.server.abrirPuerta();
 }
 
+function OcultarBotonReyes() {
+    $(".BotonTirarReyes").hide();
+    $("#FondoReyes").hide();
+}
+
+function MostrarBotonReyes() {
+    $(".BotonTirarReyes").show();
+    $("#FondoReyes").show();
+}
+
+function ReproducirSonido(audio) {
+    //var objeto = document.getElementById('audio')
+    //objeto.src = "Sonidos/" + audio + ".mp3"
+    //objeto.play();
+}
 
 function Seña(señaid) {
     trucoHub.server.hacerSeñas(señaid); // Le pasa el id de la seña
@@ -72,7 +85,8 @@ function inicializarComponentes() {
     $("#cards").hide();
     $("#movements").hide();
     $("#rightPanel").niceScroll();
-
+    $("#FondoReyes").hide();
+    OcultarBotonReyes();
     ocultarSeccionesEnvido();
     ocultarSeccionesTruco();
 }
@@ -103,6 +117,20 @@ $(function () {
         trucoHub.server.cantar("me voy al mazo");
     });
 
+    trucoHub.client.OcultarElementos = function (boolean) {
+        if (boolean == true) {
+            $(".container").hide()
+            $("#Señas").hide()
+            $(".PanelInferior").hide();
+            MostrarBotonReyes();
+        }
+        else {
+            $(".container").show()
+            $("#Señas").show()
+            $(".PanelInferior").show();
+            OcultarBotonReyes();
+        }
+    };
     // Visualizar nombre en el tablero.
     trucoHub.client.mostrarNombre = function (data) {
         var selector = "#" + data.NombreInterno;
