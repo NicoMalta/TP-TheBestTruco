@@ -7,6 +7,7 @@ using System.Web;
 using TheBestTruco.Entidades;
 using TheBestTruco.Entidades.Properties;
 using System.Timers;
+using System.Threading.Tasks;
 
 namespace Truco.Web.Hubs
 {
@@ -166,11 +167,29 @@ namespace Truco.Web.Hubs
             }
         }
 
-        public void HacerSeñas(string idSeña)
+        public void hacerSeñas(string idSeña, string nombre)
         {
-            var j = juego.Jugadores.Single(x => x.IdConexion == Context.ConnectionId);
+            var j = juego.Jugadores.Single(x => x.Nombre == nombre);
 
             Clients.All.MostrarSeñas(idSeña, j.Numero);
+        }
+
+        public void Delay(int numero)
+        {
+            DateTime primera = DateTime.Now;
+            bool band = false;
+            while (band != true)
+            {
+                if (DateTime.Now.Second - primera.Second >= 3)
+                {
+                    band = true;
+
+                }
+            }
+
+            Clients.All.OcultarSeña(numero);
+
+
         }
 
         public void TirarReyes(Mazo mazo, Partida partida)

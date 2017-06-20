@@ -33,7 +33,7 @@ function ReproducirSonido(audio) {
 }
 
 function Seña(señaid) {
-    trucoHub.server.hacerSeñas(señaid); // Le pasa el id de la seña
+    trucoHub.server.hacerSeñas(señaid,  $.urlParam('username')); // Le pasa el id de la seña
 };
 
 // Muestra quien es mano.
@@ -148,13 +148,12 @@ $(function () {
 
     }
 
+    
+
     trucoHub.client.MostrarSeñas = function (idSeña, numero) {
-        $("#emogin_" + numero).attr("src", null);
-        //var jugador_seña = document.getElementById("emogin_" + numero);
-        //jugador_seña.src = null;
-        //var emoticon = document.getElementById(idSeña)
-       // jugador_seña.src = emoticon.src
-        // idIntervalo = setInterval(OcultarSeña(numero), 60000);
+        $("#emogin_" + numero).attr("src", $("#" + idSeña).attr("src"))
+       // var idIntervalo = setTimeout(OcultarSeña(numero), 60000);
+        trucoHub.server.delay(numero);
     }
 
     trucoHub.client.MostrarManoPorTurno = function (turno) {
@@ -323,7 +322,7 @@ $(function () {
                 //if (c == 4) {
                 //    c = 1;
                 //}
-                var img = $("<img width='100' />").attr({
+                var img = $("<img width='130'/>").attr({
                     'id': value.Codigo,
                     'src': value.Imagen,
                     'alt': value.Codigo,
