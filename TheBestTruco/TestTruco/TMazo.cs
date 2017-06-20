@@ -86,5 +86,16 @@ namespace TestTruco
             var d = 4 % 4;
             var e = 5 % 4;
         }
+
+        [TestMethod]
+        public void Quienempiezaprimero()
+        {
+            var partida = new Partida();
+
+            int x = partida.QuienEmpieza(4);
+
+            Assert.AreEqual(0, x);
+            
+        }
     }
 }

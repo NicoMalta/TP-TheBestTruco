@@ -117,10 +117,10 @@ $(function () {
     $("#botonAgregarJugador").click(function () {
         var userName = $("#userName").val();
         $("#userRegion").hide()
-        
+
 
         // Habilitar para el trabajo práctico.
-        trucoHub.server.agregarJugador(userName);
+       // trucoHub.server.agregarJugador(userName, $("#imagen").attr("src"));
         document.title = (userName);
     });
 
@@ -505,15 +505,15 @@ $(function () {
         trucoHub.server.conectarse();
 
         //preguntar si tenes parametro username y si lo tenes llamas a la funcion crear jugador.
-        var userName = $.urlParam('username');
-
+       var userName = $.urlParam('username');
+       var Avatar = $.urlParam('avatar');
         if (userName != null)
         {
             $("#userRegion").hide()
 
             // Habilitar para el trabajo práctico.
-            trucoHub.server.agregarJugador(userName);
-            document.title = (userName);
+            trucoHub.server.agregarJugador(userName,Avatar);
+            document.title = userName;
         }
     });
 });

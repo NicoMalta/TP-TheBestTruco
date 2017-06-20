@@ -25,7 +25,7 @@ namespace Truco.Web.Hubs
             }
         }
 
-        public void AgregarJugador(string nombre)
+        public void AgregarJugador(string nombre, string avatar)
         {
             juego.RevisarCantidadJugadores();
 
@@ -44,6 +44,7 @@ namespace Truco.Web.Hubs
                     IdConexion = Context.ConnectionId,
                     NombreInterno = $"user{juego.Jugadores.Count() + 1}",
                     Numero = juego.Jugadores.Count() + 1,
+                    DireccionAvatar = avatar
 
                 };
 
@@ -424,7 +425,6 @@ namespace Truco.Web.Hubs
                             juego.Mazo.ListaCartas.Add(item.Mano[0]);
                             item.Mano.RemoveAt(0);
                         }
-                        //AGREGAR PARA VER QUIEN JUEGA
                         Repartir();
 
                     }
@@ -472,7 +472,6 @@ namespace Truco.Web.Hubs
                 Clients.All.limpiarpuntos();
                 Clients.All.mostrarpuntos("EQUIPO 1", ronda.Puntaje1);
                 Clients.All.mostrarpuntos("EQUIPO 2", ronda.Puntaje2);
-                //AGREGAR PARA VER QUIEN JUEGA
                 Repartir();
 
             }
@@ -508,7 +507,7 @@ namespace Truco.Web.Hubs
                 Clients.Client(jugadores.IdConexion).MostrarSeñas();
             }
 
-            var jugadorturno = juego.Jugadores.Single(x => x.Numero == juego.QuienEmpieza(juego.Rondas));//AGREGAR PARA VER QUIEN JUEGA
+            var jugadorturno = juego.Jugadores.Single(x => x.Numero == juego.QuienEmpieza(juego.Rondas.Count));//AGREGAR PARA VER QUIEN JUEGA
             Clients.All.MostrarManoPorTurno(jugadorturno.Numero == 1 ? 3 : jugadorturno.Numero == 2 ? 4 : jugadorturno.Numero - 2);
 
             Clients.Client(jugadorturno.IdConexion).habilitarMovimientos();

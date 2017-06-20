@@ -70,14 +70,15 @@ namespace TheBestTruco.Entidades
         }
 
        
-        public int QuienEmpieza(List<Ronda> rondas)
+        public int QuienEmpieza(int rondas)
         {
-                        int x = rondas.Count ;
-            switch (x)
+            if ((rondas + 1) % 4 == 0)
             {
+                return 4;
             }
-            return rondas.Count + 1;
+            return (rondas + 1) % 4;
         }
+
         //public void JugarCarta(int jugador, Carta cartaSeleccionada)
         //{
         //    foreach (var item in Jugadores)

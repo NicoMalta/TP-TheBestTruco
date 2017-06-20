@@ -9,10 +9,7 @@
 
         var c = 1;
 
-        function CargarPagina(pagina) {
-            window.location.href = "http://localhost:1996/" + pagina + "?username=....."
-        }
-
+        var objeto;
         function mostrar(lado) {
             // debugger;
             var objeto;
@@ -33,6 +30,12 @@
             }
             document.getElementById('imagen').src = objeto;
         }
+
+        function CargarPagina(pagina) {
+
+                window.location.href = "http://localhost:1996/" + pagina + "?username=" + $("#userName").val() + "&avatar=" + $("#imagen").attr("src");
+        }
+
     </script>
     <style>
         .oculto {
