@@ -25,6 +25,16 @@ namespace Truco.Web.Hubs
             }
         }
 
+        public void enviarMensaje(string texto)
+        {
+            var j = juego.Jugadores.Single(x => x.IdConexion == Context.ConnectionId);
+            Clients.All.mensajeChat(texto, j.Nombre);
+        }
+
+        public void mensajePrivado(string texto)
+        {
+            Clients.Caller.mostrarMensaje(texto);
+        }
         public void AgregarJugador(string nombre, string avatar)
         {
             juego.RevisarCantidadJugadores();

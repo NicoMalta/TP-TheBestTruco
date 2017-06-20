@@ -94,8 +94,8 @@ function Limpiar() {
 
 // Inicializamos los componentes.
 function inicializarComponentes() {
-    $("#cards").hide();
-    $("#movements").hide();
+    //$("#cards").hide();
+    //$("#movements").hide();
     $("#rightPanel").niceScroll();
     $("#FondoReyes").hide();
     OcultarBotonReyes();
@@ -131,15 +131,11 @@ $(function () {
 
     trucoHub.client.OcultarElementos = function (boolean) {
         if (boolean == true) {
-            $(".container").hide()
-            $("#Señas").hide()
-            $(".PanelInferior").hide();
+         
             MostrarBotonReyes();
         }
         else {
-            $(".container").show()
-            $("#Señas").show()
-            $(".PanelInferior").show();
+
             OcultarBotonReyes();
         }
     };
@@ -156,9 +152,9 @@ $(function () {
         $("#emogin_" + numero).attr("src", null);
         //var jugador_seña = document.getElementById("emogin_" + numero);
         //jugador_seña.src = null;
-        var emoticon = document.getElementById(idSeña)
-        jugador_seña.src = emoticon.src
-        idIntervalo = setInterval(OcultarSeña(numero), 60000);
+        //var emoticon = document.getElementById(idSeña)
+       // jugador_seña.src = emoticon.src
+        // idIntervalo = setInterval(OcultarSeña(numero), 60000);
     }
 
     trucoHub.client.MostrarManoPorTurno = function (turno) {

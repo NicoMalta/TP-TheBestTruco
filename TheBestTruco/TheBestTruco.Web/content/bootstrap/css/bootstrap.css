@@ -289,15 +289,15 @@ a:focus {
 .navbar-static-top .container,
 .navbar-fixed-top .container,
 .navbar-fixed-bottom .container {
-  width: 95%;
+  width: 500px;
 }
 
 .span12 {
-  width: 90%
+  width: 800px;
 }
 
 .span11 {
-  width: 85%;
+  width: 500px;
 }
 
 .span10 {
@@ -311,6 +311,8 @@ a:focus {
 .span8 {
   width: 620px;
   height: 400px;
+  background-color:rgba(255, 0, 0, 0.45);
+  color: red !important;
 }
 
 .span7 {
@@ -450,6 +452,7 @@ a:focus {
 .row-fluid .span8 {
   width: 65.95744680851064%;
   *width: 65.90425531914893%;
+  background-color:rgba(255, 0, 0, 0.45) !important;
 }
 
 .row-fluid .span7 {

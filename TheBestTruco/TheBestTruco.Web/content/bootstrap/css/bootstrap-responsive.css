@@ -147,6 +147,7 @@
   }
   .span8 {
     width: 770px;
+    background-color:rgba(255, 0, 0, 0.45) !important;
   }
   .span7 {
     width: 670px;

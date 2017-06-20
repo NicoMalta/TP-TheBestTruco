@@ -20,8 +20,14 @@
 }
 
 .centralPanel {
-    background-color:rgba(27,171,34,0.6);
+    background-color:rgba(255, 0, 0, 0.45);
+    color: red !important;
     height: 300px;
+}
+
+.ColorPanelCentral {
+    background-color:rgba(255, 0, 0, 0.45);
+    color: red !important;
 }
 
 .centralItem {    
@@ -32,7 +38,7 @@
 .leftPanel {
     color: white;
     padding: 10px;
-    background-color:rgba(27,91,171,0.6);    
+    background-color:rgb(27,91,171);    
     width: 60px;
     height: 360px;
 
