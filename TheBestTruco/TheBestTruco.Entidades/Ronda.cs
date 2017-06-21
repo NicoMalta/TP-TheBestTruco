@@ -22,13 +22,14 @@ namespace TheBestTruco.Entidades
         public int Puntaje1 { get; set; }
         public int Puntaje2 { get; set; }
         public int Manos { get; set; }
+        public bool CantoAlgo { get; set; }
 
         public Ronda()
         {
             CartasMesa = new Carta[3, 4];
             Turno = 1;
             Manos = 1;
-
+            CantoAlgo = false;
         }
 
         private Mayor CicloMayor(int Fila)

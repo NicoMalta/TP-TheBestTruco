@@ -33,13 +33,13 @@ function MostrarBotonReyes() {
 }
 
 function ReproducirSonido(audio) {
-    //var objeto = document.getElementById('audio')
-    //objeto.src = "Sonidos/" + audio + ".mp3"
-    //objeto.play();
+    var objeto = document.getElementById('audio')
+    objeto.src = "Sonidos/" + audio + ".mp3"
+    objeto.play();
 }
 
 function Seña(señaid) {
-    trucoHub.server.hacerSeñas(señaid,  $.urlParam('username')); // Le pasa el id de la seña
+    trucoHub.server.hacerSeñas(señaid, $.urlParam('username')); // Le pasa el id de la seña
 };
 
 // Muestra quien es mano.
@@ -54,7 +54,7 @@ function OcultarMano() {
 
 // Oculta los emogins de las señas
 function OcultarSeña(numero) {
-    $("#emogin_" + numero).hide();
+    $("#emogin_" + numero).attr("src", "");
     clearTimeout(delay);
 }
 
@@ -117,7 +117,7 @@ $(function () {
     // Creamos el hub.
     trucoHub = $.connection.truco;
 
-    
+
 
     // Evento click del boton "ingresar jugador".
     $("#botonAgregarJugador").click(function () {
@@ -126,7 +126,7 @@ $(function () {
 
 
         // Habilitar para el trabajo práctico.
-       // trucoHub.server.agregarJugador(userName, $("#imagen").attr("src"));
+        // trucoHub.server.agregarJugador(userName, $("#imagen").attr("src"));
         document.title = (userName);
     });
 
@@ -138,7 +138,7 @@ $(function () {
 
     trucoHub.client.OcultarElementos = function (boolean) {
         if (boolean == true) {
-         
+
             MostrarBotonReyes();
         }
         else {
@@ -151,18 +151,17 @@ $(function () {
         var selector = "#" + data.NombreInterno;
         $(selector).html(data.Nombre);
         var barra = "#barra_carga" + data.Numero;
-        $(barra).hide() 
+        $(barra).hide()
         $("#avatar_" + data.Numero).attr("src", data.DireccionAvatar)
     }
 
     trucoHub.client.mostrarPuntos = function (equipo, puntos) {
-        $("#Equipo" + equipo).attr("src", "/Images/Puntos/" + puntos.ToString() + ".PNG") 
+        $("#Equipo" + equipo).attr("src", "/Images/Puntos/" + puntos + ".PNG")
     }
 
     trucoHub.client.MostrarSeñas = function (idSeña, numero) {
-        $("#emogin_" + numero).attr("src", $("#" + idSeña).attr("src"))
-       delay = setTimeout(function() {OcultarSeña(numero)},1000);
-
+        $("#emogin_" + numero).attr("src", $("#" + idSeña).attr("src"));
+        delay = setTimeout(function () { OcultarSeña(numero) }, 1000);
     }
 
     trucoHub.client.MostrarManoPorTurno = function (turno) {
@@ -354,7 +353,7 @@ $(function () {
     trucoHub.client.habilitarMovimientos = function (data) {
 
         console.log("habilitarMovimientos");
-       
+
         $("[cc]").bind("click",
             function (evt) {
                 console.log("jugar carta");
@@ -463,7 +462,7 @@ $(function () {
     trucoHub.client.hideFaltaEnvidoBotton = function (data) {
         $("#bottonFaltaEnvido").hide();
     };
-    
+
     trucoHub.client.showTrucoBotton = function (data) {
         $("#bottonTruco").show();
     };
@@ -508,12 +507,11 @@ $(function () {
     $.connection.hub.start(function () {
         trucoHub.server.conectarse();
 
-  
+
         //preguntar si tenes parametro username y si lo tenes llamas a la funcion crear jugador.
-       var userName = $.urlParam('username');
-       var Avatar = $.urlParam('avatar');
-        if (userName != null)
-        {
+        var userName = $.urlParam('username');
+        var Avatar = $.urlParam('avatar');
+        if (userName != null) {
             $("#userRegion").hide()
 
             // Habilitar para el trabajo práctico.

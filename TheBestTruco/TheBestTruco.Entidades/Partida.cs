@@ -37,6 +37,27 @@ namespace TheBestTruco.Entidades
 
         }
 
+        public void MeVoyAlMazo(Jugador jugador, bool CantoAlgo)
+        {
+            if ((jugador.Equipo == Equipos.Equipo1) && (CantoAlgo == true))
+            {
+                this.Puntaje1++;
+            }
+            if ((jugador.Equipo == Equipos.Equipo2) && (CantoAlgo == true))
+            {
+                this.Puntaje2++;
+            }
+            if ((jugador.Equipo == Equipos.Equipo1) && (CantoAlgo == false))
+            {
+                this.Puntaje1++;
+            }
+            if ((jugador.Equipo == Equipos.Equipo2) && (CantoAlgo == false))
+            {
+                this.Puntaje2++;
+            }
+        }
+
+
         public void RepartirCartas(List<Jugador> jugadores, Mazo mazo)
         {
             foreach(var x in jugadores)

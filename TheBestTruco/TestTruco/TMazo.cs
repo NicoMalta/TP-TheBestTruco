@@ -74,20 +74,6 @@ namespace TestTruco
         }
 
         [TestMethod]
-        public async Task Demo()
-        {
-            var aa = 0 % 4;
-            var a = 1 % 4;
-            var b = 2 % 4;
-
-            await Task.Delay(9000);
-
-            var c = 3 % 4;
-            var d = 4 % 4;
-            var e = 5 % 4;
-        }
-
-        [TestMethod]
         public void Quienempiezaprimero()
         {
             var partida = new Partida();
@@ -95,7 +81,6 @@ namespace TestTruco
             int x = partida.QuienEmpieza(4);
 
             Assert.AreEqual(0, x);
-            
         }
     }
 }

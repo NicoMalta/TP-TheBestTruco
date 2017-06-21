@@ -99,6 +99,9 @@ namespace Truco.Web.Hubs
             {   
                 case "me voy al mazo":
                     // TODO > llevar a la lògica del juego.
+                    juego.MeVoyAlMazo(j, juego.Rondas[juego.Rondas.Count - 1].CantoAlgo);
+                    Clients.All.mostrarPuntos(1, juego.Puntaje1);
+                    Clients.All.mostrarPuntos(1, juego.Puntaje2);
                     Repartir();
                     break;
         //        case "envido":
@@ -415,15 +418,17 @@ namespace Truco.Web.Hubs
                     {
                         if (Equipo == Equipos.Equipo1)
                         {
-                            ronda.Puntaje1++;
+                            juego.Puntaje1++;
+
                         }
                         else
                         {
-                            ronda.Puntaje2++;
+                            juego.Puntaje2++;
+
                         }
                         Clients.All.limpiarpuntos();
-                        Clients.All.mostrarPuntos(1, ronda.Puntaje1);
-                        Clients.All.mostrarPuntos(2, ronda.Puntaje2);
+                        Clients.All.mostrarPuntos(1, juego.Puntaje1);
+                        Clients.All.mostrarPuntos(2, juego.Puntaje2);
                         ronda.Manos = 1;
                         foreach (var item in juego.Jugadores)
                         {
@@ -475,8 +480,8 @@ namespace Truco.Web.Hubs
             {
                 ronda.sumarPuntosRonda(juego.Jugadores);
                 Clients.All.limpiarpuntos();
-                Clients.All.mostrarPuntos(1, ronda.Puntaje1);
-                Clients.All.mostrarPuntos(2, ronda.Puntaje2);
+                Clients.All.mostrarPuntos(1, juego.Puntaje1);
+                Clients.All.mostrarPuntos(2, juego.Puntaje2);
                 Repartir();
 
             }
