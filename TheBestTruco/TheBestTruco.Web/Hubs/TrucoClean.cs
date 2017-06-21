@@ -19,11 +19,11 @@ namespace Truco.Web.Hubs
 
         public void Conectarse()
         {
-            foreach (var j in juego.Jugadores)
-            {
-                Clients.Caller.mostrarnombre(j);
+            //foreach (var j in juego.Jugadores)
+            //{
+            //    Clients.Caller.mostrarnombre(j);
                 
-            }
+            //}
         }
 
         public void enviarMensaje(string texto)
@@ -61,8 +61,7 @@ namespace Truco.Web.Hubs
                
                 juego.Jugadores.Add(jugador);
 
-                Clients.All.mostrarnombre(jugador);
-                Clients.All.MostrarAvatars(jugador.DireccionAvatar, jugador.Numero);
+                //Clients.All.mostrarnombre(jugador);
                 Clients.Client(jugador.IdConexion).OcultarElementos(true);
                 // Si es el ultimo jugador...
                 juego.RevisarCantidadJugadores();

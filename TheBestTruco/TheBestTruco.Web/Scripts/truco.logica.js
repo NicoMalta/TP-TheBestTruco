@@ -19,6 +19,10 @@ function TirarReyes() {
 function OcultarBotonReyes() {
     $(".BotonTirarReyes").hide();
     $("#FondoReyes").hide();
+    $(".container").show();
+    $(".chat").show();
+    $(".PanelInferior").show();
+    $("#Señas").show();
 }
 
 function MostrarBotonReyes() {
@@ -129,10 +133,6 @@ $(function () {
         trucoHub.server.cantar("me voy al mazo");
     });
 
-    trucoHub.client.MostrarAvatars = function (direccionavatar, numero) {
-        $("#avatar_" + numero).attr("src", direccionavatar)
-        
-    }
 
     trucoHub.client.OcultarElementos = function (boolean) {
         if (boolean == true) {
@@ -150,7 +150,7 @@ $(function () {
         $(selector).html(data.Nombre);
         var barra = "#barra_carga" + data.Numero;
         $(barra).hide() 
-
+        $("#avatar_" + data.Numero).attr("src", data.DireccionAvatar)
     }
 
    
@@ -514,7 +514,11 @@ $(function () {
             $("#userRegion").hide()
 
             // Habilitar para el trabajo práctico.
-            trucoHub.server.agregarJugador(userName,Avatar);
+            trucoHub.server.agregarJugador(userName, Avatar);
+            $(".container").hide();
+            $(".chat").hide();
+            $(".PanelInferior").hide();
+            $("#Señas").hide();
             document.title = userName;
         }
     });
