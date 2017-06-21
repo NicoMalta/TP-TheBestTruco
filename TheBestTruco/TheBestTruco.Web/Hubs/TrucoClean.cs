@@ -43,7 +43,7 @@ namespace Truco.Web.Hubs
             if (juego.EstaCompleto)
             {
                 // Si el juego esta completo...
-                Clients.Caller.mostrarmensaje("El juego ya está completo!");
+                Clients.Caller.enviarMensaje("El juego ya está completo!");
             }
             else
             {
@@ -80,20 +80,19 @@ namespace Truco.Web.Hubs
         public void cantar(string accion) 
         {
             var j = juego.Jugadores.Where(x => x.IdConexion == Context.ConnectionId).Single();
-            Clients.Others.mostrarmensaje("Jugador " + j.Nombre + " canto " + accion);
-            Clients.Caller.mostrarmensaje("Yo cante " + accion);
+            Clients.Others.mensajeChat(accion, j.Nombre);
 
         //    Clients.Client(jugador.IdConexion).deshabilitarMovimientos();
 
-        //    // Si el juego termino...
-        //    Clients.Client(jugador.IdConexion).mostrarMensajeFinal(true); // GANADOR
-        //    Clients.Client(jugador.IdConexion).mostrarMensajeFinal(false); // PERDEDOR
-        //    Clients.All.deshabilitarMovimientos();
+            //    // Si el juego termino...
+            //    Clients.Client(jugador.IdConexion).mostrarMensajeFinal(true); // GANADOR
+            //    Clients.Client(jugador.IdConexion).mostrarMensajeFinal(false); // PERDEDOR
+            //    Clients.All.deshabilitarMovimientos();
 
-        //    // Sino
-        //    Clients.All.limpiarpuntos();
+            //    // Sino
+            //    Clients.All.limpiarpuntos();
 
-        //    // Y mostrar puntos y repartir.
+            //    // Y mostrar puntos y repartir.
 
 
             switch (accion) 

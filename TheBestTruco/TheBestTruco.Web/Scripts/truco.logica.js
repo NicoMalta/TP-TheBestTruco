@@ -170,7 +170,7 @@ $(function () {
 
     // Visualizar nombre en el chat.
     trucoHub.client.mostrarnuevousuario = function (data) {
-        $("#messages").prepend("<p>" + data + " se ha unido al juego!</p>");
+        $("#discussion").prepend("<p>" + data + " se ha unido al juego!</p>");
     };
 
     trucoHub.client.mostrarMensajeFinal = function (data) {
@@ -290,7 +290,7 @@ $(function () {
         trucoHub.server.ejecutarAccion("Vale4", false);
     });
     trucoHub.client.mostrarmensaje = function (data) {
-        $("#messages").prepend("<p>" + data + "</p>");
+        $("#discussion").prepend("<p>" + data + "</p>");
     };
 
     trucoHub.client.mostrarpuntos = function (equipo, puntos) {
