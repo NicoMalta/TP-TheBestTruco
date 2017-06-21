@@ -155,7 +155,9 @@ $(function () {
         $("#avatar_" + data.Numero).attr("src", data.DireccionAvatar)
     }
 
-   
+    trucoHub.client.mostrarPuntos = function (equipo, puntos) {
+        $("#Equipo" + equipo).attr("src", "/Images/Puntos/" + puntos.ToString() + ".PNG") 
+    }
 
     trucoHub.client.MostrarSeñas = function (idSeña, numero) {
         $("#emogin_" + numero).attr("src", $("#" + idSeña).attr("src"))

@@ -69,8 +69,8 @@ namespace Truco.Web.Hubs
                 if (juego.EstaCompleto == true)
                 {
                    // Clients.All.OcultarElementos(false);
-                    Clients.All.mostrarpuntos("EQUIPO 1 ", 0);
-                    Clients.All.mostrarpuntos("EQUIPO 2 ", 0);
+                    Clients.All.mostrarPuntos(1, 0);
+                    Clients.All.mostrarPuntos(2, 0);
 
                     //ronda.JugarRonda();
                 }
@@ -422,8 +422,8 @@ namespace Truco.Web.Hubs
                             ronda.Puntaje2++;
                         }
                         Clients.All.limpiarpuntos();
-                        Clients.All.mostrarpuntos("EQUIPO 1", ronda.Puntaje1);
-                        Clients.All.mostrarpuntos("EQUIPO 2", ronda.Puntaje2);
+                        Clients.All.mostrarPuntos(1, ronda.Puntaje1);
+                        Clients.All.mostrarPuntos(2, ronda.Puntaje2);
                         ronda.Manos = 1;
                         foreach (var item in juego.Jugadores)
                         {
@@ -475,8 +475,8 @@ namespace Truco.Web.Hubs
             {
                 ronda.sumarPuntosRonda(juego.Jugadores);
                 Clients.All.limpiarpuntos();
-                Clients.All.mostrarpuntos("EQUIPO 1", ronda.Puntaje1);
-                Clients.All.mostrarpuntos("EQUIPO 2", ronda.Puntaje2);
+                Clients.All.mostrarPuntos(1, ronda.Puntaje1);
+                Clients.All.mostrarPuntos(2, ronda.Puntaje2);
                 Repartir();
 
             }
