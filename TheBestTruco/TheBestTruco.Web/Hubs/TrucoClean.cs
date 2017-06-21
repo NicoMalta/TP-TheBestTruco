@@ -100,8 +100,6 @@ namespace Truco.Web.Hubs
             {   
                 case "me voy al mazo":
                     // TODO > llevar a la lògica del juego.
-
-
                     Repartir();
                     break;
         //        case "envido":
@@ -125,37 +123,33 @@ namespace Truco.Web.Hubs
             }
         }
 
-        //public void EjecutarAccion(string accion, bool confirmacion)
-        //{
-        //    // confirmacion == true => Acepto la acción.
-        //    Clients.All.mostrarmensaje("Jugador X acepto/rechazo la ACCION");
+        public void EjecutarAccion(string accion, bool confirmacion)
+        {
+            // confirmacion == true => Acepto la acción.
+            Clients.All.mostrarmensaje("Jugador X acepto/rechazo la ACCION");
 
-        //    switch (accion)
-        //    {
-        //        case "Envido":
-        //            Clients.All.showmazo();            
-        //            Clients.Client(jugador.IdConexion).habilitarMovimientos();
-        //            break;
-        //        case "EnvidoEnvido":
-        //            Clients.All.showmazo();
-        //            Clients.Client(jugador.IdConexion).habilitarMovimientos();
-        //            break;
-        //        case "RealEnvido":
-        //            Clients.All.showmazo();
-        //            Clients.Client(jugador.IdConexion).habilitarMovimientos();
-        //            break;
-        //        case "FaltaEnvido":
-        //            Clients.All.showmazo();
-        //            Clients.Client(jugador.IdConexion).habilitarMovimientos();
-        //            break;
-        //        case "Truco":
-        //            break;
-        //        case "ReTruco":
-        //            break;
-        //        case "Vale4":
-        //            break;
-        //    }
-        //}
+            //switch (accion)
+            //{
+            //    //case "Envido":
+            //    //    Clients.Client(jugador.IdConexion).habilitarMovimientos();
+            //    //    break;
+            //    //case "EnvidoEnvido":
+            //    //    Clients.Client(jugador.IdConexion).habilitarMovimientos();
+            //    //    break;
+            //    //case "RealEnvido":
+            //    //    Clients.Client(jugador.IdConexion).habilitarMovimientos();
+            //    //    break;
+            //    //case "FaltaEnvido":
+            //    //    Clients.Client(jugador.IdConexion).habilitarMovimientos();
+            //        break;
+            //    case "Truco":
+            //        break;
+            //    case "ReTruco":
+            //        break;
+            //    case "Vale4":
+            //        break;
+            //}
+        }
 
         public void EmpezarJuego()
         {

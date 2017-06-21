@@ -50,8 +50,8 @@
                             <img id="user1_card2" class="card" src="Images/BACK.JPG" />
                             <img id="user1_card3" class="card" src="Images/BACK.JPG" />
                             <img id="emogin_1" class="Seña" src="" />
-                            <img id="mano_1" class="Mano" src="Images/Señas/Mano.PNG" />
-                            <img id="avatar_1" class="Avatar" src="" style="position:relative; right:35%"/>
+                            <img id="mano_1" class="Mano" style="position:relative;" src="Images/Señas/Mano.PNG" />
+                            <img id="avatar_1" class="Avatar" src="" style="position:relative; right:40%"/>
                         </div>
                         
                     </div>
@@ -63,7 +63,7 @@
                             <img id="user4_card2" class="card" src="Images/BACK.JPG" />
                             <img id="user4_card3" class="card" src="Images/BACK.JPG" />
                             <img id="emogin_4" class="Seña" src="" />
-                            <img id="mano_4" class="Mano" src="Images/Señas/Mano.PNG" />
+                            <img id="mano_4" class="Mano" style="position:relative;" src="Images/Señas/Mano.PNG" />
                             <img id="avatar_4" class="Avatar" src="" style="position:relative; right:80%"/>
                         </div>
                         
@@ -74,8 +74,8 @@
                             <img id="user2_card2" class="card" src="Images/BACK.JPG" />
                             <img id="user2_card3" class="card" src="Images/BACK.JPG" />
                             <img id="emogin_2" class="Seña" src="" />
-                            <img id="mano_2" class="Mano" src="Images/Señas/Mano.PNG" />
-                            <img id="avatar_2" class="Avatar" src="" style="position:relative; right:70%"/>
+                            <img id="mano_2" class="Mano" style="position:relative;" src="Images/Señas/Mano.PNG" />
+                            <img id="avatar_2" class="Avatar" src="" style="position:relative; right:80%"/>
                         </div>
                         
                     </div>
@@ -87,8 +87,8 @@
                             <img id="user3_card2" class="card" src="Images/BACK.JPG" />
                             <img id="user3_card3" class="card" src="Images/BACK.JPG" />
                             <img id="emogin_3" class="Seña" src="" />
-                            <img id="mano_3" class="Mano" src="Images/Señas/Mano.PNG" />
-                            <img id="avatar_3" class="Avatar" src="" style="position:relative; right:35%"/>
+                            <img id="mano_3" class="Mano" style="position:relative;" src="Images/Señas/Mano.PNG" />
+                            <img id="avatar_3" class="Avatar" src="" style="position:relative;right:40%"/>
                         </div>
                         
                     </div>
@@ -98,10 +98,11 @@
         </div>
         
             
-        <div class="leftPanel" style="background-color: rgba(255, 0, 0, 0.4); width: 200px; height:370px; position:absolute; left: 0px; top: 10px;">
-            <div id="punt"></div>
-            <!--<img id="pizarron_puntos"  class="pizarron" src="Images/pizzaron.JPG"  />-->
-        </div>        
+        <div class="leftPanel" style=" background-image: url(Images/Puntos/Pizzaron.PNG); background-position:center; background-size:cover; width: 400px; height:300px; position:absolute; left: 0px; top: 10px;">
+            <!--<div id="punt"></div>-->
+            <img id="Equipo1" src="Images/Puntos/0.PNG" style="position:relative; top:130px; left:90px; width: 45px; height:100px;" />
+            <img id="Equipo2" src="Images/Puntos/0.PNG" style="position:relative; top:130px; left:200px; width: 45px; height:100px;" />
+        </div>           
         <!--<div id="rightPanel" class="span2 rightPanel" style="position: absolute;">-->
                 <!-- Envido -->
                 <!--<div id="envidoRegion" class="envidoRegion">
@@ -164,14 +165,16 @@
                 <div class="span6" id="cards" style="float: left; height:100px; position:relative; top:7px; left:3px">
                 </div>
                 <div class="span6" id="movements" style="float: right; position:relative; top:5px; right:37px">
-                    <button type="button" onclick="ReproducirSonido('QUIERO')" id="bottonEnvido">ENVIDO</button>
-                    <button type="button" onclick="ReproducirSonido('NO_QUIERO')" id="bottonEnvidoEnvido">ENVIDO ENVIDO</button>
-                    <button type="button" id="bottonRealEnvido">REAL ENVIDO</button>
-                    <button type="button" id="bottonFaltaEnvido">FALTA ENVIDO!</button>
-                    <button type="button" onclick="ReproducirSonido('TRUCO')" id="bottonTruco">TRUCO</button>
-                    <button type="button" onclick="ReproducirSonido('QUIERO_RETRUCO')" id="bottonReTruco">RETRUCO</button>
-                    <button type="button" id="bottonVale4">VALE 4</button>
-                    <button type="button" id="bottonMazo">IR AL MAZO</button>
+                    <button type="button" class="btn btn-primary" onclick="ReproducirSonido('QUIERO')" id="bottonEnvido">ENVIDO</button>
+                    <button type="button" class="btn btn-primary" onclick="ReproducirSonido('NO_QUIERO')" id="bottonEnvidoEnvido">ENVIDO ENVIDO</button>
+                    <button type="button" class="btn btn-primary" id="bottonRealEnvido">REAL ENVIDO</button>
+                    <button type="button" class="btn btn-primary" id="bottonFaltaEnvido">FALTA ENVIDO!</button>
+                    <button type="button" class="btn btn-primary" onclick="ReproducirSonido('TRUCO')" id="bottonTruco">TRUCO</button>
+                    <button type="button" class="btn btn-primary" onclick="ReproducirSonido('QUIERO_RETRUCO')" id="bottonReTruco">RETRUCO</button>
+                    <button type="button" class="btn btn-primary" id="bottonVale4">VALE 4</button>
+                    <button type="button" class="btn btn-primary" style="background: #000000" id="bottonMazo">IR AL MAZO</button>
+                    <button type="button" class="btn btn-success" id="bottonQuieroEnvido">QUIERO!</button>
+                    <button type="button" class="btn btn-danger" id="bottonNoQuieroEnvido">NO QUIERO</button>
                     <audio width="300" height="32" src="" id="audio" preload="auto"> </audio>
                 </div>
             </div>
@@ -193,11 +196,11 @@
 
         <!--BotonesSeñas-->
    
-    <div class="chat" style="position:absolute; top:440px; left:20px; width:470px; border-radius: 10px 10px 10px 10px; -moz-border-radius: 10px 10px 10px 10px; -webkit-border-radius: 10px 10px 10px 10px; border: 0px solid #000000;">
-        <div class="pre-scrollable contenedorchat" style="position:relative; top:5px; left:3px; width:440px; height:140px; overflow-y:auto;">
+    <div class="chat" style="background-image:url(/Images/Elementos/HojaVieja.JPG);border-right-color:black; position:absolute; top:440px; left:20px; width:470px; border-radius: 10px 10px 10px 10px; -moz-border-radius: 10px 10px 10px 10px; -webkit-border-radius: 10px 10px 10px 10px; border: 0px solid #000000;">
+        <div class="pre-scrollable contenedorchat" style="position:relative;font-family:'Monotype Corsiva';font-size: 18px; font-weight: bold; top:5px; left:3px; width:440px; height:140px; overflow-y:auto;">
             <ul id="discussion"></ul>
         </div>
-        <input type="text" id="message" style="position:absolute; width:350px; top:160px; left:5px"/>
+        <input type="text" id="message" style="position:absolute;font-family:'Monotype Corsiva';font-size: 18px; font-weight: bold; width:350px; top:160px; left:5px"/>
         <input type="button" class="btn btn-primary"  id="sendmessage" value="Enviar" style="position:absolute; top:160px; left:380px"/>
 
 

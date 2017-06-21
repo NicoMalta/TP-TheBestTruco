@@ -11,6 +11,8 @@
 
 var trucoHub = {};
 var idIntervalo = {};
+var delay = {};
+
 
 function TirarReyes() {
     trucoHub.server.empezarJuego();
@@ -53,7 +55,7 @@ function OcultarMano() {
 // Oculta los emogins de las señas
 function OcultarSeña(numero) {
     $("#emogin_" + numero).hide();
-    delay = null;
+    clearTimeout(delay);
 }
 
 // Oculta las acciones del envido.
@@ -508,7 +510,6 @@ $(function () {
         //preguntar si tenes parametro username y si lo tenes llamas a la funcion crear jugador.
        var userName = $.urlParam('username');
        var Avatar = $.urlParam('avatar');
-       var delay = null;
         if (userName != null)
         {
             $("#userRegion").hide()
