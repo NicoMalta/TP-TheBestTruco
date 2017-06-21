@@ -49,7 +49,7 @@ function OcultarMano() {
 // Oculta los emogins de las señas
 function OcultarSeña(numero) {
     $("#emogin_" + numero).hide();
-    clearInterval(idIntervalo);
+    delay = null;
 }
 
 // Oculta las acciones del envido.
@@ -148,12 +148,12 @@ $(function () {
 
     }
 
-    
+   
 
     trucoHub.client.MostrarSeñas = function (idSeña, numero) {
         $("#emogin_" + numero).attr("src", $("#" + idSeña).attr("src"))
-       // var idIntervalo = setTimeout(OcultarSeña(numero), 60000);
-        trucoHub.server.delay(numero);
+       delay = setTimeout(function() {OcultarSeña(numero)},1000);
+
     }
 
     trucoHub.client.MostrarManoPorTurno = function (turno) {
@@ -499,9 +499,11 @@ $(function () {
     $.connection.hub.start(function () {
         trucoHub.server.conectarse();
 
+  
         //preguntar si tenes parametro username y si lo tenes llamas a la funcion crear jugador.
        var userName = $.urlParam('username');
        var Avatar = $.urlParam('avatar');
+       var delay = null;
         if (userName != null)
         {
             $("#userRegion").hide()

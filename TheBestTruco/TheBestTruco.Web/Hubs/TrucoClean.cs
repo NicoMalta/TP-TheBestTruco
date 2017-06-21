@@ -174,23 +174,6 @@ namespace Truco.Web.Hubs
             Clients.All.MostrarSeñas(idSeña, j.Numero);
         }
 
-        public void Delay(int numero)
-        {
-            DateTime primera = DateTime.Now;
-            bool band = false;
-            while (band != true)
-            {
-                if (DateTime.Now.Second - primera.Second >= 3)
-                {
-                    band = true;
-
-                }
-            }
-
-            Clients.All.OcultarSeña(numero);
-
-
-        }
 
         public void TirarReyes(Mazo mazo, Partida partida)
         {
