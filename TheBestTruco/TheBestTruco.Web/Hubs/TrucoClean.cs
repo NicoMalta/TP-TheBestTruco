@@ -58,10 +58,11 @@ namespace Truco.Web.Hubs
                     DireccionAvatar = avatar
 
                 };
-
+               
                 juego.Jugadores.Add(jugador);
 
                 Clients.All.mostrarnombre(jugador);
+                Clients.All.MostrarAvatars(jugador.DireccionAvatar, jugador.Numero);
                 Clients.Client(jugador.IdConexion).OcultarElementos(true);
                 // Si es el ultimo jugador...
                 juego.RevisarCantidadJugadores();

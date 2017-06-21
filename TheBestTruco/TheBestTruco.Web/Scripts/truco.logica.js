@@ -129,6 +129,11 @@ $(function () {
         trucoHub.server.cantar("me voy al mazo");
     });
 
+    trucoHub.client.MostrarAvatars = function (direccionavatar, numero) {
+        $("#avatar_" + numero).attr("src", direccionavatar)
+        
+    }
+
     trucoHub.client.OcultarElementos = function (boolean) {
         if (boolean == true) {
          
