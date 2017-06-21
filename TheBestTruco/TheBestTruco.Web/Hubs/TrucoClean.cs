@@ -77,12 +77,20 @@ namespace Truco.Web.Hubs
             }
         }
 
+        public void Envido(int QeCanto)
+        {
+            var j = juego.Jugadores.Where(x => x.IdConexion == Context.ConnectionId).Single();
+            juego.Rondas[juego.Rondas.Count - 1].CantarEnvido(j.Equipo, QeCanto);
+            Clients.All.Cantar("envido");
+        }
+
         public void cantar(string accion) 
         {
             var j = juego.Jugadores.Where(x => x.IdConexion == Context.ConnectionId).Single();
             Clients.Others.mensajeChat(accion, j.Nombre);
+            Clients.Caller.mensajeChat(accion, j.Nombre);
 
-        //    Clients.Client(jugador.IdConexion).deshabilitarMovimientos();
+            //    Clients.Client(jugador.IdConexion).deshabilitarMovimientos();
 
             //    // Si el juego termino...
             //    Clients.Client(jugador.IdConexion).mostrarMensajeFinal(true); // GANADOR
@@ -104,24 +112,29 @@ namespace Truco.Web.Hubs
                     Clients.All.mostrarPuntos(1, juego.Puntaje2);
                     Repartir();
                     break;
-        //        case "envido":
-        //            Clients.All.hidemazo();
-        //            break;
-        //        case "envidoenvido":
-        //            Clients.All.hidemazo();
-        //            break;
-        //        case "faltaenvido":
-        //            Clients.All.hidemazo();
-        //            break;
-        //        case "realenvido":
-        //            Clients.All.hidemazo();
-        //            break;
-        //        case "truco":
-        //            break;
-        //        case "retruco":
-        //            break;
-        //        case "vale4":
-        //            break;
+                case "envido":
+                    Clients.All.hidemazo();
+                    var jugadores = juego.Jugadores.Where(x => x.Equipo == juego.Rondas[juego.Rondas.Count - 1].EquipoCantoEnvido).ToList();
+
+                    
+
+
+                    break;
+                    //        case "envidoenvido":
+                    //            Clients.All.hidemazo();
+                    //            break;
+                    //        case "faltaenvido":
+                    //            Clients.All.hidemazo();
+                    //            break;
+                    //        case "realenvido":
+                    //            Clients.All.hidemazo();
+                    //            break;
+                    //        case "truco":
+                    //            break;
+                    //        case "retruco":
+                    //            break;
+                    //        case "vale4":
+                    //            break;
             }
         }
 

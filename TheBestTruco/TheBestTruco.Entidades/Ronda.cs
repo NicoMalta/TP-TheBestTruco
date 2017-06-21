@@ -23,6 +23,8 @@ namespace TheBestTruco.Entidades
         public int Puntaje2 { get; set; }
         public int Manos { get; set; }
         public bool CantoAlgo { get; set; }
+        public int Envido { get; set; }
+        public Equipos EquipoCantoEnvido { get; set; }
 
         public Ronda()
         {
@@ -30,6 +32,22 @@ namespace TheBestTruco.Entidades
             Turno = 1;
             Manos = 1;
             CantoAlgo = false;
+            Envido = 0;
+        }
+
+        public Equipos CantarEnvido(Equipos EquipoQeCanta, int QueCanto)
+        {
+            this.EquipoCantoEnvido = EquipoQeCanta;
+            this.Envido = QueCanto;
+            if (EquipoQeCanta == Equipos.Equipo1)
+            {
+                return Equipos.Equipo2;
+            }
+            if (EquipoQeCanta == Equipos.Equipo2)
+            {
+                return Equipos.Equipo1;
+            }
+            return Equipos.Equipo1;
         }
 
         private Mayor CicloMayor(int Fila)
@@ -65,10 +83,10 @@ namespace TheBestTruco.Entidades
         }
         public Jugador GanaMano(List<Jugador> jugadores)
         {
-            var jugadorGanador = jugadores.Single(x => x.Numero == CicloMayor(Manos -1).Posicion);
+            var jugadorGanador = jugadores.Single(x => x.Numero == CicloMayor(Manos - 1).Posicion);
             return jugadorGanador;
         }
-        
+
         public bool RevisarPardas()
         {
             this.PardaActivo = false;
@@ -231,7 +249,7 @@ namespace TheBestTruco.Entidades
                 this.Puntaje2 = 1;
             }
 
-            return this.Puntaje1.ToString()+":"+this.Puntaje2.ToString(); //retorna una cadena (PUNTEQUIPO1+PUNTEQUIPO2)
+            return this.Puntaje1.ToString() + ":" + this.Puntaje2.ToString(); //retorna una cadena (PUNTEQUIPO1+PUNTEQUIPO2)
         }
 
         public void MeVoyAlMazo()

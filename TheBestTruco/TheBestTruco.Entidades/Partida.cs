@@ -28,6 +28,8 @@ namespace TheBestTruco.Entidades
             Puntaje2 = 0;
         }
 
+
+
         public void RevisarCantidadJugadores()
         {
             if (Jugadores.Count == 4)
@@ -50,10 +52,12 @@ namespace TheBestTruco.Entidades
             if ((jugador.Equipo == Equipos.Equipo1) && (CantoAlgo == false))
             {
                 this.Puntaje1++;
+                this.Puntaje1++;
             }
             if ((jugador.Equipo == Equipos.Equipo2) && (CantoAlgo == false))
             {
                 this.Puntaje2++;
+                this.Puntaje1++;
             }
         }
 
