@@ -35,10 +35,9 @@ namespace TheBestTruco.Entidades
             Envido = 0;
         }
 
-        public Equipos CantarEnvido(Equipos EquipoQeCanta, int QueCanto)
+        public Equipos CantarEnvido(Equipos EquipoQeCanta)
         {
             this.EquipoCantoEnvido = EquipoQeCanta;
-            this.Envido = QueCanto;
             if (EquipoQeCanta == Equipos.Equipo1)
             {
                 return Equipos.Equipo2;
