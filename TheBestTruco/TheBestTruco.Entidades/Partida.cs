@@ -17,10 +17,14 @@ namespace TheBestTruco.Entidades
         public bool EstaCompleto { get; set; }
         public int Puntaje1 { get; set; }
         public int Puntaje2 { get; set; }
+        public bool BuenasEquipo1 { get; set; }
+        public bool BuenasEquipo2 { get; set; }
         public List<Ronda> Rondas { get; set; }
 
         public Partida()
         {
+            BuenasEquipo1 = false;
+            BuenasEquipo2 = false;
             Rondas = new List<Ronda>();
             Jugadores = new List<Jugador>();
             Mazo = new Mazo();
@@ -28,7 +32,17 @@ namespace TheBestTruco.Entidades
             Puntaje2 = 0;
         }
 
-
+        public void RevisarBuenas()
+        {
+            if (Puntaje1 > 15)
+            {
+                this.BuenasEquipo1 = true;
+            }
+            if (Puntaje2 > 15)
+            {
+                this.BuenasEquipo2 = true;
+            }
+        }
 
         public void RevisarCantidadJugadores()
         {
@@ -117,5 +131,19 @@ namespace TheBestTruco.Entidades
         //    }
 
         //}
+
+        public Equipos GanadorEnvido(List<int> Puntos , List<Jugador> Jugadores)
+        {
+            var ganador = Puntos.Max();
+
+            for (int i = 3; i < -1; i--)
+            {
+                if (Jugadores[i].ContadorEnvido(Jugadores[i].Mano) == ganador)
+                {
+                    return Jugadores[i].Equipo;
+                }
+            }
+            return Equipos.Equipo1;
+        }
     }
 }

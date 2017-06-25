@@ -155,19 +155,24 @@ $(function () {
         $("#avatar_" + data.Numero).attr("src", data.DireccionAvatar)
     }
 
+    trucoHub.client.mostrarPuntosEnvido = function (jugador, puntos) {
+        $("#emogin_" + jugador).attr("src", "/Images/PuntosEnvido/" + puntos + ".PNG")
+        $("#emogin_" + jugador).width(30);
+    };
+
     trucoHub.client.mostrarPuntos = function (equipo, puntos) {
         $("#Equipo" + equipo).attr("src", "/Images/Puntos/" + puntos + ".PNG")
-    }
+    };
 
     trucoHub.client.MostrarSeñas = function (idSeña, numero) {
         $("#emogin_" + numero).attr("src", $("#" + idSeña).attr("src"));
         delay = setTimeout(function () { OcultarSeña(numero) }, 1000);
-    }
+    };
 
     trucoHub.client.MostrarManoPorTurno = function (turno) {
         OcultarMano();
         $("#mano_" + turno).show();
-    }
+    };
 
     // Visualizar nombre en el chat.
     trucoHub.client.mostrarnuevousuario = function (data) {

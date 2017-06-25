@@ -25,8 +25,11 @@ namespace TheBestTruco.Entidades
         public bool CantoAlgo { get; set; }
         public int Envido { get; set; }
         public Equipos EquipoCantoEnvido { get; set; }
+        public List<int> PuntosEnvido { get; set; }
+
         public Ronda()
         {
+            PuntosEnvido = new List<int>();
             CartasMesa = new Carta[3, 4];
             Turno = 1;
             Manos = 1;
@@ -278,6 +281,49 @@ namespace TheBestTruco.Entidades
         public void MeVoyAlMazo()
         {
             this.FinPartida = true;
+        }
+
+        public void PuntajeEnvido(string caso)
+        {
+            switch (caso)
+            {
+                case "envido":
+                    this.Envido =+ 2;
+                    break;
+                   
+                case "envidoenvido":
+                    this.Envido = +2;
+                    break;
+
+                case "realenvido":
+                    this.Envido = +2;
+                    break;
+            }
+        }
+
+        public void CasoFaltaEnvido(int puntaje1, int puntaje2, Equipos equipo, bool confirmacion1, bool confirmacion2)
+        {
+            int aux = 0;
+
+            if (equipo == Equipos.Equipo1)
+            {
+                aux = 15 - puntaje2;
+                if (confirmacion2 == false)
+                {
+                    aux = aux + 15;
+                }
+            }
+            else
+            {
+                aux = 15 - puntaje1;
+                if (confirmacion1 == false)
+                {
+                    aux = aux + 15;
+                }
+            }
+
+            this.Envido = aux;
+           
         }
     }
 }

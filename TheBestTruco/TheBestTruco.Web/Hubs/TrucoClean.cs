@@ -80,7 +80,13 @@ namespace Truco.Web.Hubs
             Clients.Others.mensajeChat(accion, j.Nombre);
             Clients.Caller.mensajeChat(accion, j.Nombre);
 
-            Clients.Client(j.IdConexion).deshabilitarMovimientos();
+            var deshabilitar = juego.Jugadores.Where(x => x.Equipo != juego.Rondas[juego.Rondas.Count - 1].EquipoCantoEnvido).ToList();
+            foreach (var item in deshabilitar)
+            {
+                Clients.Client(item.IdConexion).deshabilitarMovimientos();
+                Clients.Client(item.IdConexion).hideEnvidoOptions();
+
+            }
 
             //    // Si el juego termino...
             //    Clients.Client(jugador.IdConexion).mostrarMensajeFinal(true); // GANADOR
@@ -99,43 +105,51 @@ namespace Truco.Web.Hubs
                     // TODO > llevar a la lògica del juego.
                     juego.MeVoyAlMazo(j, juego.Rondas[juego.Rondas.Count - 1].CantoAlgo);
                     Clients.All.mostrarPuntos(1, juego.Puntaje1);
-                    Clients.All.mostrarPuntos(1, juego.Puntaje2);
+                    Clients.All.mostrarPuntos(2, juego.Puntaje2);
                     Repartir();
                     break;
                 case "envido":
                     Clients.All.hidemazo();
                     juego.Rondas[juego.Rondas.Count - 1].CantarEnvido(ConseguirJugador(Context.ConnectionId).Equipo);
+                    juego.Rondas[juego.Rondas.Count - 1].PuntajeEnvido("envido");
                     var jugadores = juego.Jugadores.Where(x => x.Equipo != juego.Rondas[juego.Rondas.Count - 1].EquipoCantoEnvido).ToList();
                     foreach (var jugador in jugadores)
                     {
                         Clients.Client(jugador.IdConexion).showEnvidoOptions();
+                        Clients.Client(jugador.IdConexion).habilitarMovimientos();
                     }
                     break;
                 case "envidoenvido":
                     Clients.All.hidemazo();
                     juego.Rondas[juego.Rondas.Count - 1].CantarEnvido(ConseguirJugador(Context.ConnectionId).Equipo);
+                    juego.Rondas[juego.Rondas.Count - 1].PuntajeEnvido("envidoenvido");
                     jugadores = juego.Jugadores.Where(x => x.Equipo != juego.Rondas[juego.Rondas.Count - 1].EquipoCantoEnvido).ToList();
                     foreach (var jugador in jugadores)
                     {
-                        Clients.Client(jugador.IdConexion).showEnvidoOptions();
+                        Clients.Client(jugador.IdConexion).showEnvidoEnvidoOptions();
+                        Clients.Client(jugador.IdConexion).habilitarMovimientos();
                     }
                     break;
                 case "faltaenvido":
                     Clients.All.hidemazo();
                     juego.Rondas[juego.Rondas.Count - 1].CantarEnvido(ConseguirJugador(Context.ConnectionId).Equipo);
                     jugadores = juego.Jugadores.Where(x => x.Equipo != juego.Rondas[juego.Rondas.Count - 1].EquipoCantoEnvido).ToList();
+                    juego.Rondas[juego.Rondas.Count - 1].CasoFaltaEnvido(juego.Puntaje1, juego.Puntaje2, j.Equipo, juego.BuenasEquipo1, juego.BuenasEquipo2);
                     foreach (var jugador in jugadores)
                     {
-                        Clients.Client(jugador.IdConexion).showEnvidoOptions();
+                        Clients.Client(jugador.IdConexion).showFaltaEnvidoOptions();
+                        Clients.Client(jugador.IdConexion).habilitarMovimientos();
                     }
                     break;
                 case "realenvido":
                     Clients.All.hidemazo();
                     juego.Rondas[juego.Rondas.Count - 1].CantarEnvido(ConseguirJugador(Context.ConnectionId).Equipo);
+                    juego.Rondas[juego.Rondas.Count - 1].PuntajeEnvido("realenvido");
                     jugadores = juego.Jugadores.Where(x => x.Equipo != juego.Rondas[juego.Rondas.Count - 1].EquipoCantoEnvido).ToList();
                     foreach (var jugador in jugadores)
                     {
-                        Clients.Client(jugador.IdConexion).showEnvidoOptions();
+                        Clients.Client(jugador.IdConexion).showRealEnvidoOptions();
+                        Clients.Client(jugador.IdConexion).habilitarMovimientos();
                     }
                     break;
                     //case "truco":
@@ -149,27 +163,110 @@ namespace Truco.Web.Hubs
         public void EjecutarAccion(string accion, bool confirmacion)
         {
             // confirmacion == true => Acepto la acción.
-            Clients.All.mostrarmensaje("Jugador X acepto/rechazo la ACCION");
+            var jugador = ConseguirJugador(Context.ConnectionId);
+            Clients.All.hideEnvidoOptions();
+            if (confirmacion == true)
+            {
+                Clients.All.mostrarmensaje(jugador.Equipo.ToString() + " acepto la accion");
+            }
+            else
+            {
+                Clients.All.mostrarmensaje(jugador.Equipo.ToString() + " rechazo la accion");
+            }
 
             switch (accion)
             {
                 case "Envido":
-                    foreach (var jugador in juego.Jugadores)
+                    if (confirmacion == true)
                     {
-                        Clients.Client(jugador.IdConexion).habilitarMovimientos();
-                        Clients.Client(jugador.IdConexion).showQuieroEnvido();
+                        var x = 1;
+                        foreach (var ju in juego.Jugadores)
+                        {
+                            juego.Rondas[juego.Rondas.Count - 1].PuntosEnvido.Add(ju.ContadorEnvido(ju.Mano));
+                            Clients.All.mostrarPuntosEnvido(x, ju.ContadorEnvido(ju.Mano));
+                            x++;
+                        }
+                        if (Equipos.Equipo1 == juego.GanadorEnvido(juego.Rondas[juego.Rondas.Count - 1].PuntosEnvido, juego.Jugadores))
+                        {
+                            Clients.All.mostrarmensaje("El Equipo " + Equipos.Equipo1 + " Gano el envido");
+                            juego.Puntaje1 = juego.Rondas[juego.Rondas.Count - 1].Envido;
+                            Clients.All.mostrarPuntos(1, juego.Puntaje1);
+                        }
+                        else
+                        {
+                            juego.Puntaje2 = juego.Rondas[juego.Rondas.Count - 1].Envido;
+                            Clients.All.mostrarmensaje("El Equipo " + Equipos.Equipo2 + " Gano el envido");
+                            Clients.All.mostrarPuntos(2, juego.Puntaje2);
 
+                        }
                     }
                     break;
-                    //case "EnvidoEnvido":
-                    //    Clients.Client(jugador.IdConexion).habilitarMovimientos();
-                    //    break;
-                    //case "RealEnvido":
-                    //    Clients.Client(jugador.IdConexion).habilitarMovimientos();
-                    //    break;
-                    //case "FaltaEnvido":
-                    //    Clients.Client(jugador.IdConexion).habilitarMovimientos();
-                    //    //    break;
+                case "EnvidoEnvido":
+                    if (confirmacion == true)
+                    {
+                        var x = 1;
+                        foreach (var ju in juego.Jugadores)
+                        {
+                            juego.Rondas[juego.Rondas.Count - 1].PuntosEnvido.Add(ju.ContadorEnvido(ju.Mano));
+                            Clients.All.mostrarPuntosEnvido(x, ju.ContadorEnvido(ju.Mano));
+                            x++;
+                        }
+                        if (Equipos.Equipo1 == juego.GanadorEnvido(juego.Rondas[juego.Rondas.Count - 1].PuntosEnvido, juego.Jugadores))
+                        {
+                            Clients.All.mostrarmensaje("El Equipo " + Equipos.Equipo1 + " Gano el envido");
+                            Clients.All.mostrarPuntos(juego.Rondas[juego.Rondas.Count - 1].Envido, juego.Puntaje1);
+                        }
+                        else
+                        {
+                            Clients.All.mostrarPuntos(juego.Rondas[juego.Rondas.Count - 1].Envido, juego.Puntaje2);
+                            Clients.All.mostrarmensaje("El Equipo " + Equipos.Equipo2 + " Gano el envido");
+                        }
+                    }
+                    break;
+                case "RealEnvido":
+                    if (confirmacion == true)
+                    {
+                        var x = 1;
+                        foreach (var ju in juego.Jugadores)
+                        {
+                            juego.Rondas[juego.Rondas.Count - 1].PuntosEnvido.Add(ju.ContadorEnvido(ju.Mano));
+                            Clients.All.mostrarPuntosEnvido(x, ju.ContadorEnvido(ju.Mano));
+                            x++;
+                        }
+                        if (Equipos.Equipo1 == juego.GanadorEnvido(juego.Rondas[juego.Rondas.Count - 1].PuntosEnvido, juego.Jugadores))
+                        {
+                            Clients.All.mostrarmensaje("El Equipo " + Equipos.Equipo1 + " Gano el envido");
+                            Clients.All.mostrarPuntos(juego.Rondas[juego.Rondas.Count - 1].Envido, juego.Puntaje1);
+                        }
+                        else
+                        {
+                            Clients.All.mostrarPuntos(juego.Rondas[juego.Rondas.Count - 1].Envido, juego.Puntaje2);
+                            Clients.All.mostrarmensaje("El Equipo " + Equipos.Equipo2 + " Gano el envido");
+                        }
+                    }
+                    break;
+                case "FaltaEnvido":
+                    if (confirmacion == true)
+                    {
+                        var x = 1;
+                        foreach (var ju in juego.Jugadores)
+                        {
+                            juego.Rondas[juego.Rondas.Count - 1].PuntosEnvido.Add(ju.ContadorEnvido(ju.Mano));
+                            Clients.All.mostrarPuntosEnvido(x, ju.ContadorEnvido(ju.Mano));
+                            x++;
+                        }
+                        if (Equipos.Equipo1 == juego.GanadorEnvido(juego.Rondas[juego.Rondas.Count - 1].PuntosEnvido, juego.Jugadores))
+                        {
+                            Clients.All.mostrarmensaje("El Equipo " + Equipos.Equipo1 + " Gano el envido");
+                            Clients.All.mostrarPuntos(juego.Rondas[juego.Rondas.Count - 1].Envido, juego.Puntaje1);
+                        }
+                        else
+                        {
+                            Clients.All.mostrarPuntos(juego.Rondas[juego.Rondas.Count - 1].Envido, juego.Puntaje2);
+                            Clients.All.mostrarmensaje("El Equipo " + Equipos.Equipo2 + " Gano el envido");
+                        }
+                    }
+                    break;
                     //case "Truco":
                     //        break;
                     //    case "ReTruco":
@@ -429,13 +526,13 @@ namespace Truco.Web.Hubs
                 ronda.Turno = 1;
                 if (ronda.RevisarPardas(ronda.Manos - 1) == true)
                 {
-                    Clients.Client(juego.Jugadores[ronda.EmpiezaParda(ronda.Manos -1, Auxmovimientos, juego.Jugadores)].IdConexion).habilitarMovimientos();
+                    Clients.Client(juego.Jugadores[ronda.EmpiezaParda(ronda.Manos - 1, Auxmovimientos, juego.Jugadores)].IdConexion).habilitarMovimientos();
                 }
                 else
                 {
-                     Clients.Client(ronda.GanaMano(juego.Jugadores).IdConexion).habilitarMovimientos();
+                    Clients.Client(ronda.GanaMano(juego.Jugadores).IdConexion).habilitarMovimientos();
                 }
-               
+
                 if (ronda.Manos == 2)
                 {
                     if (ronda.PardaActivo)

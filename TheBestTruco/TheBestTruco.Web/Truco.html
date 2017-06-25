@@ -103,33 +103,8 @@
             <img id="Equipo1" src="Images/Puntos/0.PNG" style="position:relative; top:130px; left:90px; width: 45px; height:100px;" />
             <img id="Equipo2" src="Images/Puntos/0.PNG" style="position:relative; top:130px; left:200px; width: 45px; height:100px;" />
         </div>           
-        <!--<div id="rightPanel" class="span2 rightPanel" style="position: absolute;"></div>
-                 Envido 
-                <div id="envidoRegion" class="envidoRegion">
-                    <h4>ENVIDO!!!</h4>
-                    <button type="button" class="btn btn-success" id="bottonQuieroEnvido">QUIERO!</button>
-                    <button type="button" class="btn btn-danger" id="bottonNoQuieroEnvido">NO QUIERO</button>
-                </div>
-                <div id="envidoEnvidoRegion" class="envidoRegion">
-                    <h4>ENVIDO ENVIDO!!!</h4>
-                    <button type="button" class="btn btn-success" id="bottonQuieroEnvidoEnvido">QUIERO!</button>
-                    <button type="button" class="btn btn-danger" id="bottonNoQuieroEnvidoEnvido">NO QUIERO</button>
-                </div>
-                <div id="realEnvidoRegion" class="envidoRegion">
-                    <h4>REAL ENVIDO!!!</h4>
-                    <button type="button" class="btn btn-success" id="bottonQuieroRealEnvido">QUIERO!</button>
-                    <button type="button" class="btn btn-danger" id="bottonNoQuieroRealEnvido">NO QUIERO</button>
-                </div>
-                <div id="faltaEnvidoRegion" class="envidoRegion">
-                    <h4>FALTA ENVIDO!!!</h4>
-                    <button type="button" class="btn btn-success" id="bottonQuieroFaltaEnvido">QUIERO!</button>
-                    <button type="button" class="btn btn-danger" id="bottonNoQuieroFaltaEnvido">NO QUIERO</button>
-                </div>
-                <div id="quieroEnvidoRegion" class="envidoRegion">
-                    <h4>MIS PUNTOS:</h4>
-                    <input type="text" placeholder="Puntos…" style="width:100px; margin-bottom:0px;" id="envidoPoints" />
-                    <button type="button" class="btn btn-success" id="bottonCantarPuntosEnvido">CANTAR</button>
-                </div>-->
+       
+               
                 <!-- Truco -->
                 <!--<div id="trucoRegion" class="envidoRegion">
                     <h4>TRUCO!!!</h4>
@@ -155,7 +130,7 @@
                 <!-- Mensajes del juego -->
                 <!--<div id="messages"></div>
             </div>-->
-        </div>
+        
 
 
         <!-- Botonera -->
@@ -173,9 +148,34 @@
                     <button type="button" class="btn btn-primary" onclick="ReproducirSonido('QUIERO_RETRUCO')" id="bottonReTruco">RETRUCO</button>
                     <button type="button" class="btn btn-primary" id="bottonVale4">VALE 4</button>
                     <button type="button" class="btn btn-primary" style="background: #000000" id="bottonMazo">IR AL MAZO</button>
+                    <!--<button type="button" class="btn btn-success" id="bottonQuieroEnvido">QUIERO!</button>
+                    <button type="button" class="btn btn-danger" id="bottonNoQuieroEnvido">NO QUIERO</button>-->
+                    <audio width="300" height="32" src="" id="audio" preload="auto"> </audio>
+                </div>
+                <div id="envidoRegion" class="envidoRegion">
+                    <h4>ENVIDO!!!</h4>
                     <button type="button" class="btn btn-success" id="bottonQuieroEnvido">QUIERO!</button>
                     <button type="button" class="btn btn-danger" id="bottonNoQuieroEnvido">NO QUIERO</button>
-                    <audio width="300" height="32" src="" id="audio" preload="auto"> </audio>
+                </div>
+                <div id="envidoEnvidoRegion" class="envidoRegion">
+                    <h4>ENVIDO ENVIDO!!!</h4>
+                    <button type="button" class="btn btn-success" id="bottonQuieroEnvidoEnvido">QUIERO!</button>
+                    <button type="button" class="btn btn-danger" id="bottonNoQuieroEnvidoEnvido">NO QUIERO</button>
+                </div>
+                <div id="realEnvidoRegion" class="envidoRegion">
+                    <h4>REAL ENVIDO!!!</h4>
+                    <button type="button" class="btn btn-success" id="bottonQuieroRealEnvido">QUIERO!</button>
+                    <button type="button" class="btn btn-danger" id="bottonNoQuieroRealEnvido">NO QUIERO</button>
+                </div>
+                <div id="faltaEnvidoRegion" class="envidoRegion">
+                    <h4>FALTA ENVIDO!!!</h4>
+                    <button type="button" class="btn btn-success" id="bottonQuieroFaltaEnvido">QUIERO!</button>
+                    <button type="button" class="btn btn-danger" id="bottonNoQuieroFaltaEnvido">NO QUIERO</button>
+                </div>
+                <div id="quieroEnvidoRegion" class="envidoRegion">
+                    <h4>MIS PUNTOS:</h4>
+                    <input type="text" placeholder="Puntos…" style="width:100px; margin-bottom:0px;" id="envidoPoints" />
+                    <button type="button" class="btn btn-success" id="bottonCantarPuntosEnvido">CANTAR</button>
                 </div>
             </div>
         </div>
