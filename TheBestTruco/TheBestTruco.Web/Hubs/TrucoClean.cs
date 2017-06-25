@@ -16,7 +16,6 @@ namespace Truco.Web.Hubs
     {
         public static Partida juego = new Partida();
         public static bool puerta = false;
-
         public void Conectarse()
         {
             //foreach (var j in juego.Jugadores)
@@ -25,13 +24,11 @@ namespace Truco.Web.Hubs
 
             //}
         }
-
         public void enviarMensaje(string texto)
         {
             var j = juego.Jugadores.Single(x => x.IdConexion == Context.ConnectionId);
             Clients.All.mensajeChat(texto, j.Nombre);
         }
-
         public void mensajePrivado(string texto)
         {
             Clients.Caller.mostrarMensaje(texto);
@@ -76,7 +73,6 @@ namespace Truco.Web.Hubs
                 }
             }
         }
-
         public void cantar(string accion)
         {
             var j = juego.Jugadores.Where(x => x.IdConexion == Context.ConnectionId).Single();
@@ -149,7 +145,6 @@ namespace Truco.Web.Hubs
                     //            break;
             }
         }
-
         public void EjecutarAccion(string accion, bool confirmacion)
         {
             // confirmacion == true => Acepto la acción.
@@ -183,7 +178,6 @@ namespace Truco.Web.Hubs
                     //}
             }
         }
-
         public void EmpezarJuego()
         {
             if (juego.EstaCompleto)
@@ -193,15 +187,12 @@ namespace Truco.Web.Hubs
                 Repartir();
             }
         }
-
         public void hacerSeñas(string idSeña, string nombre)
         {
             var j = juego.Jugadores.Single(x => x.Nombre == nombre);
 
             Clients.All.MostrarSeñas(idSeña, j.Numero);
         }
-
-
         public void TirarReyes(Mazo mazo, Partida partida)
         {
 
@@ -383,7 +374,6 @@ namespace Truco.Web.Hubs
 
 
         }
-
         public void OrdenarJugadores(List<Jugador> jugadores)
         {
             int ant = 0;
@@ -420,7 +410,6 @@ namespace Truco.Web.Hubs
                 }
             }
         }
-
         public void JugarCarta(string codigoCarta)
         {
             var j = juego.Jugadores.Single(x => x.IdConexion == Context.ConnectionId);
@@ -436,12 +425,25 @@ namespace Truco.Web.Hubs
 
             if (ronda.Turno == 5)
             {
-
-                //  ronda.RevisarPardas();
                 ronda.Turno = 1;
-                Clients.Client(ronda.GanaMano(juego.Jugadores).IdConexion).habilitarMovimientos();
+                if (ronda.RevisarPardas(ronda.Manos - 1) == true)
+                {
+                    Clients.Client(juego.Jugadores[ronda.EmpiezaParda(ronda.Manos -1)].IdConexion).habilitarMovimientos();
+                }
+                else
+                {
+                     Clients.Client(ronda.GanaMano(juego.Jugadores).IdConexion).habilitarMovimientos();
+                }
+               
                 if (ronda.Manos == 2)
                 {
+                    if (ronda.PardaActivo)
+                    {
+                        if (ronda.RevisarPardas(0) == true && ronda.RevisarPardas(1) != true)
+                        {
+
+                        }
+                    }
                     ronda.Manos = 1;
                     var Equipo = ronda.GanoPrimera(juego.Jugadores);
                     ronda.Manos = 2;
@@ -484,22 +486,15 @@ namespace Truco.Web.Hubs
                 if (j.Numero + 1 == 5)
                 {
                     Clients.Client(juego.Jugadores[0].IdConexion).habilitarMovimientos();
-                    //Clients.Client(juego.Jugadores[0].IdConexion).showRealEnvidoBotton();
-                    //Clients.Client(juego.Jugadores[0].IdConexion).showFaltaEnvidoBotton();
-                    //Clients.Client(juego.Jugadores[0].IdConexion).showEnvidoBotton();
-                    //Clients.Client(juego.Jugadores[0].IdConexion).showTrucoBotton();
                 }
                 else
                 {
                     var jugadorturno = juego.Jugadores.Single(x => x.Numero == j.Numero + 1);
                     Clients.Client(jugadorturno.IdConexion).habilitarMovimientos();
-                    //Clients.Client(jugadorturno.IdConexion).showRealEnvidoBotton();
-                    //Clients.Client(jugadorturno.IdConexion).showFaltaEnvidoBotton();
-                    //Clients.Client(jugadorturno.IdConexion).showEnvidoBotton();
-                    //Clients.Client(jugadorturno.IdConexion).showTrucoBotton();
                 }
 
             }
+
             if (ronda.Manos > 1)
             {
                 Clients.All.hideRealEnvidoBotton();
@@ -518,13 +513,11 @@ namespace Truco.Web.Hubs
             }
 
         }
-
         public Jugador ConseguirJugador(string ID)
         {
             var j = juego.Jugadores.Single(x => x.IdConexion == ID);
             return j;
         }
-
         public void Repartir()
         {
             Ronda ronda = new Ronda();

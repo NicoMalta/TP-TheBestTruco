@@ -25,7 +25,6 @@ namespace TheBestTruco.Entidades
         public bool CantoAlgo { get; set; }
         public int Envido { get; set; }
         public Equipos EquipoCantoEnvido { get; set; }
-
         public Ronda()
         {
             CartasMesa = new Carta[3, 4];
@@ -34,7 +33,6 @@ namespace TheBestTruco.Entidades
             CantoAlgo = false;
             Envido = 0;
         }
-
         public Equipos CantarEnvido(Equipos EquipoQeCanta)
         {
             this.EquipoCantoEnvido = EquipoQeCanta;
@@ -48,7 +46,6 @@ namespace TheBestTruco.Entidades
             }
             return Equipos.Equipo1;
         }
-
         private Mayor CicloMayor(int Fila)
         {
             int valor = 0;
@@ -80,19 +77,34 @@ namespace TheBestTruco.Entidades
             Mayor.Posicion = posicion;
             return Mayor;
         }
+
+        public int EmpiezaParda(int ronda)
+        {
+           var Aux =  CicloMayor(0);
+            int comienza = 0;
+            for (int i = 0; i < 3; i++)
+            {
+                if (this.CartasMesa[ronda,i].Valor == Aux.Valor)
+                {
+                    comienza = i;
+                    break;
+                }
+            }
+            return comienza;
+        } 
         public Jugador GanaMano(List<Jugador> jugadores)
         {
             var jugadorGanador = jugadores.Single(x => x.Numero == CicloMayor(Manos - 1).Posicion);
             return jugadorGanador;
         }
 
-        public bool RevisarPardas()
+        public bool RevisarPardas(int ronda)
         {
             this.PardaActivo = false;
 
             for (int i = 0; i < 4; i++)
             {
-                if (CicloMayor(Manos - 1).Valor == CartasMesa[Manos - 1, i].Valor)
+                if (CicloMayor(ronda).Valor == CartasMesa[ronda, i].Valor)
                 {
                     this.PardaActivo = true;
                     break;
