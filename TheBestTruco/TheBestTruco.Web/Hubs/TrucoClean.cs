@@ -16,6 +16,7 @@ namespace Truco.Web.Hubs
     {
         public static Partida juego = new Partida();
         public static bool puerta = false;
+        private static List<Carta> Auxmovimientos = new List<Carta>();
         public void Conectarse()
         {
             //foreach (var j in juego.Jugadores)
@@ -418,7 +419,7 @@ namespace Truco.Web.Hubs
             Clients.All.mostrarCarta(c, j.NombreInterno, ronda.Manos);
             ronda.CartasMesa[ronda.Manos - 1, j.Numero - 1] = c;
             juego.Mazo.ListaCartas.Add(c);
-            j.Mano.Remove(c);
+            Auxmovimientos.Add(c);
 
             Clients.Client(j.IdConexion).deshabilitarMovimientos();
             ronda.Turno++;
@@ -428,7 +429,7 @@ namespace Truco.Web.Hubs
                 ronda.Turno = 1;
                 if (ronda.RevisarPardas(ronda.Manos - 1) == true)
                 {
-                    Clients.Client(juego.Jugadores[ronda.EmpiezaParda(ronda.Manos -1)].IdConexion).habilitarMovimientos();
+                    Clients.Client(juego.Jugadores[ronda.EmpiezaParda(ronda.Manos -1, Auxmovimientos, juego.Jugadores)].IdConexion).habilitarMovimientos();
                 }
                 else
                 {
@@ -480,6 +481,7 @@ namespace Truco.Web.Hubs
                 {
                     ronda.Manos++;
                 }
+                Auxmovimientos.Clear();
             }
             else
             {
@@ -525,7 +527,7 @@ namespace Truco.Web.Hubs
 
             Clients.All.limpiarTablero();
             Clients.All.OcultarElementos(false);
-
+            Auxmovimientos.Clear();
 
             // Por cada jugador y cada carta que maneja...
             juego.RepartirCartas(juego.Jugadores, juego.Mazo);

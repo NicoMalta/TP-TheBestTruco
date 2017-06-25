@@ -78,17 +78,24 @@ namespace TheBestTruco.Entidades
             return Mayor;
         }
 
-        public int EmpiezaParda(int ronda)
+        public int EmpiezaParda(int ronda, List<Carta> movimientos, List<Jugador> jugadores)
         {
            var Aux =  CicloMayor(0);
             int comienza = 0;
             for (int i = 0; i < 3; i++)
             {
-                if (this.CartasMesa[ronda,i].Valor == Aux.Valor)
+                if (movimientos[i].Valor == Aux.Valor)
                 {
-                    comienza = i;
-                    break;
+                    foreach (var item in jugadores)
+                    {
+                        if (item.Mano[ronda].Valor == Aux.Valor)
+                        {
+                            comienza = item.Numero - 1;
+                            return comienza;
+                        }
+                    }
                 }
+                
             }
             return comienza;
         } 
@@ -101,13 +108,18 @@ namespace TheBestTruco.Entidades
         public bool RevisarPardas(int ronda)
         {
             this.PardaActivo = false;
-
+            int band = 0;
             for (int i = 0; i < 4; i++)
             {
                 if (CicloMayor(ronda).Valor == CartasMesa[ronda, i].Valor)
                 {
-                    this.PardaActivo = true;
-                    break;
+                    band++;
+                    if (band == 2)
+                    {
+                        return this.PardaActivo = true;
+
+                    }
+                   
                 }
             }
 
