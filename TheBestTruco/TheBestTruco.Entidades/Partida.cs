@@ -79,8 +79,9 @@ namespace TheBestTruco.Entidades
             if ((jugador.Equipo == Equipos.Equipo2) && (CantoAlgo == false))
             {
                 this.Puntaje2++;
-                this.Puntaje1++;
+                this.Puntaje2++;
             }
+            RevisarBuenas();
         }
 
 

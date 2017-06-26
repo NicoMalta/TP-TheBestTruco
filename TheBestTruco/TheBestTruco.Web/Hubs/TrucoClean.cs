@@ -74,12 +74,53 @@ namespace Truco.Web.Hubs
                 }
             }
         }
+
+        public void EstadoDePartida()
+        {
+            if (juego.Puntaje1>= 15 && juego.BuenasEquipo1 == true)
+            {
+                Clients.All.deshabilitarMovimientos();
+                foreach (var item in juego.Jugadores)
+                {
+                    if (item.Equipo == Equipos.Equipo1)
+                    {
+                        Clients.Client(item.IdConexion).mostrarMensajeFinal(true); // GANADOR
+                    }
+                    else
+                    {
+                        Clients.Client(item.IdConexion).mostrarMensajeFinal(false); // PERDEDOR
+                    }
+                }
+            }
+
+            if (juego.Puntaje2 >= 15 && juego.BuenasEquipo2 == true)
+            {
+                Clients.All.deshabilitarMovimientos();
+                foreach (var item in juego.Jugadores)
+                {
+                    if (item.Equipo == Equipos.Equipo1)
+                    {
+                        Clients.Client(item.IdConexion).mostrarMensajeFinal(false); // PERDEDOR
+                    }
+                    else
+                    {
+                        Clients.Client(item.IdConexion).mostrarMensajeFinal(true); // GANADOR
+                    }
+                }
+            }
+
+
+        }
         public void cantar(string accion)
         {
             var j = juego.Jugadores.Where(x => x.IdConexion == Context.ConnectionId).Single();
             Clients.Others.mensajeChat(accion, j.Nombre);
             Clients.Caller.mensajeChat(accion, j.Nombre);
 
+            if (accion != "me voy al mazo")
+            {
+                juego.Rondas[juego.Rondas.Count - 1].CantoAlgo = true;
+            }
             var deshabilitar = juego.Jugadores.Where(x => x.Equipo != juego.Rondas[juego.Rondas.Count - 1].EquipoCantoEnvido).ToList();
             foreach (var item in deshabilitar)
             {
@@ -89,9 +130,7 @@ namespace Truco.Web.Hubs
             }
 
             //    // Si el juego termino...
-            //    Clients.Client(jugador.IdConexion).mostrarMensajeFinal(true); // GANADOR
-            //    Clients.Client(jugador.IdConexion).mostrarMensajeFinal(false); // PERDEDOR
-            //    Clients.All.deshabilitarMovimientos();
+            //   
 
             //    // Sino
             //    Clients.All.limpiarpuntos();
@@ -106,6 +145,7 @@ namespace Truco.Web.Hubs
                     juego.MeVoyAlMazo(j, juego.Rondas[juego.Rondas.Count - 1].CantoAlgo);
                     Clients.All.mostrarPuntos(1, juego.Puntaje1);
                     Clients.All.mostrarPuntos(2, juego.Puntaje2);
+                    EstadoDePartida();
                     Repartir();
                     break;
                 case "envido":
@@ -246,6 +286,7 @@ namespace Truco.Web.Hubs
                         }
                     }
                     Clients.All.ocultarSeccionesEnvido();
+                    EstadoDePartida();
                     break;
                 case "EnvidoEnvido":
                     if (confirmacion == true)
@@ -289,6 +330,7 @@ namespace Truco.Web.Hubs
                         
                     }
                     Clients.All.ocultarSeccionesEnvido();
+                    EstadoDePartida();
                     break;
                 case "RealEnvido":
                     if (confirmacion == true)
@@ -332,6 +374,7 @@ namespace Truco.Web.Hubs
                         
                     }
                     Clients.All.ocultarSeccionesEnvido();
+                    EstadoDePartida();
                     break;
                 case "FaltaEnvido":
                     if (confirmacion == true)
@@ -358,6 +401,7 @@ namespace Truco.Web.Hubs
                     {
                         Clients.All.ocultarSeccionesEnvido();
                     }
+                    EstadoDePartida();
                     break;
                 case "Truco":
                     if (confirmacion == true)
@@ -382,6 +426,7 @@ namespace Truco.Web.Hubs
                         Clients.All.ocultarSeccionesTruco();
                         Repartir();
                     }
+                    EstadoDePartida();
                     break;
                 case "ReTruco":
                     if (confirmacion == true)
@@ -406,6 +451,7 @@ namespace Truco.Web.Hubs
                         Clients.All.ocultarSeccionesTruco();
                         Repartir();
                     }
+                    EstadoDePartida();
                     break;
                 case "Vale4":
                     if (confirmacion == true)
@@ -430,9 +476,9 @@ namespace Truco.Web.Hubs
                         Clients.All.ocultarSeccionesTruco();
                         Repartir();
                     }
+                    EstadoDePartida();
                     break;
             }
-        
         }
         public void EmpezarJuego()
         {
