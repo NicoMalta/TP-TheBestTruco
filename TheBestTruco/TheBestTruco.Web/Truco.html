@@ -126,14 +126,14 @@
                     <div class="span6" id="cards" style="float: left; height:100px; position:relative; top:7px; left:3px">
                     </div>
                     <div class="span6" id="movements" style="float: right; position:relative; top:5px; right:37px">
-                        <button type="button" class="btn btn-primary" onclick="ReproducirSonido('QUIERO')" id="bottonEnvido">ENVIDO</button>
-                        <button type="button" class="btn btn-primary" onclick="ReproducirSonido('NO_QUIERO')" id="bottonEnvidoEnvido">ENVIDO ENVIDO</button>
-                        <button type="button" class="btn btn-primary" id="bottonRealEnvido">REAL ENVIDO</button>
-                        <button type="button" class="btn btn-primary" id="bottonFaltaEnvido">FALTA ENVIDO!</button>
+                        <button type="button" class="btn btn-primary" onclick="ReproducirSonido('ENVIDO')" id="bottonEnvido">ENVIDO</button>
+                        <button type="button" class="btn btn-primary" onclick="ReproducirSonido('ENVIDOENVIDO')" id="bottonEnvidoEnvido">ENVIDO ENVIDO</button>
+                        <button type="button" class="btn btn-primary" onclick="ReproducirSonido('REALENVIDO')"id="bottonRealEnvido">REAL ENVIDO</button>
+                        <button type="button" class="btn btn-primary" onclick="ReproducirSonido('FALTAENVIDO')"id="bottonFaltaEnvido">FALTA ENVIDO!</button>
                         <button type="button" class="btn btn-primary" onclick="ReproducirSonido('TRUCO')" id="bottonTruco">TRUCO</button>
-                        <button type="button" class="btn btn-primary" onclick="ReproducirSonido('QUIERO_RETRUCO')" id="bottonReTruco">RETRUCO</button>
-                        <button type="button" class="btn btn-primary" id="bottonVale4">VALE 4</button>
-                        <button type="button" class="btn btn-primary" style="background: #000000" id="bottonMazo">IR AL MAZO</button>
+                        <button type="button" class="btn btn-primary" onclick="ReproducirSonido('QUIERORETRUCO')" id="bottonReTruco">RETRUCO</button>
+                        <button type="button" class="btn btn-primary" onclick="ReproducirSonido('QUIEROVALE4')"id="bottonVale4">VALE 4</button>
+                        <button type="button" class="btn btn-primary" onclick="ReproducirSonido('MEVOYALMAZO')"style="background: #000000" id="bottonMazo">IR AL MAZO</button>
                         <!--<button type="button" class="btn btn-success" id="bottonQuieroEnvido">QUIERO!</button>
                         <button type="button" class="btn btn-danger" id="bottonNoQuieroEnvido">NO QUIERO</button>-->
                         <audio width="300" height="32" src="" id="audio" preload="auto"> </audio>
@@ -141,23 +141,23 @@
                     <div style="position:relative; top:28px ">
                         <div id="envidoRegion" class="envidoRegion">
                             <h4>ENVIDO!!!</h4>
-                            <button type="button" class="btn btn-success" id="bottonQuieroEnvido">QUIERO!</button>
-                            <button type="button" class="btn btn-danger" id="bottonNoQuieroEnvido">NO QUIERO</button>
+                            <button type="button" class="btn btn-success" onclick="ReproducirSonido('QUIERO')" id="bottonQuieroEnvido">QUIERO!</button>
+                            <button type="button" class="btn btn-danger" onclick="ReproducirSonido('NOQUIERO')"id="bottonNoQuieroEnvido">NO QUIERO</button>
                         </div>
                         <div id="envidoEnvidoRegion" class="envidoRegion">
                             <h4>ENVIDO ENVIDO!!!</h4>
-                            <button type="button" class="btn btn-success" id="bottonQuieroEnvidoEnvido">QUIERO!</button>
-                            <button type="button" class="btn btn-danger" id="bottonNoQuieroEnvidoEnvido">NO QUIERO</button>
+                            <button type="button" class="btn btn-success" onclick="ReproducirSonido('QUIERO')" id="bottonQuieroEnvidoEnvido">QUIERO!</button>
+                            <button type="button" class="btn btn-danger" onclick="ReproducirSonido('NOQUIERO')"id="bottonNoQuieroEnvidoEnvido">NO QUIERO</button>
                         </div>
                         <div id="realEnvidoRegion" class="envidoRegion">
                             <h4>REAL ENVIDO!!!</h4>
-                            <button type="button" class="btn btn-success" id="bottonQuieroRealEnvido">QUIERO!</button>
-                            <button type="button" class="btn btn-danger" id="bottonNoQuieroRealEnvido">NO QUIERO</button>
+                            <button type="button" class="btn btn-success" onclick="ReproducirSonido('QUIERO')"id="bottonQuieroRealEnvido">QUIERO!</button>
+                            <button type="button" class="btn btn-danger" onclick="ReproducirSonido('NOQUIERO')"id="bottonNoQuieroRealEnvido">NO QUIERO</button>
                         </div>
                         <div id="faltaEnvidoRegion" class="envidoRegion">
                             <h4>FALTA ENVIDO!!!</h4>
-                            <button type="button" class="btn btn-success" id="bottonQuieroFaltaEnvido">QUIERO!</button>
-                            <button type="button" class="btn btn-danger" id="bottonNoQuieroFaltaEnvido">NO QUIERO</button>
+                            <button type="button" class="btn btn-success" onclick="ReproducirSonido('QUIERO')" id="bottonQuieroFaltaEnvido">QUIERO!</button>
+                            <button type="button" class="btn btn-danger" onclick="ReproducirSonido('NOQUIERO')"id="bottonNoQuieroFaltaEnvido">NO QUIERO</button>
                         </div>
                         <div id="quieroEnvidoRegion" class="envidoRegion">
                             <h4>MIS PUNTOS:</h4>
@@ -166,18 +166,18 @@
                         </div>
                         <div id="trucoRegion" class="envidoRegion">
                             <h4>TRUCO!!!</h4>
-                            <button type="button" class="btn btn-success" id="bottonQuieroTruco">QUIERO!</button>
-                            <button type="button" class="btn btn-danger" id="bottonNoQuieroTruco">NO QUIERO</button>
+                            <button type="button" class="btn btn-success" onclick="ReproducirSonido('QUIERO')"id="bottonQuieroTruco">QUIERO!</button>
+                            <button type="button" class="btn btn-danger" onclick="ReproducirSonido('NOQUIERO')"id="bottonNoQuieroTruco">NO QUIERO</button>
                         </div>
                         <div id="retrucoRegion" class="envidoRegion">
                             <h4>RETRUCO!!!</h4>
-                            <button type="button" class="btn btn-success" id="bottonQuieroReTruco">QUIERO!</button>
-                            <button type="button" class="btn btn-danger" id="bottonNoQuieroReTruco">NO QUIERO</button>
+                            <button type="button" class="btn btn-success"onclick="ReproducirSonido('QUIERO')" id="bottonQuieroReTruco">QUIERO!</button>
+                            <button type="button" class="btn btn-danger" onclick="ReproducirSonido('NOQUIERO')"id="bottonNoQuieroReTruco">NO QUIERO</button>
                         </div>
                         <div id="vale4Region" class="envidoRegion">
                             <h4>VALE 4!!!</h4>
-                            <button type="button" class="btn btn-success" id="bottonQuieroVale4">QUIERO!</button>
-                            <button type="button" class="btn btn-danger" id="bottonNoQuieroVale4">NO QUIERO</button>
+                            <button type="button" class="btn btn-success" onclick="ReproducirSonido('QUIERO')" id="bottonQuieroVale4">QUIERO!</button>
+                            <button type="button" class="btn btn-danger" onclick="ReproducirSonido('NOQUIERO')" id="bottonNoQuieroVale4">NO QUIERO</button>
                         </div>
                     </div>
                 </div>

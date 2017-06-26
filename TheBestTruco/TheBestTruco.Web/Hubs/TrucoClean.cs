@@ -366,7 +366,7 @@ namespace Truco.Web.Hubs
                         }
                         if (Equipos.Equipo1 == juego.GanadorEnvido(juego.Rondas[juego.Rondas.Count - 1].PuntosEnvido, juego.Jugadores))
                         {
-                            Clients.All.mostrarmensaje("El Equipo " + Equipos.Equipo1 + " Gano el envido");
+                            Clients.All.mostrarmensaje("El Equipo " + Equipos.Equipo1 + " Gano el Envidoenvido");
                             juego.Puntaje1 += juego.Rondas[juego.Rondas.Count - 1].Envido;
                             juego.RevisarBuenas();
                             Clients.All.mostrarPuntos(1, juego.Puntaje1);
@@ -376,7 +376,7 @@ namespace Truco.Web.Hubs
                             juego.Puntaje2 += juego.Rondas[juego.Rondas.Count - 1].Envido;
                             juego.RevisarBuenas();
                             Clients.All.mostrarPuntos(2, juego.Puntaje2);
-                            Clients.All.mostrarmensaje("El Equipo " + Equipos.Equipo2 + " Gano el envido");
+                            Clients.All.mostrarmensaje("El Equipo " + Equipos.Equipo2 + " Gano el Envidoenvido");
                         }
                         Clients.Client(juego.Rondas[juego.Rondas.Count - 1].IDQuienCantoEnvido).habilitarmovimientos();
                     }
@@ -414,7 +414,7 @@ namespace Truco.Web.Hubs
                         {
                             juego.Puntaje1 += juego.Rondas[juego.Rondas.Count - 1].Envido;
                             juego.RevisarBuenas();
-                            Clients.All.mostrarmensaje("El Equipo " + Equipos.Equipo1 + " Gano el envido");
+                            Clients.All.mostrarmensaje("El Equipo " + Equipos.Equipo1 + " Gano el Realenvido");
                             Clients.All.mostrarPuntos(1, juego.Puntaje1);
                         }
                         else
@@ -422,7 +422,7 @@ namespace Truco.Web.Hubs
                             juego.Puntaje2 += juego.Rondas[juego.Rondas.Count - 1].Envido;
                             juego.RevisarBuenas();
                             Clients.All.mostrarPuntos(2, juego.Puntaje2);
-                            Clients.All.mostrarmensaje("El Equipo " + Equipos.Equipo2 + " Gano el envido");
+                            Clients.All.mostrarmensaje("El Equipo " + Equipos.Equipo2 + " Gano el Realenvido");
                         }
                         Clients.Client(juego.Rondas[juego.Rondas.Count - 1].IDQuienCantoEnvido).habilitarmovimientos();
                     }
@@ -459,14 +459,16 @@ namespace Truco.Web.Hubs
                         if (Equipos.Equipo1 == juego.GanadorEnvido(juego.Rondas[juego.Rondas.Count - 1].PuntosEnvido, juego.Jugadores))
                         {
                             juego.Puntaje1 += juego.Rondas[juego.Rondas.Count - 1].Envido;
-                            Clients.All.mostrarmensaje("El Equipo " + Equipos.Equipo1 + " Gano el envido");
+                            Clients.All.mostrarmensaje("El Equipo " + Equipos.Equipo1 + " Gano la Faltaenvido");
                             Clients.All.mostrarPuntos(1, juego.Puntaje1);
+                            EstadoDePartida();
                         }
                         else
                         {
                             juego.Puntaje2 += juego.Rondas[juego.Rondas.Count - 1].Envido;
                             Clients.All.mostrarPuntos(2, juego.Puntaje2);
-                            Clients.All.mostrarmensaje("El Equipo " + Equipos.Equipo2 + " Gano el envido");
+                            Clients.All.mostrarmensaje("El Equipo " + Equipos.Equipo2 + " Gano la Faltaenvido");
+                            EstadoDePartida();
                         }
                         Clients.Client(juego.Rondas[juego.Rondas.Count - 1].IDQuienCantoEnvido).habilitarmovimientos();
                     }
@@ -493,6 +495,13 @@ namespace Truco.Web.Hubs
                     {
                         Clients.All.hideTrucoOptions();
                         Clients.Client(juego.Rondas[juego.Rondas.Count - 1].IDQuienCantoTruco).habilitarMovimientos();
+                        foreach (var item in juego.Jugadores)
+                        {
+                            if (jugador.Equipo == item.Equipo)
+                            {
+                                Clients.Client(item.IdConexion).showReTrucoBotton();
+                            }
+                        }
                     }
                     else
                     {
@@ -519,6 +528,14 @@ namespace Truco.Web.Hubs
                     {
                         Clients.All.hideReTrucoOptions();
                         Clients.Client(juego.Rondas[juego.Rondas.Count - 1].IDQuienCantoTruco).habilitarMovimientos();
+                        foreach (var item in juego.Jugadores)
+                        {
+                            if (jugador.Equipo == item.Equipo)
+                            {
+                                Clients.Client(item.IdConexion).showVale4Botton();
+                            }
+                        }
+                    
                     }
                     else
                     {
