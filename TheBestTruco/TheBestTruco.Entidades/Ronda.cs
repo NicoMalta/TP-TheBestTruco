@@ -11,6 +11,7 @@ namespace TheBestTruco.Entidades
         public int Valor { get; set; }
         public int Posicion { get; set; }
     }
+
     public class Ronda
     {
         public RespuestasEnvido EstadoEnvido { get; set; }
@@ -24,8 +25,12 @@ namespace TheBestTruco.Entidades
         public int Manos { get; set; }
         public bool CantoAlgo { get; set; }
         public int Envido { get; set; }
+        public int Truco { get; set; }
         public Equipos EquipoCantoEnvido { get; set; }
         public List<int> PuntosEnvido { get; set; }
+        public string IDQuienCantoTruco { get; set; }
+        public string IDQuienCantoEnvido { get; set; }
+
 
         public Ronda()
         {
@@ -142,88 +147,88 @@ namespace TheBestTruco.Entidades
 
         }
 
-        public void Truco(List<Jugador> Jugadores, int Turno, RespuestasTruco tipotruco, QuiereoNo respuesta, Equipos equipo)
-        {
+        ////public void SumarPuntosTruco(List<Jugador> Jugadores, int Turno, RespuestasTruco tipotruco, QuiereoNo respuesta, Equipos equipo)
+        //{
 
-            Equipos equipoganador = Jugadores[CicloMayor(Manos - 1).Posicion].Equipo;
-            switch (tipotruco)
-            {
-                case RespuestasTruco.Truco:
-                    if (respuesta == QuiereoNo.NoQuiero)
-                    {
-                        if (equipo == Equipos.Equipo1)
-                        {
-                            Puntaje1 += 1;
-                        }
-                        else
-                        {
-                            Puntaje2 += 1;
-                        }
-                    }
-                    else
-                    {
-                        if (equipoganador == Equipos.Equipo1)
-                        {
-                            Puntaje1 += 2;
-                        }
-                        else
-                        {
-                            Puntaje2 += 2;
-                        }
-                    }
-                    break;
-                case RespuestasTruco.Retruco:
-                    if (respuesta == QuiereoNo.NoQuiero)
-                    {
-                        if (equipo == Equipos.Equipo1)
-                        {
-                            Puntaje1 += 2;
-                        }
-                        else
-                        {
-                            Puntaje2 += 2;
-                        }
-                    }
-                    else
-                    {
-                        if (equipoganador == Equipos.Equipo1)
-                        {
-                            Puntaje1 += 3;
-                        }
-                        else
-                        {
-                            Puntaje2 += 3;
-                        }
-                    }
-                    break;
-                case RespuestasTruco.QuieroVale4:
-                    if (respuesta == QuiereoNo.NoQuiero)
-                    {
-                        if (equipo == Equipos.Equipo1)
-                        {
-                            Puntaje1 += 3;
-                        }
-                        else
-                        {
-                            Puntaje2 += 3;
-                        }
-                    }
-                    else
-                    {
-                        if (equipoganador == Equipos.Equipo1)
-                        {
-                            Puntaje1 += 4;
-                        }
-                        else
-                        {
-                            Puntaje2 += 4;
-                        }
-                    }
-                    break;
-            }
+        //    Equipos equipoganador = Jugadores[CicloMayor(Manos - 1).Posicion].Equipo;
+        //    switch (tipotruco)
+        //    {
+        //        case RespuestasTruco.Truco:
+        //            if (respuesta == QuiereoNo.NoQuiero)
+        //            {
+        //                if (equipo == Equipos.Equipo1)
+        //                {
+        //                    Puntaje1 += 1;
+        //                }
+        //                else
+        //                {
+        //                    Puntaje2 += 1;
+        //                }
+        //            }
+        //            else
+        //            {
+        //                if (equipoganador == Equipos.Equipo1)
+        //                {
+        //                    Puntaje1 += 2;
+        //                }
+        //                else
+        //                {
+        //                    Puntaje2 += 2;
+        //                }
+        //            }
+        //            break;
+        //        case RespuestasTruco.Retruco:
+        //            if (respuesta == QuiereoNo.NoQuiero)
+        //            {
+        //                if (equipo == Equipos.Equipo1)
+        //                {
+        //                    Puntaje1 += 2;
+        //                }
+        //                else
+        //                {
+        //                    Puntaje2 += 2;
+        //                }
+        //            }
+        //            else
+        //            {
+        //                if (equipoganador == Equipos.Equipo1)
+        //                {
+        //                    Puntaje1 += 3;
+        //                }
+        //                else
+        //                {
+        //                    Puntaje2 += 3;
+        //                }
+        //            }
+        //            break;
+        //        case RespuestasTruco.QuieroVale4:
+        //            if (respuesta == QuiereoNo.NoQuiero)
+        //            {
+        //                if (equipo == Equipos.Equipo1)
+        //                {
+        //                    Puntaje1 += 3;
+        //                }
+        //                else
+        //                {
+        //                    Puntaje2 += 3;
+        //                }
+        //            }
+        //            else
+        //            {
+        //                if (equipoganador == Equipos.Equipo1)
+        //                {
+        //                    Puntaje1 += 4;
+        //                }
+        //                else
+        //                {
+        //                    Puntaje2 += 4;
+        //                }
+        //            }
+        //            break;
+        //    }
 
 
-        }
+        //}
 
         public Equipos GanoPrimera(List<Jugador> Jugadores)
         {
@@ -288,15 +293,15 @@ namespace TheBestTruco.Entidades
             switch (caso)
             {
                 case "envido":
-                    this.Envido =+ 2;
+                    this.Envido += 2;
                     break;
                    
                 case "envidoenvido":
-                    this.Envido = +2;
+                    this.Envido += 2;
                     break;
 
                 case "realenvido":
-                    this.Envido = +2;
+                    this.Envido += 2;
                     break;
             }
         }
@@ -324,6 +329,22 @@ namespace TheBestTruco.Entidades
 
             this.Envido = aux;
            
+        }
+
+        public void PuntajeTruco(string caso)
+        {
+            switch (caso)
+            {
+                case "truco":
+                    this.Truco += 2;
+                    break;
+                case "retruco":
+                    this.Truco += 1;
+                    break;
+                case "vale4":
+                    this.Truco += 1;
+                    break;
+            }
         }
     }
 }

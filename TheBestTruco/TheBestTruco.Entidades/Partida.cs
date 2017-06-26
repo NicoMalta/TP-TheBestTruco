@@ -36,10 +36,18 @@ namespace TheBestTruco.Entidades
         {
             if (Puntaje1 > 15)
             {
+                if (BuenasEquipo1 == false)
+                {
+                    this.Puntaje1 = 15 - this.Puntaje1;
+                }
                 this.BuenasEquipo1 = true;
             }
             if (Puntaje2 > 15)
             {
+                if (BuenasEquipo2 == false)
+                {
+                    this.Puntaje2 = 15 - this.Puntaje2;
+                }
                 this.BuenasEquipo2 = true;
             }
         }
