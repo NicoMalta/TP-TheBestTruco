@@ -15,9 +15,9 @@
             border: none;
             width: 400px;
             height: 200px;
-            position:fixed;
-        
-            }
+            position: fixed;
+        }
+
         body {
             background-image: url("/Images/jGlzr.png");
             background-attachment: fixed;
@@ -27,185 +27,187 @@
             margin-left: 100px;
             background-color: rgba(0,0,255,0.0);
         }
-
-
-        
     </style>
     <div class="FondoOscuro" id="FondoReyes" style="z-index: 9999; border: none; margin: 0px; padding: 0px; width: 100%; height: 100%; top: 0px; left: 0px; background-color: rgb(0, 0, 0); opacity: 0.6; position: fixed;"></div>
     <!--<div class="DivOscuro"  style="z-index: 10010; position: fixed; padding: 15px; margin: 0px; width: 30%; top: 40%; left: 35%; text-align: center; color: rgb(255, 255, 255); border: none; background-color: rgb(0, 0, 160); cursor: wait; border-radius: 10px; opacity: 0.5;">-->
     <!--<h3>Esperando a que otro jugador se una a la partida...</h3>-->
-    <div class="BotonTirarReyes" style="z-index: 9999; position: fixed; border-radius: 10px; opacity: 0.8; top: 35%; left: 40%;" >
+    <div class="BotonTirarReyes" style="z-index: 9999; position: fixed; border-radius: 10px; opacity: 0.8; top: 35%; left: 40%;">
         <img src="Images/Elementos/TirarReyes.PNG" onclick="TirarReyes()" />
         <h3> Tirar Reyes...</h3>
-    </div> 
-    <div class="container">
-       
-            <div class="row-fluid central">
-                <div class="centralPanel" style="background-color: rgba(255, 106, 0, 0.4); position:absolute; left:520px;  width:923px; height:400px" >
-                    <div class="row-fluid centralItem" style="position:relative; left:10%;">
-                        <div class="span12">
-                            <div id="user1">Esperando... </div>
-                            <img id="barra_carga1" class="carga" src="http://images.wikia.com/clubpenguin/images/9/94/LAB.gif" width="30" height="15" />
-                            <img id="user1_card1" class="card" src="Images/BACK.JPG" />
-                            <img id="user1_card2" class="card" src="Images/BACK.JPG" />
-                            <img id="user1_card3" class="card" src="Images/BACK.JPG" />
-                            <img id="emogin_1" class="Seña" src="" />
-                            <img id="mano_1" class="Mano" style="position:relative;" src="Images/Señas/Mano.PNG" />
-                            <img id="avatar_1" class="Avatar" src="" style="position:relative; right:40%"/>
-                        </div>
-                        
-                    </div>
-                    <div class="row-fluid centralItem" style="position:relative; left:10%;">
-                        <div class="span6">
-                            <div id="user4">Esperando...</div>
-                            <img id="barra_carga4" class="carga" src="http://images.wikia.com/clubpenguin/images/9/94/LAB.gif" width="30" height="15" />
-                            <img id="user4_card1" class="card" src="Images/BACK.JPG" />
-                            <img id="user4_card2" class="card" src="Images/BACK.JPG" />
-                            <img id="user4_card3" class="card" src="Images/BACK.JPG" />
-                            <img id="emogin_4" class="Seña" src="" />
-                            <img id="mano_4" class="Mano" style="position:relative;" src="Images/Señas/Mano.PNG" />
-                            <img id="avatar_4" class="Avatar" src="" style="position:relative; right:80%"/>
-                        </div>
-                        
-                        <div class="span6">
-                            <div id="user2">Esperando...</div>
-                            <img id="barra_carga2" class="carga" src="http://images.wikia.com/clubpenguin/images/9/94/LAB.gif" width="30" height="15" />
-                            <img id="user2_card1" class="card" src="Images/BACK.JPG" />
-                            <img id="user2_card2" class="card" src="Images/BACK.JPG" />
-                            <img id="user2_card3" class="card" src="Images/BACK.JPG" />
-                            <img id="emogin_2" class="Seña" src="" />
-                            <img id="mano_2" class="Mano" style="position:relative;" src="Images/Señas/Mano.PNG" />
-                            <img id="avatar_2" class="Avatar" src="" style="position:relative; right:80%"/>
-                        </div>
-                        
-                    </div>
-                    <div class="row-fluid centralItem" style="position:relative; left:10%;">
-                        <div class="span12">
-                            <div id="user3">Esperando...</div>
-                            <img id="barra_carga3" class="carga" src="http://images.wikia.com/clubpenguin/images/9/94/LAB.gif" width="30" height="15" />
-                            <img id="user3_card1" class="card" src="Images/BACK.JPG" />
-                            <img id="user3_card2" class="card" src="Images/BACK.JPG" />
-                            <img id="user3_card3" class="card" src="Images/BACK.JPG" />
-                            <img id="emogin_3" class="Seña" src="" />
-                            <img id="mano_3" class="Mano" style="position:relative;" src="Images/Señas/Mano.PNG" />
-                            <img id="avatar_3" class="Avatar" src="" style="position:relative;right:40%"/>
-                        </div>
-                        
-                    </div>
-                </div>
+    </div>
+    <div id="Ganaste" style="position: fixed; top: 35%; left: 40%; width:50%; height: 50%">
+        <img src="Images/Elementos/Ganaste.PNG" />
+    </div>
+    <div id="Perdiste" style="position: fixed; top: 30%; left: 30%;">
+        <img src="Images/Elementos/Perdiste.PNG" />
+    </div>
 
-            
+    <div class="container">
+
+        <div class="row-fluid central">
+            <div class="centralPanel" style="background-color: rgba(255, 106, 0, 0.4); position:absolute; left:520px;  width:923px; height:400px">
+                <div class="row-fluid centralItem" style="position:relative; left:10%;">
+                    <div class="span12">
+                        <div id="user1">Esperando... </div>
+                        <img id="barra_carga1" class="carga" src="http://images.wikia.com/clubpenguin/images/9/94/LAB.gif" width="30" height="15" />
+                        <img id="user1_card1" class="card" src="Images/BACK.JPG" />
+                        <img id="user1_card2" class="card" src="Images/BACK.JPG" />
+                        <img id="user1_card3" class="card" src="Images/BACK.JPG" />
+                        <img id="emogin_1" class="Seña" src="" />
+                        <img id="mano_1" class="Mano" style="position:relative;" src="Images/Señas/Mano.PNG" />
+                        <img id="avatar_1" class="Avatar" src="" style="position:relative; right:40%" />
+                    </div>
+
+                </div>
+                <div class="row-fluid centralItem" style="position:relative; left:10%;">
+                    <div class="span6">
+                        <div id="user4">Esperando...</div>
+                        <img id="barra_carga4" class="carga" src="http://images.wikia.com/clubpenguin/images/9/94/LAB.gif" width="30" height="15" />
+                        <img id="user4_card1" class="card" src="Images/BACK.JPG" />
+                        <img id="user4_card2" class="card" src="Images/BACK.JPG" />
+                        <img id="user4_card3" class="card" src="Images/BACK.JPG" />
+                        <img id="emogin_4" class="Seña" src="" />
+                        <img id="mano_4" class="Mano" style="position:relative;" src="Images/Señas/Mano.PNG" />
+                        <img id="avatar_4" class="Avatar" src="" style="position:relative; right:80%" />
+                    </div>
+
+                    <div class="span6">
+                        <div id="user2">Esperando...</div>
+                        <img id="barra_carga2" class="carga" src="http://images.wikia.com/clubpenguin/images/9/94/LAB.gif" width="30" height="15" />
+                        <img id="user2_card1" class="card" src="Images/BACK.JPG" />
+                        <img id="user2_card2" class="card" src="Images/BACK.JPG" />
+                        <img id="user2_card3" class="card" src="Images/BACK.JPG" />
+                        <img id="emogin_2" class="Seña" src="" />
+                        <img id="mano_2" class="Mano" style="position:relative;" src="Images/Señas/Mano.PNG" />
+                        <img id="avatar_2" class="Avatar" src="" style="position:relative; right:80%" />
+                    </div>
+
+                </div>
+                <div class="row-fluid centralItem" style="position:relative; left:10%;">
+                    <div class="span12">
+                        <div id="user3">Esperando...</div>
+                        <img id="barra_carga3" class="carga" src="http://images.wikia.com/clubpenguin/images/9/94/LAB.gif" width="30" height="15" />
+                        <img id="user3_card1" class="card" src="Images/BACK.JPG" />
+                        <img id="user3_card2" class="card" src="Images/BACK.JPG" />
+                        <img id="user3_card3" class="card" src="Images/BACK.JPG" />
+                        <img id="emogin_3" class="Seña" src="" />
+                        <img id="mano_3" class="Mano" style="position:relative;" src="Images/Señas/Mano.PNG" />
+                        <img id="avatar_3" class="Avatar" src="" style="position:relative;right:40%" />
+                    </div>
+
+                </div>
+            </div>
+
+
         </div>
-        
-            
+
+
         <div class="PanelPuntaje" style="background-image: url(Images/Puntos/Pizzaron.PNG); background-position:center; background-size:cover; width:400px; height:300px; position:absolute; left: 50px; top: 50px;">
             <!--<div id="punt"></div>-->
             <img id="Equipo1" src="Images/Puntos/0.PNG" style="position:relative; top:130px; left:90px; width: 45px; height:100px;" />
             <img id="Equipo2" src="Images/Puntos/0.PNG" style="position:relative; top:130px; left:200px; width: 45px; height:100px;" />
-        </div>           
-       
-               
-                <!-- Truco -->
-             
-                <!-- Ingresar jugador. -->
-                <!--<div id="userRegion">
-                    <h4>JUGAR</h4>
-                    <input type="text" placeholder="Usuario…" style="width:100px; margin-bottom:0px;" id="userName" />
-                    <button type="button" class="btn btn-primary" id="botonAgregarJugador">JUGAR</button>
-                </div>-->
-                <!-- Mensajes del juego -->
-                <!--<div id="messages"></div>
-            </div>-->
-        
+        </div>
 
 
+        <!-- Truco -->
+        <!-- Ingresar jugador. -->
+        <!--<div id="userRegion">
+            <h4>JUGAR</h4>
+            <input type="text" placeholder="Usuario…" style="width:100px; margin-bottom:0px;" id="userName" />
+            <button type="button" class="btn btn-primary" id="botonAgregarJugador">JUGAR</button>
+        </div>-->
+        <!-- Mensajes del juego -->
+        <!--<div id="messages"></div>
+        </div>-->
         <!-- Botonera -->
-       <div class="PanelInferior">
-        <div class="row-fluid botton">
-            <div class="span12 bottonPanel" style="position:absolute; left:520px; width: 923px; top:440px; background-color: rgba(255, 0, 0, 0.4); border-radius: 10px 10px 10px 10px; -moz-border-radius: 10px 10px 10px 10px; -webkit-border-radius: 10px 10px 10px 10px; border: 0px solid #000000;">
-                <div class="span6" id="cards" style="float: left; height:100px; position:relative; top:7px; left:3px">
-                </div>
-                <div class="span6" id="movements" style="float: right; position:relative; top:5px; right:37px">
-                    <button type="button" class="btn btn-primary" onclick="ReproducirSonido('QUIERO')" id="bottonEnvido">ENVIDO</button>
-                    <button type="button" class="btn btn-primary" onclick="ReproducirSonido('NO_QUIERO')" id="bottonEnvidoEnvido">ENVIDO ENVIDO</button>
-                    <button type="button" class="btn btn-primary" id="bottonRealEnvido">REAL ENVIDO</button>
-                    <button type="button" class="btn btn-primary" id="bottonFaltaEnvido">FALTA ENVIDO!</button>
-                    <button type="button" class="btn btn-primary" onclick="ReproducirSonido('TRUCO')" id="bottonTruco">TRUCO</button>
-                    <button type="button" class="btn btn-primary" onclick="ReproducirSonido('QUIERO_RETRUCO')" id="bottonReTruco">RETRUCO</button>
-                    <button type="button" class="btn btn-primary" id="bottonVale4">VALE 4</button>
-                    <button type="button" class="btn btn-primary" style="background: #000000" id="bottonMazo">IR AL MAZO</button>
-                    <!--<button type="button" class="btn btn-success" id="bottonQuieroEnvido">QUIERO!</button>
-                    <button type="button" class="btn btn-danger" id="bottonNoQuieroEnvido">NO QUIERO</button>-->
-                    <audio width="300" height="32" src="" id="audio" preload="auto"> </audio>
-                </div>
-                <div id="envidoRegion" class="envidoRegion">
-                    <h4>ENVIDO!!!</h4>
-                    <button type="button" class="btn btn-success" id="bottonQuieroEnvido">QUIERO!</button>
-                    <button type="button" class="btn btn-danger" id="bottonNoQuieroEnvido">NO QUIERO</button>
-                </div>
-                <div id="envidoEnvidoRegion" class="envidoRegion">
-                    <h4>ENVIDO ENVIDO!!!</h4>
-                    <button type="button" class="btn btn-success" id="bottonQuieroEnvidoEnvido">QUIERO!</button>
-                    <button type="button" class="btn btn-danger" id="bottonNoQuieroEnvidoEnvido">NO QUIERO</button>
-                </div>
-                <div id="realEnvidoRegion" class="envidoRegion">
-                    <h4>REAL ENVIDO!!!</h4>
-                    <button type="button" class="btn btn-success" id="bottonQuieroRealEnvido">QUIERO!</button>
-                    <button type="button" class="btn btn-danger" id="bottonNoQuieroRealEnvido">NO QUIERO</button>
-                </div>
-                <div id="faltaEnvidoRegion" class="envidoRegion">
-                    <h4>FALTA ENVIDO!!!</h4>
-                    <button type="button" class="btn btn-success" id="bottonQuieroFaltaEnvido">QUIERO!</button>
-                    <button type="button" class="btn btn-danger" id="bottonNoQuieroFaltaEnvido">NO QUIERO</button>
-                </div>
-                <div id="quieroEnvidoRegion" class="envidoRegion">
-                    <h4>MIS PUNTOS:</h4>
-                    <input type="text" placeholder="Puntos…" style="width:100px; margin-bottom:0px;" id="envidoPoints" />
-                    <button type="button" class="btn btn-success" id="bottonCantarPuntosEnvido">CANTAR</button>
-                </div>
-                <div id="trucoRegion" class="envidoRegion">
-                    <h4>TRUCO!!!</h4>
-                    <button type="button" class="btn btn-success" id="bottonQuieroTruco">QUIERO!</button>
-                    <button type="button" class="btn btn-danger" id="bottonNoQuieroTruco">NO QUIERO</button>
-                </div>
-                <div id="retrucoRegion" class="envidoRegion">
-                    <h4>RETRUCO!!!</h4>
-                    <button type="button" class="btn btn-success" id="bottonQuieroReTruco">QUIERO!</button>
-                    <button type="button" class="btn btn-danger" id="bottonNoQuieroReTruco">NO QUIERO</button>
-                </div>
-                <div id="vale4Region" class="envidoRegion">
-                    <h4>VALE 4!!!</h4>
-                    <button type="button" class="btn btn-success" id="bottonQuieroVale4">QUIERO!</button>
-                    <button type="button" class="btn btn-danger" id="bottonNoQuieroVale4">NO QUIERO</button>
+        <div class="PanelInferior">
+            <div class="row-fluid botton">
+                <div class="span12 bottonPanel" style="position:absolute; left:520px; width: 923px; top:440px; background-color: rgba(255, 0, 0, 0.4); border-radius: 10px 10px 10px 10px; -moz-border-radius: 10px 10px 10px 10px; -webkit-border-radius: 10px 10px 10px 10px; border: 0px solid #000000;">
+                    <div class="span6" id="cards" style="float: left; height:100px; position:relative; top:7px; left:3px">
+                    </div>
+                    <div class="span6" id="movements" style="float: right; position:relative; top:5px; right:37px">
+                        <button type="button" class="btn btn-primary" onclick="ReproducirSonido('QUIERO')" id="bottonEnvido">ENVIDO</button>
+                        <button type="button" class="btn btn-primary" onclick="ReproducirSonido('NO_QUIERO')" id="bottonEnvidoEnvido">ENVIDO ENVIDO</button>
+                        <button type="button" class="btn btn-primary" id="bottonRealEnvido">REAL ENVIDO</button>
+                        <button type="button" class="btn btn-primary" id="bottonFaltaEnvido">FALTA ENVIDO!</button>
+                        <button type="button" class="btn btn-primary" onclick="ReproducirSonido('TRUCO')" id="bottonTruco">TRUCO</button>
+                        <button type="button" class="btn btn-primary" onclick="ReproducirSonido('QUIERO_RETRUCO')" id="bottonReTruco">RETRUCO</button>
+                        <button type="button" class="btn btn-primary" id="bottonVale4">VALE 4</button>
+                        <button type="button" class="btn btn-primary" style="background: #000000" id="bottonMazo">IR AL MAZO</button>
+                        <!--<button type="button" class="btn btn-success" id="bottonQuieroEnvido">QUIERO!</button>
+                        <button type="button" class="btn btn-danger" id="bottonNoQuieroEnvido">NO QUIERO</button>-->
+                        <audio width="300" height="32" src="" id="audio" preload="auto"> </audio>
+                    </div>
+                    <div style="position:relative; top:28px ">
+                        <div id="envidoRegion" class="envidoRegion">
+                            <h4>ENVIDO!!!</h4>
+                            <button type="button" class="btn btn-success" id="bottonQuieroEnvido">QUIERO!</button>
+                            <button type="button" class="btn btn-danger" id="bottonNoQuieroEnvido">NO QUIERO</button>
+                        </div>
+                        <div id="envidoEnvidoRegion" class="envidoRegion">
+                            <h4>ENVIDO ENVIDO!!!</h4>
+                            <button type="button" class="btn btn-success" id="bottonQuieroEnvidoEnvido">QUIERO!</button>
+                            <button type="button" class="btn btn-danger" id="bottonNoQuieroEnvidoEnvido">NO QUIERO</button>
+                        </div>
+                        <div id="realEnvidoRegion" class="envidoRegion">
+                            <h4>REAL ENVIDO!!!</h4>
+                            <button type="button" class="btn btn-success" id="bottonQuieroRealEnvido">QUIERO!</button>
+                            <button type="button" class="btn btn-danger" id="bottonNoQuieroRealEnvido">NO QUIERO</button>
+                        </div>
+                        <div id="faltaEnvidoRegion" class="envidoRegion">
+                            <h4>FALTA ENVIDO!!!</h4>
+                            <button type="button" class="btn btn-success" id="bottonQuieroFaltaEnvido">QUIERO!</button>
+                            <button type="button" class="btn btn-danger" id="bottonNoQuieroFaltaEnvido">NO QUIERO</button>
+                        </div>
+                        <div id="quieroEnvidoRegion" class="envidoRegion">
+                            <h4>MIS PUNTOS:</h4>
+                            <input type="text" placeholder="Puntos…" style="width:100px; margin-bottom:0px;" id="envidoPoints" />
+                            <button type="button" class="btn btn-success" id="bottonCantarPuntosEnvido">CANTAR</button>
+                        </div>
+                        <div id="trucoRegion" class="envidoRegion">
+                            <h4>TRUCO!!!</h4>
+                            <button type="button" class="btn btn-success" id="bottonQuieroTruco">QUIERO!</button>
+                            <button type="button" class="btn btn-danger" id="bottonNoQuieroTruco">NO QUIERO</button>
+                        </div>
+                        <div id="retrucoRegion" class="envidoRegion">
+                            <h4>RETRUCO!!!</h4>
+                            <button type="button" class="btn btn-success" id="bottonQuieroReTruco">QUIERO!</button>
+                            <button type="button" class="btn btn-danger" id="bottonNoQuieroReTruco">NO QUIERO</button>
+                        </div>
+                        <div id="vale4Region" class="envidoRegion">
+                            <h4>VALE 4!!!</h4>
+                            <button type="button" class="btn btn-success" id="bottonQuieroVale4">QUIERO!</button>
+                            <button type="button" class="btn btn-danger" id="bottonNoQuieroVale4">NO QUIERO</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-      </div>
 
 
-    <div id="Señas" style="position:absolute;  top:570px; right:50px">
-        <img class="Seña" id="S_Ancho_Espada" src="Images/Señas/Uno_Espada.PNG" onclick="Seña('S_Ancho_Espada')" />
-        <img class="Seña" id="S_Ancho_Basto" src="Images/Señas/Uno_Basto.PNG" onclick="Seña('S_Ancho_Basto')" />
-        <img class="Seña" id="S_Siete_Espada" src="Images/Señas/Siete_Espada.PNG" onclick="Seña('S_Siete_Espada')" />
-        <img class="Seña" id="S_Siete_oro" src="Images/Señas/Siete_Oro.PNG" onclick="Seña('S_Siete_oro')" />
-        <img class="Seña" id="S_Tres" src="Images/Señas/Tres.PNG" onclick="Seña('S_Tres')" />
-        <img class="Seña" id="S_Dos" src="Images/Señas/Dos.PNG" onclick="Seña('S_Dos')" />
-        <img class="Seña" id="S_Uno_Falsos" src="Images/Señas/Uno_falso.PNG" onclick="Seña('S_Uno_Falsos')" />
-        <img class="Seña" id="S_Envido" src="Images/Señas/Envido.PNG" onclick="Seña('S_Envido')" />
-        <img class="Seña" id="S_No_Tengo_Nada" src="Images/Señas/No_Tengo_Nada.PNG" onclick="Seña('S_No_Tengo_Nada')" />
-    </div>
+        <div id="Señas" style="position:absolute;  top:570px; left:950px">
+            <img class="Seña" id="S_Ancho_Espada" src="Images/Señas/Uno_Espada.PNG" onclick="Seña('S_Ancho_Espada')" />
+            <img class="Seña" id="S_Ancho_Basto" src="Images/Señas/Uno_Basto.PNG" onclick="Seña('S_Ancho_Basto')" />
+            <img class="Seña" id="S_Siete_Espada" src="Images/Señas/Siete_Espada.PNG" onclick="Seña('S_Siete_Espada')" />
+            <img class="Seña" id="S_Siete_oro" src="Images/Señas/Siete_Oro.PNG" onclick="Seña('S_Siete_oro')" />
+            <img class="Seña" id="S_Tres" src="Images/Señas/Tres.PNG" onclick="Seña('S_Tres')" />
+            <img class="Seña" id="S_Dos" src="Images/Señas/Dos.PNG" onclick="Seña('S_Dos')" />
+            <img class="Seña" id="S_Uno_Falsos" src="Images/Señas/Uno_falso.PNG" onclick="Seña('S_Uno_Falsos')" />
+            <img class="Seña" id="S_Envido" src="Images/Señas/Envido.PNG" onclick="Seña('S_Envido')" />
+            <img class="Seña" id="S_No_Tengo_Nada" src="Images/Señas/No_Tengo_Nada.PNG" onclick="Seña('S_No_Tengo_Nada')" />
+        </div>
 
         <!--BotonesSeñas-->
-   
-    <div class="chat" style="background-image:url(/Images/Elementos/HojaVieja.JPG);border-right-color:black; position:absolute; top:440px; left:20px; width:470px; border-radius: 10px 10px 10px 10px; -moz-border-radius: 10px 10px 10px 10px; -webkit-border-radius: 10px 10px 10px 10px; border: 0px solid #000000;">
-        <div class="pre-scrollable contenedorchat" style="position:relative;font-family:'Monotype Corsiva';font-size: 18px; font-weight: bold; top:5px; left:3px; width:440px; height:140px; overflow-y:auto;">
-            <ul id="discussion"></ul>
+
+        <div class="chat" style="background-image:url(/Images/Elementos/HojaVieja.JPG);border-right-color:black; position:absolute; top:440px; left:20px; width:470px; border-radius: 10px 10px 10px 10px; -moz-border-radius: 10px 10px 10px 10px; -webkit-border-radius: 10px 10px 10px 10px; border: 0px solid #000000;">
+            <div class="pre-scrollable contenedorchat" style="position:relative;font-family:'Monotype Corsiva';font-size: 18px; font-weight: bold; top:5px; left:3px; width:440px; height:140px; overflow-y:auto;">
+                <ul id="discussion"></ul>
+            </div>
+            <input type="text" id="message" style="position:absolute;font-family:'Monotype Corsiva';font-size: 18px; font-weight: bold; width:350px; top:160px; left:5px" />
+            <input type="button" class="btn btn-primary" id="sendmessage" value="Enviar" style="position:absolute; top:160px; left:380px" />
+
+
         </div>
-        <input type="text" id="message" style="position:absolute;font-family:'Monotype Corsiva';font-size: 18px; font-weight: bold; width:350px; top:160px; left:5px"/>
-        <input type="button" class="btn btn-primary"  id="sendmessage" value="Enviar" style="position:absolute; top:160px; left:380px"/>
-
-
-    </div>
     </div>
     <!-- Librerías de Javascript -->
     <!--Reference the jQuery library. -->
@@ -222,7 +224,7 @@
     <script type="text/javascript">
         $(function () {
             // Declare a proxy to reference the hub.
-           
+
             // Create a function that the hub can call to broadcast messages.
             trucoHub.client.mensajeChat = function (message, name) {
                 // Html encode display name and message.
@@ -233,19 +235,19 @@
                     + '</strong>:&nbsp;&nbsp;' + encodedMsg + '</li>');
             };
             // Get the user name and store it to prepend to messages.
-          //  $('#displayname').val(prompt('Enter your name:', ''));
+            //  $('#displayname').val(prompt('Enter your name:', ''));
             // Set initial focus to message input box.
             $('#message').focus();
             // Start the connection.
-            
+
             $('#sendmessage').click(function () {
-                    // Call the Send method on the hub.
-                    trucoHub.server.enviarMensaje($('#message').val());
-                    // Clear text box and reset focus for next comment.
-                    $('#message').val('').focus();
-                });
-           });
-        
+                // Call the Send method on the hub.
+                trucoHub.server.enviarMensaje($('#message').val());
+                // Clear text box and reset focus for next comment.
+                $('#message').val('').focus();
+            });
+        });
+
     </script>
 </body>
 </html>

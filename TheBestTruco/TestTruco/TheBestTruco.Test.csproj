@@ -50,9 +50,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="TMazo.cs" />
+    <Compile Include="TTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestEnvi.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TheBestTruco.Entidades\TheBestTruco.Entidades.csproj">

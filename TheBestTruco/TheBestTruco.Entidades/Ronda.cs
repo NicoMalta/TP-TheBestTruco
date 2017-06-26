@@ -34,6 +34,8 @@ namespace TheBestTruco.Entidades
 
         public Ronda()
         {
+            IDQuienCantoEnvido = "";
+            IDQuienCantoTruco = "";
             PuntosEnvido = new List<int>();
             CartasMesa = new Carta[3, 4];
             Turno = 1;
@@ -251,14 +253,29 @@ namespace TheBestTruco.Entidades
             {
                 int Equipo1 = Ganadores.Where(x => x == Equipos.Equipo1).Count();
                 int Equipo2 = Ganadores.Where(x => x == Equipos.Equipo2).Count();
-                if (Equipo2 > Equipo1)
+                if (this.TrucoActivo == true)
                 {
-                    this.Puntaje2++;
+                    if (Equipo2 > Equipo1)
+                    {
+                        this.Puntaje2 = this.Truco;
+                    }
+                    else
+                    {
+                        this.Puntaje1 = this.Truco;
+                    }
                 }
                 else
                 {
-                    this.Puntaje1++;
+                    if (Equipo2 > Equipo1)
+                    {
+                        this.Puntaje2++;
+                    }
+                    else
+                    {
+                        this.Puntaje1++;
+                    }
                 }
+                
             }
             //CUANDO ES PARDA FALTA!!
         }

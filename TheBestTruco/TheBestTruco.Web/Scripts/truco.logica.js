@@ -104,6 +104,8 @@ function inicializarComponentes() {
     //$("#movements").hide();
     $("#rightPanel").niceScroll();
     $("#FondoReyes").hide();
+    $("#Perdiste").hide();
+    $("#Ganaste").hide();
     OcultarBotonReyes();
     ocultarSeccionesEnvido();
     ocultarSeccionesTruco();
@@ -179,11 +181,25 @@ $(function () {
         $("#discussion").prepend("<p>" + data + " se ha unido al juego!</p>");
     };
 
+    trucoHub.client.OcultarPuntosEnvido = function () {
+        $("#emogin_1").attr("src", "");
+        $("#emogin_2").attr("src", "");
+        $("#emogin_3").attr("src", "");
+        $("#emogin_4").attr("src", "");
+    };
+
     trucoHub.client.mostrarMensajeFinal = function (data) {
+        OcultarBotonReyes();
+        $(".container").hide();
+        $(".chat").hide();
+        $(".PanelInferior").hide();
+        $("#Señas").hide();
+        $("#FondoReyes").show();
+
         if (data == true) {
-           alert("GANASTE!");
+            $("#Ganaste").show();
         } else {
-            alert("PERDISTE!");
+            $("#Perdiste").show();
         }
     };
     $("#bottonEnvido").click(function () {
@@ -509,6 +525,10 @@ $(function () {
         $("#vale4Region").hide();
     };
 
+    trucoHub.client.CambiarNombretitle = function (equipo) {
+        document.title = equipo + ": " + $.urlParam('username');
+    };
+
     $.connection.hub.start(function () {
         trucoHub.server.conectarse();
 
@@ -526,6 +546,7 @@ $(function () {
             $(".PanelInferior").hide();
             $("#Señas").hide();
             document.title = userName;
+
         }
     });
 });

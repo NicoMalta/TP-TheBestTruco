@@ -63,23 +63,39 @@ namespace TheBestTruco.Entidades
 
         public void MeVoyAlMazo(Jugador jugador, bool CantoAlgo)
         {
-            if ((jugador.Equipo == Equipos.Equipo1) && (CantoAlgo == true))
+            
+            if (this.Rondas[this.Rondas.Count - 1].TrucoActivo == true)
             {
-                this.Puntaje1++;
+                if (jugador.Equipo == Equipos.Equipo1)
+                {
+                    this.Puntaje2 += this.Rondas[this.Rondas.Count - 1].Truco - 1;
+                }
+                else
+                {
+                    this.Puntaje1 += this.Rondas[this.Rondas.Count - 1].Truco - 1;
+                }
             }
-            if ((jugador.Equipo == Equipos.Equipo2) && (CantoAlgo == true))
+            else
             {
-                this.Puntaje2++;
-            }
-            if ((jugador.Equipo == Equipos.Equipo1) && (CantoAlgo == false))
-            {
-                this.Puntaje1++;
-                this.Puntaje1++;
-            }
-            if ((jugador.Equipo == Equipos.Equipo2) && (CantoAlgo == false))
-            {
-                this.Puntaje2++;
-                this.Puntaje2++;
+                if ((jugador.Equipo == Equipos.Equipo1) && (CantoAlgo == true))
+                {
+                    this.Puntaje1++;
+                }
+                if ((jugador.Equipo == Equipos.Equipo2) && (CantoAlgo == true))
+                {
+                    this.Puntaje2++;
+                }
+                if ((jugador.Equipo == Equipos.Equipo1) && (CantoAlgo == false))
+                {
+                    this.Puntaje1++;
+                    this.Puntaje1++;
+                }
+                if ((jugador.Equipo == Equipos.Equipo2) && (CantoAlgo == false))
+                {
+                    this.Puntaje2++;
+                    this.Puntaje2++;
+                }
+
             }
             RevisarBuenas();
         }
@@ -87,15 +103,15 @@ namespace TheBestTruco.Entidades
 
         public void RepartirCartas(List<Jugador> jugadores, Mazo mazo)
         {
-            foreach(var x in jugadores)
-            {
-                foreach(var c in x.Mano)
-                {
-                    mazo.ListaCartas.Add(c);                    
-                }
+            //foreach(var x in jugadores)
+            //{
+            //    foreach(var c in x.Mano)
+            //    {
+            //        mazo.ListaCartas.Add(c);                    
+            //    }
 
-                x.Mano.Clear();
-            }
+            //    x.Mano.Clear();
+            //}
 
             mazo.MezclarMazo(mazo);
             int CartasRepartidas = 0, indice = 0;
@@ -109,7 +125,7 @@ namespace TheBestTruco.Entidades
                 }
 
                 jugadores[indice].Mano.Add(mazo.ListaCartas[ultima]);
-                this.Mazo.ListaCartas.Remove(mazo.ListaCartas[ultima]);
+                //this.Mazo.ListaCartas.Remove(mazo.ListaCartas[ultima]);
                 indice++;
                 ultima--;
                 CartasRepartidas++;
@@ -145,7 +161,7 @@ namespace TheBestTruco.Entidades
         {
             var ganador = Puntos.Max();
 
-            for (int i = 3; i < -1; i--)
+            for (int i = 3; i >-1; i--)
             {
                 if (Jugadores[i].ContadorEnvido(Jugadores[i].Mano) == ganador)
                 {
